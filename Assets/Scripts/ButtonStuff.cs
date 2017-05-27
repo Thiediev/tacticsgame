@@ -13,20 +13,16 @@ public class BattleUI : MonoBehaviour
             if (GameManager.myUnit.attacking == false && GameManager.myUnit.waiting == false)
             {
                 if ((GameManager.myUnit.isFleaUpB && GameManager.myUnit.fleaActionPoints <= 0) != true)
-                {
-
-
+                {             
                     GameManager.instance.removeTileHighlights();
                     GameManager.myUnit.moving = false;
                     GameManager.myUnit.attacking = true;
                     GameManager.myUnit.waiting = false;
                     GameManager.instance.highlightTilesAt(GameManager.myUnit.gridPosition, Color.red, GameManager.myUnit.attackRange);
-
                 }
             }
             else
             {
-
                 GameManager.myUnit.moving = false;
                 GameManager.myUnit.attacking = false;
                 GameManager.instance.removeTileHighlights();
@@ -68,22 +64,6 @@ public class BattleUI : MonoBehaviour
             GameManager.myUnit.waiting = true;
             GameManager.instance.ReactivateAButton();
         }
-    }
-
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-        //get rid of this
-        /*
-        if (Input.GetMouseButton(0))
-        {
-            SceneManager.LoadScene("Campaign");
-        }
-    */
     }
 
     void OnMouseEnter()
