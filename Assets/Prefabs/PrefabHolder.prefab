@@ -1,0 +1,108 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &144354
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 434504}
+  - component: {fileID: 11440854}
+  m_Layer: 0
+  m_Name: PrefabHolder
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &434504
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 144354}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 3.7460039, y: -5.093854, z: -1.319752}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &11440854
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 144354}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e7982d8883ca7a41be637179448f46b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BASE_TILE_PREFAB: {fileID: 177412, guid: 3731eee1d463e5e4eaa2263c8a691237, type: 2}
+  TILE_NORMAL_PREFAB: {fileID: 132706, guid: 56bf46f16c61f4b449546365e806a3d3, type: 2}
+  TILE_DIFFICULT_PREFAB: {fileID: 173678, guid: e83f6b0064e1ecc44880ebb72755c7cb,
+    type: 2}
+  TILE_VERY_DIFFICULT_PREFAB: {fileID: 143762, guid: c326635dc24a89d488a9b8e5dbdda306,
+    type: 2}
+  TILE_IMPASSABLE_PREFAB: {fileID: 176434, guid: 2915cc9b52edbeb4d94942c65f912456,
+    type: 2}
+  HIGHLIGHT_TILE: {fileID: 193716, guid: 0aa4f6ca3c0a8a746a2dda2c7cc18482, type: 2}
+  AI_HIGHLIGHT: {fileID: 181886, guid: 7fe741993df61984c9f9a7da4ca2bb47, type: 2}
+  TILE_ROAD_PREFAB: {fileID: 159976, guid: fd9e7503989a14149942256226c742cc, type: 2}
+  TILE_PLAINS_PREFAB: {fileID: 127956, guid: 63b40857b7972df4386b9cd4b1223f7a, type: 2}
+  TILE_FOREST_PREFAB: {fileID: 176188, guid: c056f8a42a5be2d449ba869c8f5339c0, type: 2}
+  TILE_MOUNTAIN_PREFAB: {fileID: 162928, guid: 00515e03f354caf43a213ea051b00b78, type: 2}
+  TILE_RIVER_PREFAB: {fileID: 192572, guid: 08c57552749bde34ea08401302133beb, type: 2}
+  TILE_SEA_PREFAB: {fileID: 181904, guid: e160032108efff54b81962d4f36fcd6e, type: 2}
+  TILE_REEF_PREFAB: {fileID: 104650, guid: 03bd3af8132a75f44ae962b5826bcbdf, type: 2}
+  TILE_SHOAL_PREFAB: {fileID: 145642, guid: 6669926bc747bb9409156f878e871585, type: 2}
+  TILE_CITY_NEUTRAL_PREFAB: {fileID: 153560, guid: 1da8c2ded2e0d614085d03c5c7cd2f51,
+    type: 2}
+  TILE_CITY_PLAYER_ONE_PREFAB: {fileID: 129698, guid: b2b925bebb115944b87fcf65e390e5ce,
+    type: 2}
+  TILE_CITY_PLAYER_TWO_PREFAB: {fileID: 113152, guid: f29058d368c87994e96fd9e195b7b68c,
+    type: 2}
+  TILE_BASE_NEUTRAL_PREFAB: {fileID: 177144, guid: 2a9f9d05bba6a0c48ae7a7d09f2d9df3,
+    type: 2}
+  TILE_BASE_PLAYER_ONE_PREFAB: {fileID: 191628, guid: 7a67606516fac5a40adb1f9294f68e8b,
+    type: 2}
+  TILE_BASE_PLAYER_TWO_PREFAB: {fileID: 165952, guid: a7230056d5187474681dc0b88773e89b,
+    type: 2}
+  TILE_AIRPORT_NEUTRAL_PREFAB: {fileID: 170948, guid: 80d5c725b9891874496d12562de9e6d4,
+    type: 2}
+  TILE_AIRPORT_PLAYER_ONE_PREFAB: {fileID: 139070, guid: 949b1611b28fc004d8d0b93c512359ce,
+    type: 2}
+  TILE_AIRPORT_PLAYER_TWO_PREFAB: {fileID: 138898, guid: 4f30a1e9f6ea2d447ae50f899e95de1b,
+    type: 2}
+  TILE_PORT_NEUTRAL_PREFAB: {fileID: 160516, guid: 0329362d82f0ef84eb31ad18912d84de,
+    type: 2}
+  TILE_PORT_PLAYER_ONE_PREFAB: {fileID: 195538, guid: 2c1b38902a9a188489aa02bf29292129,
+    type: 2}
+  TILE_PORT_PLAYER_TWO_PREFAB: {fileID: 135628, guid: eb24282930b46f8428fbf61391bd975a,
+    type: 2}
+  TILE_HQ_PLAYER_ONE_PREFAB: {fileID: 150172, guid: 602f706e84ba3324ab36c045df973bdb,
+    type: 2}
+  TILE_HQ_PLAYER_TWO_PREFAB: {fileID: 178402, guid: ad019ee2326c8904f87a90d3e10cc820,
+    type: 2}
+  TILE_P1FLEA_PREFAB: {fileID: 127956, guid: 63b40857b7972df4386b9cd4b1223f7a, type: 2}
+  TILE_P2FLEA_PREFAB: {fileID: 104650, guid: 03bd3af8132a75f44ae962b5826bcbdf, type: 2}
+  TILE_AIFLEA_PREFAB: {fileID: 181904, guid: e160032108efff54b81962d4f36fcd6e, type: 2}
+  TILE_P1SPIDER_PREFAB: {fileID: 143762, guid: c326635dc24a89d488a9b8e5dbdda306, type: 2}
+  TILE_P2SPIDER_PREFAB: {fileID: 176188, guid: c056f8a42a5be2d449ba869c8f5339c0, type: 2}
+  TILE_AISPIDER_PREFAB: {fileID: 159976, guid: fd9e7503989a14149942256226c742cc, type: 2}
+  TILE_P1WITCH_PREFAB: {fileID: 192572, guid: 08c57552749bde34ea08401302133beb, type: 2}
+  TILE_P2WITCH_PREFAB: {fileID: 191628, guid: 7a67606516fac5a40adb1f9294f68e8b, type: 2}
+  TILE_AIWITCH_PREFAB: {fileID: 135628, guid: eb24282930b46f8428fbf61391bd975a, type: 2}
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 144354}
+  m_IsPrefabParent: 1

@@ -1,0 +1,49 @@
+fileFormatVersion: 2
+guid: 4e7982d8883ca7a41be637179448f46b
+timeCreated: 1476151569
+licenseType: Free
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences:
+  - BASE_TILE_PREFAB: {instanceID: 0}
+  - TILE_NORMAL_PREFAB: {instanceID: 0}
+  - TILE_DIFFICULT_PREFAB: {instanceID: 0}
+  - TILE_VERY_DIFFICULT_PREFAB: {instanceID: 0}
+  - TILE_IMPASSABLE_PREFAB: {instanceID: 0}
+  - TILE_ROAD_PREFAB: {instanceID: 0}
+  - TILE_PLAINS_PREFAB: {instanceID: 0}
+  - TILE_FOREST_PREFAB: {instanceID: 0}
+  - TILE_MOUNTAIN_PREFAB: {instanceID: 0}
+  - TILE_RIVER_PREFAB: {instanceID: 0}
+  - TILE_SEA_PREFAB: {instanceID: 0}
+  - TILE_REEF_PREFAB: {instanceID: 0}
+  - TILE_SHOAL_PREFAB: {instanceID: 0}
+  - TILE_CITY_NEUTRAL_PREFAB: {instanceID: 0}
+  - TILE_CITY_PLAYER_ONE_PREFAB: {instanceID: 0}
+  - TILE_CITY_PLAYER_TWO_PREFAB: {instanceID: 0}
+  - TILE_BASE_NEUTRAL_PREFAB: {instanceID: 0}
+  - TILE_BASE_PLAYER_ONE_PREFAB: {instanceID: 0}
+  - TILE_BASE_PLAYER_TWO_PREFAB: {instanceID: 0}
+  - TILE_AIRPORT_NEUTRAL_PREFAB: {instanceID: 0}
+  - TILE_AIRPORT_PLAYER_ONE_PREFAB: {instanceID: 0}
+  - TILE_AIRPORT_PLAYER_TWO_PREFAB: {instanceID: 0}
+  - TILE_PORT_NEUTRAL_PREFAB: {instanceID: 0}
+  - TILE_PORT_PLAYER_ONE_PREFAB: {instanceID: 0}
+  - TILE_PORT_PLAYER_TWO_PREFAB: {instanceID: 0}
+  - TILE_HQ_PLAYER_ONE_PREFAB: {instanceID: 0}
+  - TILE_HQ_PLAYER_TWO_PREFAB: {instanceID: 0}
+  - TILE_P1FLEA_PREFAB: {fileID: 159976, guid: fd9e7503989a14149942256226c742cc, type: 2}
+  - TILE_AIFLEA_PREFAB: {fileID: 159976, guid: fd9e7503989a14149942256226c742cc, type: 2}
+  - TILE_P1SPIDER_PREFAB: {fileID: 159976, guid: fd9e7503989a14149942256226c742cc,
+      type: 2}
+  - TILE_AISPIDER_PREFAB: {fileID: 159976, guid: fd9e7503989a14149942256226c742cc,
+      type: 2}
+  - TILE_P1WITCH_PREFAB: {fileID: 159976, guid: fd9e7503989a14149942256226c742cc,
+      type: 2}
+  - TILE_AIWITCH_PREFAB: {fileID: 159976, guid: fd9e7503989a14149942256226c742cc,
+      type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

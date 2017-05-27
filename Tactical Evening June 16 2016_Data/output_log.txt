@@ -1,0 +1,2643 @@
+Initialize engine version: 5.3.1f1 (cc9cbbcc37b4)
+GfxDevice: creating device client; threaded=1
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.0]
+    Renderer: Intel(R) HD Graphics 4600 (ID=0x416)
+    Vendor:   Intel
+    VRAM:     896 MB
+Begin MonoManager ReloadAssembly
+Platform assembly: C:\Users\Thiediev\Documents\Tactical Evening v2\Tactical Evening June 16 2016_Data\Managed\UnityEngine.dll (this message is harmless)
+Loading C:\Users\Thiediev\Documents\Tactical Evening v2\Tactical Evening June 16 2016_Data\Managed\UnityEngine.dll into Unity Child Domain
+Platform assembly: C:\Users\Thiediev\Documents\Tactical Evening v2\Tactical Evening June 16 2016_Data\Managed\Assembly-CSharp.dll (this message is harmless)
+Loading C:\Users\Thiediev\Documents\Tactical Evening v2\Tactical Evening June 16 2016_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
+Platform assembly: C:\Users\Thiediev\Documents\Tactical Evening v2\Tactical Evening June 16 2016_Data\Managed\UnityEngine.UI.dll (this message is harmless)
+Loading C:\Users\Thiediev\Documents\Tactical Evening v2\Tactical Evening June 16 2016_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
+Platform assembly: C:\Users\Thiediev\Documents\Tactical Evening v2\Tactical Evening June 16 2016_Data\Managed\UnityEngine.Networking.dll (this message is harmless)
+Loading C:\Users\Thiediev\Documents\Tactical Evening v2\Tactical Evening June 16 2016_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
+- Completed reload, in  0.045 seconds
+Platform assembly: C:\Users\Thiediev\Documents\Tactical Evening v2\Tactical Evening June 16 2016_Data\Managed\System.Core.dll (this message is harmless)
+Platform assembly: C:\Users\Thiediev\Documents\Tactical Evening v2\Tactical Evening June 16 2016_Data\Managed\System.dll (this message is harmless)
+desktop: 1366x768 60Hz; virtual: 1366x768 at 0,0
+<RI> Initializing input.
+<RI> Input initialized.
+<RI> Initialized touch support.
+UnloadTime: 0.862575 ms
+Platform assembly: C:\Users\Thiediev\Documents\Tactical Evening v2\Tactical Evening June 16 2016_Data\Managed\System.Xml.dll (this message is harmless)
+ArgumentException: Encoding name 'shift_jis' not supported
+Parameter name: name
+  at System.Text.Encoding.GetEncoding (System.String name) [0x00000] in <filename unknown>:0 
+  at System.Xml.XmlInputStream.Initialize (System.IO.Stream stream) [0x00000] in <filename unknown>:0 
+  at System.Xml.XmlInputStream..ctor (System.IO.Stream stream) [0x00000] in <filename unknown>:0 
+  at System.Xml.XmlStreamReader..ctor (System.IO.Stream input) [0x00000] in <filename unknown>:0 
+  at System.Xml.XmlTextReader..ctor (System.IO.Stream input) [0x00000] in <filename unknown>:0 
+  at System.Xml.Serialization.XmlSerializer.Deserialize (System.IO.Stream stream) [0x00000] in <filename unknown>:0 
+  at MapSaveLoad.Load (System.String filename) [0x00000] in <filename unknown>:0 
+  at GameManager.loadMapFromXml () [0x00000] in <filename unknown>:0 
+  at GameManager.generateMap () [0x00000] in <filename unknown>:0 
+  at GameManager.Start () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+no unit chosen yet
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+PLAYER TWO WINS MY DUDE
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+PLAYER ONNNE WINS YEAH
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+Setting up 2 worker threads for Enlighten.
+  Thread -> id: bc0 -> priority: 1 
+  Thread -> id: 2638 -> priority: 1 
+ArgumentOutOfRangeException: Argument is out of range.
+Parameter name: index
+  at System.Collections.Generic.List`1[Player].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
+  at GameManager.OnGUI () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentOutOfRangeException: Argument is out of range.
+Parameter name: index
+  at System.Collections.Generic.List`1[Player].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
+  at GameManager.OnGUI () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+no unit chosen yet
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+PLAYER TWO WINS MY DUDE
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+PLAYER ONNNE WINS YEAH
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+ArgumentOutOfRangeException: Argument is out of range.
+Parameter name: index
+  at System.Collections.Generic.List`1[Player].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
+  at GameManager.OnGUI () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentOutOfRangeException: Argument is out of range.
+Parameter name: index
+  at System.Collections.Generic.List`1[Player].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
+  at GameManager.OnGUI () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+no unit chosen yet
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+PLAYER TWO WINS MY DUDE
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+PLAYER ONNNE WINS YEAH
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+ArgumentOutOfRangeException: Argument is out of range.
+Parameter name: index
+  at System.Collections.Generic.List`1[Player].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
+  at GameManager.OnGUI () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentOutOfRangeException: Argument is out of range.
+Parameter name: index
+  at System.Collections.Generic.List`1[Player].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
+  at GameManager.OnGUI () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+no unit chosen yet
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+PLAYER TWO WINS MY DUDE
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+PLAYER ONNNE WINS YEAH
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+ArgumentOutOfRangeException: Argument is out of range.
+Parameter name: index
+  at System.Collections.Generic.List`1[Player].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
+  at GameManager.OnGUI () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentOutOfRangeException: Argument is out of range.
+Parameter name: index
+  at System.Collections.Generic.List`1[Player].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
+  at GameManager.OnGUI () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+no unit chosen yet
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+PLAYER TWO WINS MY DUDE
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+PLAYER ONNNE WINS YEAH
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+ArgumentOutOfRangeException: Argument is out of range.
+Parameter name: index
+  at System.Collections.Generic.List`1[Player].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
+  at GameManager.OnGUI () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentOutOfRangeException: Argument is out of range.
+Parameter name: index
+  at System.Collections.Generic.List`1[Player].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
+  at GameManager.OnGUI () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+no unit chosen yet
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+PLAYER TWO WINS MY DUDE
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+PLAYER ONNNE WINS YEAH
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+ArgumentOutOfRangeException: Argument is out of range.
+Parameter name: index
+  at System.Collections.Generic.List`1[Player].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
+  at GameManager.OnGUI () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentOutOfRangeException: Argument is out of range.
+Parameter name: index
+  at System.Collections.Generic.List`1[Player].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
+  at GameManager.OnGUI () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+no unit chosen yet
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+PLAYER TWO WINS MY DUDE
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+PLAYER ONNNE WINS YEAH
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+ArgumentOutOfRangeException: Argument is out of range.
+Parameter name: index
+  at System.Collections.Generic.List`1[Player].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
+  at GameManager.OnGUI () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentOutOfRangeException: Argument is out of range.
+Parameter name: index
+  at System.Collections.Generic.List`1[Player].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
+  at GameManager.OnGUI () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+no unit chosen yet
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+PLAYER TWO WINS MY DUDE
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+PLAYER ONNNE WINS YEAH
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+ArgumentOutOfRangeException: Argument is out of range.
+Parameter name: index
+  at System.Collections.Generic.List`1[Player].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
+  at GameManager.OnGUI () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentOutOfRangeException: Argument is out of range.
+Parameter name: index
+  at System.Collections.Generic.List`1[Player].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
+  at GameManager.OnGUI () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+no unit chosen yet
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+PLAYER TWO WINS MY DUDE
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+PLAYER ONNNE WINS YEAH
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+ArgumentOutOfRangeException: Argument is out of range.
+Parameter name: index
+  at System.Collections.Generic.List`1[Player].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
+  at GameManager.OnGUI () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentOutOfRangeException: Argument is out of range.
+Parameter name: index
+  at System.Collections.Generic.List`1[Player].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
+  at GameManager.OnGUI () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+no unit chosen yet
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+PLAYER TWO WINS MY DUDE
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+PLAYER ONNNE WINS YEAH
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+ArgumentOutOfRangeException: Argument is out of range.
+Parameter name: index
+  at System.Collections.Generic.List`1[Player].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
+  at GameManager.OnGUI () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentOutOfRangeException: Argument is out of range.
+Parameter name: index
+  at System.Collections.Generic.List`1[Player].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
+  at GameManager.OnGUI () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+no unit chosen yet
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+PLAYER TWO WINS MY DUDE
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+PLAYER ONNNE WINS YEAH
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+ArgumentOutOfRangeException: Argument is out of range.
+Parameter name: index
+  at System.Collections.Generic.List`1[Player].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
+  at GameManager.OnGUI () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentOutOfRangeException: Argument is out of range.
+Parameter name: index
+  at System.Collections.Generic.List`1[Player].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
+  at GameManager.OnGUI () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+no unit chosen yet
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+PLAYER TWO WINS MY DUDE
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+PLAYER ONNNE WINS YEAH
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+ArgumentOutOfRangeException: Argument is out of range.
+Parameter name: index
+  at System.Collections.Generic.List`1[Player].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
+  at GameManager.OnGUI () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentOutOfRangeException: Argument is out of range.
+Parameter name: index
+  at System.Collections.Generic.List`1[Player].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
+  at GameManager.OnGUI () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+no unit chosen yet
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+PLAYER TWO WINS MY DUDE
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+PLAYER ONNNE WINS YEAH
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+ArgumentOutOfRangeException: Argument is out of range.
+Parameter name: index
+  at System.Collections.Generic.List`1[Player].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
+  at GameManager.OnGUI () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentOutOfRangeException: Argument is out of range.
+Parameter name: index
+  at System.Collections.Generic.List`1[Player].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
+  at GameManager.OnGUI () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+no unit chosen yet
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+PLAYER TWO WINS MY DUDE
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+PLAYER ONNNE WINS YEAH
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+ArgumentOutOfRangeException: Argument is out of range.
+Parameter name: index
+  at System.Collections.Generic.List`1[Player].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
+  at GameManager.OnGUI () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentOutOfRangeException: Argument is out of range.
+Parameter name: index
+  at System.Collections.Generic.List`1[Player].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
+  at GameManager.OnGUI () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+no unit chosen yet
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+PLAYER TWO WINS MY DUDE
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+PLAYER ONNNE WINS YEAH
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+ArgumentOutOfRangeException: Argument is out of range.
+Parameter name: index
+  at System.Collections.Generic.List`1[Player].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
+  at GameManager.OnGUI () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentOutOfRangeException: Argument is out of range.
+Parameter name: index
+  at System.Collections.Generic.List`1[Player].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
+  at GameManager.OnGUI () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+no unit chosen yet
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+PLAYER TWO WINS MY DUDE
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+PLAYER ONNNE WINS YEAH
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+ArgumentOutOfRangeException: Argument is out of range.
+Parameter name: index
+  at System.Collections.Generic.List`1[Player].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
+  at GameManager.OnGUI () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentOutOfRangeException: Argument is out of range.
+Parameter name: index
+  at System.Collections.Generic.List`1[Player].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
+  at GameManager.OnGUI () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+no unit chosen yet
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+PLAYER TWO WINS MY DUDE
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+PLAYER ONNNE WINS YEAH
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+ArgumentOutOfRangeException: Argument is out of range.
+Parameter name: index
+  at System.Collections.Generic.List`1[Player].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
+  at GameManager.OnGUI () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentOutOfRangeException: Argument is out of range.
+Parameter name: index
+  at System.Collections.Generic.List`1[Player].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
+  at GameManager.OnGUI () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+no unit chosen yet
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+PLAYER TWO WINS MY DUDE
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+PLAYER ONNNE WINS YEAH
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+ArgumentOutOfRangeException: Argument is out of range.
+Parameter name: index
+  at System.Collections.Generic.List`1[Player].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
+  at GameManager.OnGUI () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentOutOfRangeException: Argument is out of range.
+Parameter name: index
+  at System.Collections.Generic.List`1[Player].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
+  at GameManager.OnGUI () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+no unit chosen yet
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+PLAYER TWO WINS MY DUDE
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+PLAYER ONNNE WINS YEAH
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+ArgumentOutOfRangeException: Argument is out of range.
+Parameter name: index
+  at System.Collections.Generic.List`1[Player].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
+  at GameManager.OnGUI () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentOutOfRangeException: Argument is out of range.
+Parameter name: index
+  at System.Collections.Generic.List`1[Player].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
+  at GameManager.OnGUI () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+no unit chosen yet
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+PLAYER TWO WINS MY DUDE
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+PLAYER ONNNE WINS YEAH
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+ArgumentOutOfRangeException: Argument is out of range.
+Parameter name: index
+  at System.Collections.Generic.List`1[Player].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
+  at GameManager.OnGUI () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentOutOfRangeException: Argument is out of range.
+Parameter name: index
+  at System.Collections.Generic.List`1[Player].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
+  at GameManager.OnGUI () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+no unit chosen yet
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+PLAYER TWO WINS MY DUDE
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+PLAYER ONNNE WINS YEAH
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+ArgumentOutOfRangeException: Argument is out of range.
+Parameter name: index
+  at System.Collections.Generic.List`1[Player].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
+  at GameManager.OnGUI () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentOutOfRangeException: Argument is out of range.
+Parameter name: index
+  at System.Collections.Generic.List`1[Player].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
+  at GameManager.OnGUI () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+no unit chosen yet
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+PLAYER TWO WINS MY DUDE
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+PLAYER ONNNE WINS YEAH
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+ArgumentOutOfRangeException: Argument is out of range.
+Parameter name: index
+  at System.Collections.Generic.List`1[Player].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
+  at GameManager.OnGUI () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentOutOfRangeException: Argument is out of range.
+Parameter name: index
+  at System.Collections.Generic.List`1[Player].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
+  at GameManager.OnGUI () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+no unit chosen yet
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+PLAYER TWO WINS MY DUDE
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+PLAYER ONNNE WINS YEAH
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+ArgumentOutOfRangeException: Argument is out of range.
+Parameter name: index
+  at System.Collections.Generic.List`1[Player].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
+  at GameManager.OnGUI () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentOutOfRangeException: Argument is out of range.
+Parameter name: index
+  at System.Collections.Generic.List`1[Player].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
+  at GameManager.OnGUI () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+no unit chosen yet
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+PLAYER TWO WINS MY DUDE
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+PLAYER ONNNE WINS YEAH
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+ArgumentOutOfRangeException: Argument is out of range.
+Parameter name: index
+  at System.Collections.Generic.List`1[Player].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
+  at GameManager.OnGUI () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentOutOfRangeException: Argument is out of range.
+Parameter name: index
+  at System.Collections.Generic.List`1[Player].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
+  at GameManager.OnGUI () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+no unit chosen yet
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+PLAYER TWO WINS MY DUDE
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+PLAYER ONNNE WINS YEAH
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+ArgumentOutOfRangeException: Argument is out of range.
+Parameter name: index
+  at System.Collections.Generic.List`1[Player].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
+  at GameManager.OnGUI () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentOutOfRangeException: Argument is out of range.
+Parameter name: index
+  at System.Collections.Generic.List`1[Player].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
+  at GameManager.OnGUI () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+no unit chosen yet
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+PLAYER TWO WINS MY DUDE
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+PLAYER ONNNE WINS YEAH
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+ArgumentOutOfRangeException: Argument is out of range.
+Parameter name: index
+  at System.Collections.Generic.List`1[Player].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
+  at GameManager.OnGUI () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentOutOfRangeException: Argument is out of range.
+Parameter name: index
+  at System.Collections.Generic.List`1[Player].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
+  at GameManager.OnGUI () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+no unit chosen yet
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+PLAYER TWO WINS MY DUDE
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+PLAYER ONNNE WINS YEAH
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+ArgumentOutOfRangeException: Argument is out of range.
+Parameter name: index
+  at System.Collections.Generic.List`1[Player].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
+  at GameManager.OnGUI () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentOutOfRangeException: Argument is out of range.
+Parameter name: index
+  at System.Collections.Generic.List`1[Player].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
+  at GameManager.OnGUI () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+no unit chosen yet
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+PLAYER TWO WINS MY DUDE
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+PLAYER ONNNE WINS YEAH
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+ArgumentOutOfRangeException: Argument is out of range.
+Parameter name: index
+  at System.Collections.Generic.List`1[Player].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
+  at GameManager.OnGUI () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentOutOfRangeException: Argument is out of range.
+Parameter name: index
+  at System.Collections.Generic.List`1[Player].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
+  at GameManager.OnGUI () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+no unit chosen yet
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+PLAYER TWO WINS MY DUDE
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+PLAYER ONNNE WINS YEAH
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+ArgumentOutOfRangeException: Argument is out of range.
+Parameter name: index
+  at System.Collections.Generic.List`1[Player].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
+  at GameManager.OnGUI () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentOutOfRangeException: Argument is out of range.
+Parameter name: index
+  at System.Collections.Generic.List`1[Player].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
+  at GameManager.OnGUI () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+no unit chosen yet
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+PLAYER TWO WINS MY DUDE
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+PLAYER ONNNE WINS YEAH
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+ArgumentOutOfRangeException: Argument is out of range.
+Parameter name: index
+  at System.Collections.Generic.List`1[Player].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
+  at GameManager.OnGUI () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentOutOfRangeException: Argument is out of range.
+Parameter name: index
+  at System.Collections.Generic.List`1[Player].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
+  at GameManager.OnGUI () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+no unit chosen yet
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+PLAYER TWO WINS MY DUDE
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+PLAYER ONNNE WINS YEAH
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+ArgumentOutOfRangeException: Argument is out of range.
+Parameter name: index
+  at System.Collections.Generic.List`1[Player].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
+  at GameManager.OnGUI () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentOutOfRangeException: Argument is out of range.
+Parameter name: index
+  at System.Collections.Generic.List`1[Player].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
+  at GameManager.OnGUI () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+no unit chosen yet
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+PLAYER TWO WINS MY DUDE
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+PLAYER ONNNE WINS YEAH
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+ArgumentOutOfRangeException: Argument is out of range.
+Parameter name: index
+  at System.Collections.Generic.List`1[Player].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
+  at GameManager.OnGUI () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentOutOfRangeException: Argument is out of range.
+Parameter name: index
+  at System.Collections.Generic.List`1[Player].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
+  at GameManager.OnGUI () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+no unit chosen yet
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+PLAYER TWO WINS MY DUDE
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+PLAYER ONNNE WINS YEAH
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+ArgumentOutOfRangeException: Argument is out of range.
+Parameter name: index
+  at System.Collections.Generic.List`1[Player].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
+  at GameManager.OnGUI () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentOutOfRangeException: Argument is out of range.
+Parameter name: index
+  at System.Collections.Generic.List`1[Player].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
+  at GameManager.OnGUI () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+no unit chosen yet
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+PLAYER TWO WINS MY DUDE
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+PLAYER ONNNE WINS YEAH
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+ArgumentOutOfRangeException: Argument is out of range.
+Parameter name: index
+  at System.Collections.Generic.List`1[Player].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
+  at GameManager.OnGUI () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentOutOfRangeException: Argument is out of range.
+Parameter name: index
+  at System.Collections.Generic.List`1[Player].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
+  at GameManager.OnGUI () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+no unit chosen yet
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+PLAYER TWO WINS MY DUDE
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+PLAYER ONNNE WINS YEAH
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+ArgumentOutOfRangeException: Argument is out of range.
+Parameter name: index
+  at System.Collections.Generic.List`1[Player].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
+  at GameManager.OnGUI () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentOutOfRangeException: Argument is out of range.
+Parameter name: index
+  at System.Collections.Generic.List`1[Player].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
+  at GameManager.OnGUI () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+no unit chosen yet
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+PLAYER TWO WINS MY DUDE
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+PLAYER ONNNE WINS YEAH
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+ArgumentOutOfRangeException: Argument is out of range.
+Parameter name: index
+  at System.Collections.Generic.List`1[Player].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
+  at GameManager.OnGUI () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentOutOfRangeException: Argument is out of range.
+Parameter name: index
+  at System.Collections.Generic.List`1[Player].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
+  at GameManager.OnGUI () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+no unit chosen yet
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+PLAYER TWO WINS MY DUDE
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+PLAYER ONNNE WINS YEAH
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+ArgumentOutOfRangeException: Argument is out of range.
+Parameter name: index
+  at System.Collections.Generic.List`1[Player].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
+  at GameManager.OnGUI () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentOutOfRangeException: Argument is out of range.
+Parameter name: index
+  at System.Collections.Generic.List`1[Player].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
+  at GameManager.OnGUI () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+no unit chosen yet
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+PLAYER TWO WINS MY DUDE
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+PLAYER ONNNE WINS YEAH
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+ArgumentOutOfRangeException: Argument is out of range.
+Parameter name: index
+  at System.Collections.Generic.List`1[Player].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
+  at GameManager.OnGUI () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentOutOfRangeException: Argument is out of range.
+Parameter name: index
+  at System.Collections.Generic.List`1[Player].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
+  at GameManager.OnGUI () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+no unit chosen yet
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+PLAYER TWO WINS MY DUDE
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+PLAYER ONNNE WINS YEAH
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+ArgumentOutOfRangeException: Argument is out of range.
+Parameter name: index
+  at System.Collections.Generic.List`1[Player].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
+  at GameManager.OnGUI () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentOutOfRangeException: Argument is out of range.
+Parameter name: index
+  at System.Collections.Generic.List`1[Player].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
+  at GameManager.OnGUI () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+no unit chosen yet
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+PLAYER TWO WINS MY DUDE
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+PLAYER ONNNE WINS YEAH
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+ArgumentOutOfRangeException: Argument is out of range.
+Parameter name: index
+  at System.Collections.Generic.List`1[Player].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
+  at GameManager.OnGUI () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentOutOfRangeException: Argument is out of range.
+Parameter name: index
+  at System.Collections.Generic.List`1[Player].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
+  at GameManager.OnGUI () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+no unit chosen yet
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+PLAYER TWO WINS MY DUDE
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+PLAYER ONNNE WINS YEAH
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+ArgumentOutOfRangeException: Argument is out of range.
+Parameter name: index
+  at System.Collections.Generic.List`1[Player].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
+  at GameManager.OnGUI () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentOutOfRangeException: Argument is out of range.
+Parameter name: index
+  at System.Collections.Generic.List`1[Player].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
+  at GameManager.OnGUI () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+no unit chosen yet
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+PLAYER TWO WINS MY DUDE
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+PLAYER ONNNE WINS YEAH
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+ArgumentOutOfRangeException: Argument is out of range.
+Parameter name: index
+  at System.Collections.Generic.List`1[Player].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
+  at GameManager.OnGUI () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentOutOfRangeException: Argument is out of range.
+Parameter name: index
+  at System.Collections.Generic.List`1[Player].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
+  at GameManager.OnGUI () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+no unit chosen yet
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+PLAYER TWO WINS MY DUDE
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+PLAYER ONNNE WINS YEAH
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+ArgumentOutOfRangeException: Argument is out of range.
+Parameter name: index
+  at System.Collections.Generic.List`1[Player].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
+  at GameManager.OnGUI () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentOutOfRangeException: Argument is out of range.
+Parameter name: index
+  at System.Collections.Generic.List`1[Player].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
+  at GameManager.OnGUI () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+no unit chosen yet
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+PLAYER TWO WINS MY DUDE
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+PLAYER ONNNE WINS YEAH
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+ArgumentOutOfRangeException: Argument is out of range.
+Parameter name: index
+  at System.Collections.Generic.List`1[Player].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
+  at GameManager.OnGUI () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentOutOfRangeException: Argument is out of range.
+Parameter name: index
+  at System.Collections.Generic.List`1[Player].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
+  at GameManager.OnGUI () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+no unit chosen yet
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+PLAYER TWO WINS MY DUDE
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+PLAYER ONNNE WINS YEAH
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+ArgumentOutOfRangeException: Argument is out of range.
+Parameter name: index
+  at System.Collections.Generic.List`1[Player].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
+  at GameManager.OnGUI () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentOutOfRangeException: Argument is out of range.
+Parameter name: index
+  at System.Collections.Generic.List`1[Player].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
+  at GameManager.OnGUI () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+no unit chosen yet
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+PLAYER TWO WINS MY DUDE
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+PLAYER ONNNE WINS YEAH
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+ArgumentOutOfRangeException: Argument is out of range.
+Parameter name: index
+  at System.Collections.Generic.List`1[Player].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
+  at GameManager.OnGUI () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentOutOfRangeException: Argument is out of range.
+Parameter name: index
+  at System.Collections.Generic.List`1[Player].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
+  at GameManager.OnGUI () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+no unit chosen yet
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+PLAYER TWO WINS MY DUDE
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+PLAYER ONNNE WINS YEAH
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+ArgumentOutOfRangeException: Argument is out of range.
+Parameter name: index
+  at System.Collections.Generic.List`1[Player].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
+  at GameManager.OnGUI () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentOutOfRangeException: Argument is out of range.
+Parameter name: index
+  at System.Collections.Generic.List`1[Player].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
+  at GameManager.OnGUI () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+no unit chosen yet
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+PLAYER TWO WINS MY DUDE
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+PLAYER ONNNE WINS YEAH
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+ArgumentOutOfRangeException: Argument is out of range.
+Parameter name: index
+  at System.Collections.Generic.List`1[Player].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
+  at GameManager.OnGUI () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentOutOfRangeException: Argument is out of range.
+Parameter name: index
+  at System.Collections.Generic.List`1[Player].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
+  at GameManager.OnGUI () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+no unit chosen yet
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+PLAYER TWO WINS MY DUDE
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+PLAYER ONNNE WINS YEAH
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+ArgumentOutOfRangeException: Argument is out of range.
+Parameter name: index
+  at System.Collections.Generic.List`1[Player].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
+  at GameManager.OnGUI () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentOutOfRangeException: Argument is out of range.
+Parameter name: index
+  at System.Collections.Generic.List`1[Player].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
+  at GameManager.OnGUI () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+no unit chosen yet
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+PLAYER TWO WINS MY DUDE
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+PLAYER ONNNE WINS YEAH
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+ArgumentOutOfRangeException: Argument is out of range.
+Parameter name: index
+  at System.Collections.Generic.List`1[Player].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
+  at GameManager.OnGUI () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentOutOfRangeException: Argument is out of range.
+Parameter name: index
+  at System.Collections.Generic.List`1[Player].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
+  at GameManager.OnGUI () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+no unit chosen yet
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+PLAYER TWO WINS MY DUDE
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+PLAYER ONNNE WINS YEAH
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+ArgumentOutOfRangeException: Argument is out of range.
+Parameter name: index
+  at System.Collections.Generic.List`1[Player].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
+  at GameManager.OnGUI () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentOutOfRangeException: Argument is out of range.
+Parameter name: index
+  at System.Collections.Generic.List`1[Player].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
+  at GameManager.OnGUI () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+no unit chosen yet
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+PLAYER TWO WINS MY DUDE
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+PLAYER ONNNE WINS YEAH
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+ArgumentOutOfRangeException: Argument is out of range.
+Parameter name: index
+  at System.Collections.Generic.List`1[Player].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
+  at GameManager.OnGUI () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentOutOfRangeException: Argument is out of range.
+Parameter name: index
+  at System.Collections.Generic.List`1[Player].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
+  at GameManager.OnGUI () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+no unit chosen yet
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+PLAYER TWO WINS MY DUDE
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+PLAYER ONNNE WINS YEAH
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+ArgumentOutOfRangeException: Argument is out of range.
+Parameter name: index
+  at System.Collections.Generic.List`1[Player].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
+  at GameManager.OnGUI () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentOutOfRangeException: Argument is out of range.
+Parameter name: index
+  at System.Collections.Generic.List`1[Player].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
+  at GameManager.OnGUI () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+no unit chosen yet
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+PLAYER TWO WINS MY DUDE
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+PLAYER ONNNE WINS YEAH
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+ArgumentOutOfRangeException: Argument is out of range.
+Parameter name: index
+  at System.Collections.Generic.List`1[Player].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
+  at GameManager.OnGUI () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentOutOfRangeException: Argument is out of range.
+Parameter name: index
+  at System.Collections.Generic.List`1[Player].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
+  at GameManager.OnGUI () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+no unit chosen yet
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+PLAYER TWO WINS MY DUDE
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+PLAYER ONNNE WINS YEAH
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+ArgumentOutOfRangeException: Argument is out of range.
+Parameter name: index
+  at System.Collections.Generic.List`1[Player].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
+  at GameManager.OnGUI () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentOutOfRangeException: Argument is out of range.
+Parameter name: index
+  at System.Collections.Generic.List`1[Player].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
+  at GameManager.OnGUI () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+no unit chosen yet
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+PLAYER TWO WINS MY DUDE
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+PLAYER ONNNE WINS YEAH
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+ArgumentOutOfRangeException: Argument is out of range.
+Parameter name: index
+  at System.Collections.Generic.List`1[Player].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
+  at GameManager.OnGUI () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentOutOfRangeException: Argument is out of range.
+Parameter name: index
+  at System.Collections.Generic.List`1[Player].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
+  at GameManager.OnGUI () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+no unit chosen yet
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+PLAYER TWO WINS MY DUDE
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+PLAYER ONNNE WINS YEAH
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+ArgumentOutOfRangeException: Argument is out of range.
+Parameter name: index
+  at System.Collections.Generic.List`1[Player].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
+  at GameManager.OnGUI () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentOutOfRangeException: Argument is out of range.
+Parameter name: index
+  at System.Collections.Generic.List`1[Player].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
+  at GameManager.OnGUI () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+no unit chosen yet
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+PLAYER TWO WINS MY DUDE
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+PLAYER ONNNE WINS YEAH
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+ArgumentOutOfRangeException: Argument is out of range.
+Parameter name: index
+  at System.Collections.Generic.List`1[Player].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
+  at GameManager.OnGUI () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentOutOfRangeException: Argument is out of range.
+Parameter name: index
+  at System.Collections.Generic.List`1[Player].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
+  at GameManager.OnGUI () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+no unit chosen yet
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+PLAYER TWO WINS MY DUDE
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+PLAYER ONNNE WINS YEAH
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+ArgumentOutOfRangeException: Argument is out of range.
+Parameter name: index
+  at System.Collections.Generic.List`1[Player].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
+  at GameManager.OnGUI () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentOutOfRangeException: Argument is out of range.
+Parameter name: index
+  at System.Collections.Generic.List`1[Player].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
+  at GameManager.OnGUI () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+no unit chosen yet
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+PLAYER TWO WINS MY DUDE
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+PLAYER ONNNE WINS YEAH
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+ArgumentOutOfRangeException: Argument is out of range.
+Parameter name: index
+  at System.Collections.Generic.List`1[Player].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
+  at GameManager.OnGUI () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentOutOfRangeException: Argument is out of range.
+Parameter name: index
+  at System.Collections.Generic.List`1[Player].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
+  at GameManager.OnGUI () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+no unit chosen yet
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+PLAYER TWO WINS MY DUDE
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+PLAYER ONNNE WINS YEAH
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+ArgumentOutOfRangeException: Argument is out of range.
+Parameter name: index
+  at System.Collections.Generic.List`1[Player].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
+  at GameManager.OnGUI () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentOutOfRangeException: Argument is out of range.
+Parameter name: index
+  at System.Collections.Generic.List`1[Player].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
+  at GameManager.OnGUI () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+no unit chosen yet
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+PLAYER TWO WINS MY DUDE
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+PLAYER ONNNE WINS YEAH
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+ArgumentOutOfRangeException: Argument is out of range.
+Parameter name: index
+  at System.Collections.Generic.List`1[Player].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
+  at GameManager.OnGUI () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentOutOfRangeException: Argument is out of range.
+Parameter name: index
+  at System.Collections.Generic.List`1[Player].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
+  at GameManager.OnGUI () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+no unit chosen yet
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+PLAYER TWO WINS MY DUDE
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+PLAYER ONNNE WINS YEAH
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+ArgumentOutOfRangeException: Argument is out of range.
+Parameter name: index
+  at System.Collections.Generic.List`1[Player].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
+  at GameManager.OnGUI () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentOutOfRangeException: Argument is out of range.
+Parameter name: index
+  at System.Collections.Generic.List`1[Player].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
+  at GameManager.OnGUI () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+no unit chosen yet
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+PLAYER TWO WINS MY DUDE
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+PLAYER ONNNE WINS YEAH
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+ArgumentOutOfRangeException: Argument is out of range.
+Parameter name: index
+  at System.Collections.Generic.List`1[Player].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
+  at GameManager.OnGUI () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentOutOfRangeException: Argument is out of range.
+Parameter name: index
+  at System.Collections.Generic.List`1[Player].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
+  at GameManager.OnGUI () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+no unit chosen yet
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+PLAYER TWO WINS MY DUDE
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+PLAYER ONNNE WINS YEAH
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+ArgumentOutOfRangeException: Argument is out of range.
+Parameter name: index
+  at System.Collections.Generic.List`1[Player].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
+  at GameManager.OnGUI () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentOutOfRangeException: Argument is out of range.
+Parameter name: index
+  at System.Collections.Generic.List`1[Player].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
+  at GameManager.OnGUI () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+no unit chosen yet
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+PLAYER TWO WINS MY DUDE
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+PLAYER ONNNE WINS YEAH
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+ArgumentOutOfRangeException: Argument is out of range.
+Parameter name: index
+  at System.Collections.Generic.List`1[Player].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
+  at GameManager.OnGUI () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentOutOfRangeException: Argument is out of range.
+Parameter name: index
+  at System.Collections.Generic.List`1[Player].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
+  at GameManager.OnGUI () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+no unit chosen yet
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+PLAYER TWO WINS MY DUDE
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+PLAYER ONNNE WINS YEAH
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+ArgumentOutOfRangeException: Argument is out of range.
+Parameter name: index
+  at System.Collections.Generic.List`1[Player].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
+  at GameManager.OnGUI () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentOutOfRangeException: Argument is out of range.
+Parameter name: index
+  at System.Collections.Generic.List`1[Player].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
+  at GameManager.OnGUI () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+no unit chosen yet
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+PLAYER TWO WINS MY DUDE
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+PLAYER ONNNE WINS YEAH
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+ArgumentOutOfRangeException: Argument is out of range.
+Parameter name: index
+  at System.Collections.Generic.List`1[Player].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
+  at GameManager.OnGUI () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentOutOfRangeException: Argument is out of range.
+Parameter name: index
+  at System.Collections.Generic.List`1[Player].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
+  at GameManager.OnGUI () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+no unit chosen yet
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+PLAYER TWO WINS MY DUDE
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+PLAYER ONNNE WINS YEAH
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+ArgumentOutOfRangeException: Argument is out of range.
+Parameter name: index
+  at System.Collections.Generic.List`1[Player].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
+  at GameManager.OnGUI () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentOutOfRangeException: Argument is out of range.
+Parameter name: index
+  at System.Collections.Generic.List`1[Player].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
+  at GameManager.OnGUI () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+no unit chosen yet
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+PLAYER TWO WINS MY DUDE
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+PLAYER ONNNE WINS YEAH
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+ArgumentOutOfRangeException: Argument is out of range.
+Parameter name: index
+  at System.Collections.Generic.List`1[Player].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
+  at GameManager.OnGUI () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentOutOfRangeException: Argument is out of range.
+Parameter name: index
+  at System.Collections.Generic.List`1[Player].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
+  at GameManager.OnGUI () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+no unit chosen yet
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+PLAYER TWO WINS MY DUDE
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+PLAYER ONNNE WINS YEAH
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+ArgumentOutOfRangeException: Argument is out of range.
+Parameter name: index
+  at System.Collections.Generic.List`1[Player].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
+  at GameManager.OnGUI () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentOutOfRangeException: Argument is out of range.
+Parameter name: index
+  at System.Collections.Generic.List`1[Player].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
+  at GameManager.OnGUI () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+no unit chosen yet
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+PLAYER TWO WINS MY DUDE
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+PLAYER ONNNE WINS YEAH
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+ArgumentOutOfRangeException: Argument is out of range.
+Parameter name: index
+  at System.Collections.Generic.List`1[Player].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
+  at GameManager.OnGUI () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentOutOfRangeException: Argument is out of range.
+Parameter name: index
+  at System.Collections.Generic.List`1[Player].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
+  at GameManager.OnGUI () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+no unit chosen yet
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+PLAYER TWO WINS MY DUDE
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+PLAYER ONNNE WINS YEAH
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+ArgumentOutOfRangeException: Argument is out of range.
+Parameter name: index
+  at System.Collections.Generic.List`1[Player].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
+  at GameManager.OnGUI () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentOutOfRangeException: Argument is out of range.
+Parameter name: index
+  at System.Collections.Generic.List`1[Player].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
+  at GameManager.OnGUI () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+no unit chosen yet
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+PLAYER TWO WINS MY DUDE
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+PLAYER ONNNE WINS YEAH
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+ArgumentOutOfRangeException: Argument is out of range.
+Parameter name: index
+  at System.Collections.Generic.List`1[Player].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
+  at GameManager.OnGUI () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentOutOfRangeException: Argument is out of range.
+Parameter name: index
+  at System.Collections.Generic.List`1[Player].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
+  at GameManager.OnGUI () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+no unit chosen yet
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+PLAYER TWO WINS MY DUDE
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+PLAYER ONNNE WINS YEAH
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+ArgumentOutOfRangeException: Argument is out of range.
+Parameter name: index
+  at System.Collections.Generic.List`1[Player].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
+  at GameManager.OnGUI () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentOutOfRangeException: Argument is out of range.
+Parameter name: index
+  at System.Collections.Generic.List`1[Player].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
+  at GameManager.OnGUI () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+no unit chosen yet
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+PLAYER TWO WINS MY DUDE
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+PLAYER ONNNE WINS YEAH
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+ArgumentOutOfRangeException: Argument is out of range.
+Parameter name: index
+  at System.Collections.Generic.List`1[Player].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
+  at GameManager.OnGUI () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentOutOfRangeException: Argument is out of range.
+Parameter name: index
+  at System.Collections.Generic.List`1[Player].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
+  at GameManager.OnGUI () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+no unit chosen yet
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+PLAYER TWO WINS MY DUDE
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+PLAYER ONNNE WINS YEAH
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+ArgumentOutOfRangeException: Argument is out of range.
+Parameter name: index
+  at System.Collections.Generic.List`1[Player].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
+  at GameManager.OnGUI () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentOutOfRangeException: Argument is out of range.
+Parameter name: index
+  at System.Collections.Generic.List`1[Player].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
+  at GameManager.OnGUI () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+no unit chosen yet
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+PLAYER TWO WINS MY DUDE
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+PLAYER ONNNE WINS YEAH
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+ArgumentOutOfRangeException: Argument is out of range.
+Parameter name: index
+  at System.Collections.Generic.List`1[Player].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
+  at GameManager.OnGUI () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentOutOfRangeException: Argument is out of range.
+Parameter name: index
+  at System.Collections.Generic.List`1[Player].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
+  at GameManager.OnGUI () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+no unit chosen yet
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+PLAYER TWO WINS MY DUDE
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+PLAYER ONNNE WINS YEAH
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+ArgumentOutOfRangeException: Argument is out of range.
+Parameter name: index
+  at System.Collections.Generic.List`1[Player].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
+  at GameManager.OnGUI () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentOutOfRangeException: Argument is out of range.
+Parameter name: index
+  at System.Collections.Generic.List`1[Player].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
+  at GameManager.OnGUI () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+no unit chosen yet
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+PLAYER TWO WINS MY DUDE
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+PLAYER ONNNE WINS YEAH
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+ArgumentOutOfRangeException: Argument is out of range.
+Parameter name: index
+  at System.Collections.Generic.List`1[Player].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
+  at GameManager.OnGUI () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentOutOfRangeException: Argument is out of range.
+Parameter name: index
+  at System.Collections.Generic.List`1[Player].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
+  at GameManager.OnGUI () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+no unit chosen yet
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+PLAYER TWO WINS MY DUDE
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+PLAYER ONNNE WINS YEAH
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+ArgumentOutOfRangeException: Argument is out of range.
+Parameter name: index
+  at System.Collections.Generic.List`1[Player].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
+  at GameManager.OnGUI () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentOutOfRangeException: Argument is out of range.
+Parameter name: index
+  at System.Collections.Generic.List`1[Player].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
+  at GameManager.OnGUI () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+no unit chosen yet
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+PLAYER TWO WINS MY DUDE
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+PLAYER ONNNE WINS YEAH
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+ArgumentOutOfRangeException: Argument is out of range.
+Parameter name: index
+  at System.Collections.Generic.List`1[Player].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
+  at GameManager.OnGUI () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentOutOfRangeException: Argument is out of range.
+Parameter name: index
+  at System.Collections.Generic.List`1[Player].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
+  at GameManager.OnGUI () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+no unit chosen yet
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+PLAYER TWO WINS MY DUDE
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+PLAYER ONNNE WINS YEAH
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+ArgumentOutOfRangeException: Argument is out of range.
+Parameter name: index
+  at System.Collections.Generic.List`1[Player].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
+  at GameManager.OnGUI () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentOutOfRangeException: Argument is out of range.
+Parameter name: index
+  at System.Collections.Generic.List`1[Player].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
+  at GameManager.OnGUI () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+no unit chosen yet
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+PLAYER TWO WINS MY DUDE
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+PLAYER ONNNE WINS YEAH
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+ArgumentOutOfRangeException: Argument is out of range.
+Parameter name: index
+  at System.Collections.Generic.List`1[Player].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
+  at GameManager.OnGUI () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentOutOfRangeException: Argument is out of range.
+Parameter name: index
+  at System.Collections.Generic.List`1[Player].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
+  at GameManager.OnGUI () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+no unit chosen yet
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+PLAYER TWO WINS MY DUDE
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+PLAYER ONNNE WINS YEAH
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+ArgumentOutOfRangeException: Argument is out of range.
+Parameter name: index
+  at System.Collections.Generic.List`1[Player].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
+  at GameManager.OnGUI () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentOutOfRangeException: Argument is out of range.
+Parameter name: index
+  at System.Collections.Generic.List`1[Player].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
+  at GameManager.OnGUI () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+no unit chosen yet
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+PLAYER TWO WINS MY DUDE
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+PLAYER ONNNE WINS YEAH
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+ArgumentOutOfRangeException: Argument is out of range.
+Parameter name: index
+  at System.Collections.Generic.List`1[Player].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
+  at GameManager.OnGUI () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentOutOfRangeException: Argument is out of range.
+Parameter name: index
+  at System.Collections.Generic.List`1[Player].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
+  at GameManager.OnGUI () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+no unit chosen yet
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+PLAYER TWO WINS MY DUDE
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+PLAYER ONNNE WINS YEAH
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+ArgumentOutOfRangeException: Argument is out of range.
+Parameter name: index
+  at System.Collections.Generic.List`1[Player].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
+  at GameManager.OnGUI () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentOutOfRangeException: Argument is out of range.
+Parameter name: index
+  at System.Collections.Generic.List`1[Player].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
+  at GameManager.OnGUI () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+no unit chosen yet
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+PLAYER TWO WINS MY DUDE
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+PLAYER ONNNE WINS YEAH
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+ArgumentOutOfRangeException: Argument is out of range.
+Parameter name: index
+  at System.Collections.Generic.List`1[Player].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
+  at GameManager.OnGUI () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentOutOfRangeException: Argument is out of range.
+Parameter name: index
+  at System.Collections.Generic.List`1[Player].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
+  at GameManager.OnGUI () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+no unit chosen yet
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+PLAYER TWO WINS MY DUDE
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+PLAYER ONNNE WINS YEAH
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+ArgumentOutOfRangeException: Argument is out of range.
+Parameter name: index
+  at System.Collections.Generic.List`1[Player].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
+  at GameManager.OnGUI () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentOutOfRangeException: Argument is out of range.
+Parameter name: index
+  at System.Collections.Generic.List`1[Player].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
+  at GameManager.OnGUI () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+no unit chosen yet
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+PLAYER TWO WINS MY DUDE
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+PLAYER ONNNE WINS YEAH
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+ArgumentOutOfRangeException: Argument is out of range.
+Parameter name: index
+  at System.Collections.Generic.List`1[Player].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
+  at GameManager.OnGUI () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentOutOfRangeException: Argument is out of range.
+Parameter name: index
+  at System.Collections.Generic.List`1[Player].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
+  at GameManager.OnGUI () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+no unit chosen yet
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+PLAYER TWO WINS MY DUDE
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+PLAYER ONNNE WINS YEAH
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+ArgumentOutOfRangeException: Argument is out of range.
+Parameter name: index
+  at System.Collections.Generic.List`1[Player].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
+  at GameManager.OnGUI () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentOutOfRangeException: Argument is out of range.
+Parameter name: index
+  at System.Collections.Generic.List`1[Player].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
+  at GameManager.OnGUI () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+no unit chosen yet
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+PLAYER TWO WINS MY DUDE
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+PLAYER ONNNE WINS YEAH
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+ArgumentOutOfRangeException: Argument is out of range.
+Parameter name: index
+  at System.Collections.Generic.List`1[Player].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
+  at GameManager.OnGUI () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentOutOfRangeException: Argument is out of range.
+Parameter name: index
+  at System.Collections.Generic.List`1[Player].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
+  at GameManager.OnGUI () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+no unit chosen yet
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+PLAYER TWO WINS MY DUDE
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+PLAYER ONNNE WINS YEAH
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+ArgumentOutOfRangeException: Argument is out of range.
+Parameter name: index
+  at System.Collections.Generic.List`1[Player].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
+  at GameManager.OnGUI () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentOutOfRangeException: Argument is out of range.
+Parameter name: index
+  at System.Collections.Generic.List`1[Player].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
+  at GameManager.OnGUI () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+no unit chosen yet
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+PLAYER TWO WINS MY DUDE
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+PLAYER ONNNE WINS YEAH
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+ArgumentOutOfRangeException: Argument is out of range.
+Parameter name: index
+  at System.Collections.Generic.List`1[Player].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
+  at GameManager.OnGUI () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentOutOfRangeException: Argument is out of range.
+Parameter name: index
+  at System.Collections.Generic.List`1[Player].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
+  at GameManager.OnGUI () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+no unit chosen yet
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+PLAYER TWO WINS MY DUDE
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+PLAYER ONNNE WINS YEAH
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+ArgumentOutOfRangeException: Argument is out of range.
+Parameter name: index
+  at System.Collections.Generic.List`1[Player].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
+  at GameManager.OnGUI () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentOutOfRangeException: Argument is out of range.
+Parameter name: index
+  at System.Collections.Generic.List`1[Player].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
+  at GameManager.OnGUI () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+no unit chosen yet
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+PLAYER TWO WINS MY DUDE
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+PLAYER ONNNE WINS YEAH
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+ArgumentOutOfRangeException: Argument is out of range.
+Parameter name: index
+  at System.Collections.Generic.List`1[Player].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
+  at GameManager.OnGUI () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentOutOfRangeException: Argument is out of range.
+Parameter name: index
+  at System.Collections.Generic.List`1[Player].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
+  at GameManager.OnGUI () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+no unit chosen yet
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+PLAYER TWO WINS MY DUDE
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+PLAYER ONNNE WINS YEAH
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+ArgumentOutOfRangeException: Argument is out of range.
+Parameter name: index
+  at System.Collections.Generic.List`1[Player].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
+  at GameManager.OnGUI () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentOutOfRangeException: Argument is out of range.
+Parameter name: index
+  at System.Collections.Generic.List`1[Player].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
+  at GameManager.OnGUI () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+no unit chosen yet
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+PLAYER TWO WINS MY DUDE
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+PLAYER ONNNE WINS YEAH
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+ArgumentOutOfRangeException: Argument is out of range.
+Parameter name: index
+  at System.Collections.Generic.List`1[Player].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
+  at GameManager.OnGUI () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentOutOfRangeException: Argument is out of range.
+Parameter name: index
+  at System.Collections.Generic.List`1[Player].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
+  at GameManager.OnGUI () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+no unit chosen yet
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+PLAYER TWO WINS MY DUDE
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+PLAYER ONNNE WINS YEAH
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+ArgumentOutOfRangeException: Argument is out of range.
+Parameter name: index
+  at System.Collections.Generic.List`1[Player].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
+  at GameManager.OnGUI () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentOutOfRangeException: Argument is out of range.
+Parameter name: index
+  at System.Collections.Generic.List`1[Player].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
+  at GameManager.OnGUI () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+no unit chosen yet
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+PLAYER TWO WINS MY DUDE
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+PLAYER ONNNE WINS YEAH
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
+
+ArgumentOutOfRangeException: Argument is out of range.
+Parameter name: index
+  at System.Collections.Generic.List`1[Player].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
+  at GameManager.OnGUI () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ArgumentOutOfRangeException: Argument is out of range.
+Parameter name: index
+  at System.Collections.Generic.List`1[Player].get_Item (Int32 index) [0x00000] in <filename unknown>:0 
+  at GameManager.OnGUI () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
