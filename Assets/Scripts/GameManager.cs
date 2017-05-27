@@ -9,15 +9,10 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-
-
-
     public int currentCampaignMap = 1;
 
-    //
     public static UserPlayer myUnit;
 
-    //
     public int turnCount = 1;
 
     public static GameManager instance;
@@ -68,25 +63,16 @@ public class GameManager : MonoBehaviour
                 }
             }
             return armyTwoProps;
-
         }
         set { }
     }
-
 
     public CombatUI ButtonCanvas;
     public CombatUI BuildUnitCanvas;
 
 
-
-    //which army owns this unit.  may not need these
-    //public bool isOwnedByPlayerOne;
-    //public bool isOwnedByPlayerTwo;
-
     //specific unit prefabs
     //player 1
-
-
     public GameObject HQPrefab;
         
     public GameObject FleaPrefab;
@@ -101,9 +87,7 @@ public class GameManager : MonoBehaviour
     public GameObject WitchUpAPrefab;
     public GameObject WitchUpBPrefab;
 
-    
     //player 2
-
     public GameObject P2HQPrefab;
 
     public GameObject P2FleaPrefab;
@@ -120,7 +104,6 @@ public class GameManager : MonoBehaviour
 
 
     // ai units
-
     public GameObject AIFleaPrefab;
     public GameObject AIFleaUpAPrefab;
     public GameObject AIFleaUpBPrefab;
@@ -143,12 +126,9 @@ public class GameManager : MonoBehaviour
 
     public int mapSize = 7;
 
-
-
     // Control AI unit delay
     public bool resumeIn3Seconds = false;
     public bool startedPausing = false;
-
 
     public List<List<Tile>> map = new List<List<Tile>>();
     public List<Player> players = new List<Player>();
@@ -158,14 +138,12 @@ public class GameManager : MonoBehaviour
     public int currentAIUnitIndex = 0;
     public int numberOfActiveAIUnits = 0;
 
-
     public int currentPlayerIndex = 0;
     public int currentArmyIndex = 0;
 
     // total number of each faction's units
     public static int playerOneCount = 0;
     public static int playerTwoCount = 0;
-
     public static int playerAICount = 0;
 
     // keep track of whose turn it is
@@ -179,73 +157,31 @@ public class GameManager : MonoBehaviour
     public bool myUnitIsBeingUsed = false;
     public bool myUnitMustWaitOrAttack = false;
 
-
-
     public bool aiPlayerTurn = false;
 
     public int fundsArmyOne;
     public int fundsArmyTwo;
 
-
     void Awake()
     {
         instance = this;
         mapTransform = transform.FindChild("Map");
+    }
 
-}
-
-// Use this for initialization
-void Start()
+    void Start()
     {
         generateMap();
         generatePlayers();
 
-
-
-        // first player gets half the funds on the first day to counteract first turn advantage.  perhaps this is too much but whatever
+        // first player gets half the funds on the first day to counteract first turn advantage
         fundsArmyOne = (numberOfPropsArmyOne * 1000) / 2;
         fundsArmyTwo = 0;
         gameObject.GetComponent<FundsP1>().enabled = true;
-
     }
-
-
 
     // Update is called once per frame
     void Update()
     {
-       
-        // if a unit dies, this is where we cycle to the next unit.
-        // this probably makes no sense and what we should actually be probably doing is having GUI stuff all be based on MyUnit and stuff but whatever for now.
-      /*
-            if (aiPlayers[currentAIUnitIndex] == null)
-            {
-                currentAIUnitIndex++;
-                currentPlayerIndex++;
-            }
-        
-            // the UI only exists if the current unit in the index is selected.  this is a terrible system but for now i'm keeping it that way.
-            // so this is to make sure the UI never disappars.
-            /*
-        if (players[currentPlayerIndex] == null)
-        {
-            currentPlayerIndex++;
-            if (currentPlayerIndex + 1 > playerOneCount)
-            {
-                currentPlayerIndex = 0;
-            }
-        }
-        */
-
-        //this is older schema, will get rid of once turn stuff is more updated
-        /* if (players[currentPlayerIndex].HP > 0)
-          {
-              players[currentPlayerIndex].TurnUpdate();
-          }
-          else
-          {
-              NextTurn();
-          }*/
         if (myUnit == null)
         {
            // print("no unit chosen yet");
@@ -255,27 +191,16 @@ void Start()
         {
             myUnit.TurnUpdate();
         }
-        /*
-        else
-        {
-            NextTurn();
-        }*/
-        
-        
+          
         //TODO: make this work for specific armies
         if (playerOneCount <= 0)
         {
             //print("PLAYER TWO WINS MY DUDE");
-
                 generateMap();
-         
-
         }
         if (playerTwoCount <= 0)
         {
             print("next level please");
-
-
             //
             /*
             currentCampaignMap++;
@@ -294,8 +219,7 @@ void Start()
         if (playerAICount <= 0)
         {
             print("next level please");
-
-            
+                        
             currentCampaignMap++;
             if (currentCampaignMap <= 7)
             {
@@ -306,24 +230,15 @@ void Start()
                 currentCampaignMap = 7;
                 //SceneManager.LoadScene("Main Menu");
             }
-
-
-        
         }
-        
     }
 
-    // AI Unit Delay
+    // AI pauses briefly between moving each unit
     public void ResumeIn3Seconds()
     {
-      
             startedPausing = false;
-
             StartCoroutine(ResumeAfterSeconds(0.5f));
-        
-
     }
-
 
     private IEnumerator ResumeAfterSeconds(float resumetime) // 3
     {
@@ -336,14 +251,12 @@ void Start()
 
         while (Time.realtimeSinceStartup < pauseEndTime) // 10 < 13
         {
-
             yield return null;
         }
         resumeIn3Seconds = false;
         startedPausing = false;
         Time.timeScale = 1;
     }
-
 
     public void highlightTilesAt(Vector2 originLocation, Color highlightColor, int distance)
     {
@@ -364,9 +277,7 @@ void Start()
         else if (playerTwoTurn)
         {
             highlightedTiles = TileHighlight.FindHighlight(map[(int)originLocation.x][(int)originLocation.y], distance, players.Where(x => x.gridPosition != originLocation && x.isOwnedByPlayerTwo == false && x.isDestroyed == false).Select(x => x.gridPosition).ToArray(), highlightColor == Color.red);
-
         }
-
 
         if (invisibleHighlights == false)
         {
@@ -394,7 +305,6 @@ void Start()
         {
             for (int j = 0; j < mapSize; j++)
             {
-             
                     map[i][j].visual.transform.GetComponent<Renderer>().materials[0].color = Color.white;
             }
         }
@@ -410,7 +320,6 @@ void Start()
         foreach (Player u in GameManager.instance.players)
         {
             u.gameObject.layer = LayerMask.NameToLayer("Ignore Raycast");
-
         }
         for (int i = 0; i < GameManager.instance.mapSize; i++)
         {
@@ -418,8 +327,7 @@ void Start()
             {
                 GameManager.instance.map[i][j].gameObject.layer = LayerMask.NameToLayer("Ignore Raycast");
             }
-        }
-    
+        } 
 }
    
     public void ReactivateAButton()
@@ -428,7 +336,6 @@ void Start()
         foreach (Player u in players)
         {
             u.gameObject.layer = LayerMask.NameToLayer("Default");
-
         }
         for (int i = 0; i < mapSize; i++)
         {
@@ -436,34 +343,19 @@ void Start()
             {
                 map[i][j].gameObject.layer = LayerMask.NameToLayer("Default");
             }
-        }
-    
+        } 
 }
 
     void OnGUI()
-    {
-        
+    {   
         if (players[currentPlayerIndex].HP > 0)
         {
             players[currentPlayerIndex].TurnOnGUI();
         }
-       
-        /*
-        Vector3 incomeLocationOne = Camera.main.WorldToScreenPoint(transform.position) + Vector3.up * 120 + Vector3.left * 250;
-        GUI.TextArea(new Rect(incomeLocationOne.x, Screen.height - incomeLocationOne.y, 100, 20), "P1: $" + fundsArmyOne.ToString());
-
-        Vector3 incomeLocationTwo = Camera.main.WorldToScreenPoint(transform.position) + Vector3.up * 120 + Vector3.right * 150;
-        GUI.TextArea(new Rect(incomeLocationTwo.x, Screen.height - incomeLocationTwo.y, 100, 20), "P2: $" + fundsArmyTwo.ToString());
-        */
     }
-
-
-
 
     public void NextTurn()
     {
-        // TODO: 'turn index' that keeps count of what turn you're on in number of days etc.
-
         // ends turn for whichever player is active when they press the end turn button
         if (playerOneTurn)
         {
@@ -471,7 +363,6 @@ void Start()
             playerTwoTurn = true;
             int playerTwoIncome = (numberOfPropsArmyTwo * 1000);
             fundsArmyTwo += playerTwoIncome;
-
 
             foreach (Player p in GameManager.instance.players)
             {
@@ -503,7 +394,6 @@ void Start()
             fundsArmyOne += playerOneIncome;
             turnCount++;
 
-
             foreach (Player p in GameManager.instance.players)
             {
                 if (p != null)
@@ -524,55 +414,19 @@ void Start()
                     p.attacking = false;
                 }
             }
-            }
-        MapUI.instance.UpdateTurnCounter();
-
-
-        /* old scheme, not outdated yet though
-        if (currentPlayerIndex + 1 < players.Count)
-        {
-            currentPlayerIndex++;
         }
-        else
-        {
-            currentPlayerIndex = 0;
-        }*/
+        MapUI.instance.UpdateTurnCounter();
     }
-
-
 
     public void moveCurrentPlayer(Tile destTile)
     {
-        // if the unit is owned by the player whose turn it is, player can move it
-        /*
-            if (destTile.visual.transform.GetComponent<Renderer>().materials[0].color != Color.white && !destTile.impassable && players[currentPlayerIndex].positionQueue.Count == 0)
-            {
-                removeTileHighlights();
-                players[currentPlayerIndex].moving = false;
-
-                foreach (Tile t in TilePathFinder.FindPath(map[(int)players[currentPlayerIndex].gridPosition.x][(int)players[currentPlayerIndex].gridPosition.y], destTile, players.Where(x => x.gridPosition != players[currentPlayerIndex].gridPosition).Select(x => x.gridPosition).ToArray()))
-                {
-                    players[currentPlayerIndex].positionQueue.Add(map[(int)t.gridPosition.x][(int)t.gridPosition.y].transform.position + 1.5f * Vector3.up);
-                }
-                players[currentPlayerIndex].gridPosition = destTile.gridPosition;
-
-            }
-            else
-            {
-                Debug.Log("destination invalid");
-            }
-        
-    }*/
-
-        // if it's an AI player, you do it differently
         if (aiPlayerTurn)
         {
             if (destTile.visual.transform.GetComponent<Renderer>().materials[0].color != Color.white && !destTile.impassable && aiPlayers[currentAIUnitIndex].positionQueue.Count == 0)
             {
                 removeTileHighlights();
                 aiPlayers[currentAIUnitIndex].moving = false;
-
-
+                
                 // if units are from the same faction, ignore them in pathfinding (can move through them)
                 if (playerOneTurn)
                 {
@@ -590,14 +444,13 @@ void Start()
                 }
                 aiPlayers[currentAIUnitIndex].gridPosition = destTile.gridPosition;
                 //aiPlayers[currentAIUnitIndex].actionPoints--;
-
             }
-        } else
+        }
+        else
             if (destTile.visual.transform.GetComponent<Renderer>().materials[0].color != Color.white && !destTile.impassable && myUnit.positionQueue.Count == 0)
             {
                 removeTileHighlights();
                 myUnit.moving = false;
-
 
                 // if units are from the same faction, ignore them in pathfinding (can move through them)
                 if (playerOneTurn)
@@ -615,31 +468,17 @@ void Start()
                     }
                 }
                 myUnit.gridPosition = destTile.gridPosition;
-
-
-
-           // myUnit.waiting = true;
-           /* if (myUnit.isFleaUpBatta
-            {
-                myUnit.fleaActionPoints--;
-            }*/
-
             }
             else
             {
                 Debug.Log("destination invalid");
             }
-
         }
     
-
-
-    //
     public void confirmTarget(Tile destTile)
     {
 
     }
-    //
 
     public void attackWithCurrentPlayer(Tile destTile)
     {
@@ -652,21 +491,13 @@ void Start()
         }
         else
         {
-
-
             attacker = myUnit;
         }
 
-
-
         int unitBaseDamage = attacker.damageBase;
-
         int counterDamage = 0;
-
         if (destTile.visual.transform.GetComponent<Renderer>().materials[0].color != Color.white && !destTile.impassable)
         {
-
-
             Player target = null;
             foreach (Player p in players)
             {
@@ -675,13 +506,11 @@ void Start()
                     target = p;
                 }
             }
-
             float distanceX = Mathf.Abs(attacker.gridPosition.x - target.gridPosition.x);
             float distanceY = Mathf.Abs(attacker.gridPosition.y - target.gridPosition.y);
             float totalDistance = distanceX + distanceY;
 
-            // set base damage based on what the unit matchup is
-
+            // set base damage for each unit matchup
             if (attacker is Flea || attacker is FleaAI || attacker is FleaPlusA || attacker is FleaPlusAAI || attacker is FleaPlusB || attacker is FleaPlusBAI)
             {
                 if (target is Flea || target is FleaAI || target is FleaPlusA || target is FleaPlusAAI || target is FleaPlusB || target is FleaPlusBAI)
@@ -695,11 +524,9 @@ void Start()
                     counterDamage = 7;
                 }
                 else if (target is Witch || target is WitchAI || target is WitchPlusA || target is WitchPlusAAI || target is WitchPlusB || target is WitchPlusBAI)
-
                 {
                     unitBaseDamage = 3;
                     counterDamage = 5;
-
                 }
                 else if (target is SpiderPlusA || target is SpiderPlusAAI)
                 {
@@ -733,7 +560,6 @@ void Start()
                         unitBaseDamage--;
                         counterDamage = 0;
                     }
-
                 }
                 else if (target is Spider || target is SpiderAI)
                 {
@@ -766,10 +592,8 @@ void Start()
                     }
                 }
                 else if (target is Witch || target is WitchAI || target is WitchPlusB || target is WitchPlusBAI)
-
                 {
                     unitBaseDamage = 5;
-
                     counterDamage = 4;
                     if (totalDistance > 1)
                     {
@@ -780,9 +604,7 @@ void Start()
                     {
                         counterDamage = 0;
                     }
-
                 }
-
                 else if (target is WitchPlusA || target is WitchPlusAAI)
                 {
                     unitBaseDamage = 5;
@@ -792,9 +614,7 @@ void Start()
                         unitBaseDamage--;
                         counterDamage--;
                     }
-
                 }
-
                 else if (target is HQ)
                 {
                     unitBaseDamage = 10;
@@ -815,12 +635,9 @@ void Start()
                 counterDamage = -1;
             }
             else
-
-                if
-                (attacker is Spider || attacker is SpiderAI)
-            {
+                if(attacker is Spider || attacker is SpiderAI)
+            { 
                 if (target is Flea || target is FleaAI || target is FleaPlusA || target is FleaPlusAAI || target is FleaPlusB || target is FleaPlusBAI)
-
                 {
                     unitBaseDamage = 8;
                     counterDamage = 1;
@@ -841,11 +658,9 @@ void Start()
                     counterDamage = 4;
                 }
                 else if (target is Witch || target is WitchAI || target is WitchPlusA || target is WitchPlusAAI || target is WitchPlusB || target is WitchPlusBAI)
-
                 {
                     unitBaseDamage = 6;
                     counterDamage = 4;
-
                 }
                 else if (target is HQ)
                 {
@@ -877,11 +692,9 @@ void Start()
                         counterDamage = 4;
                     }
                     else if (target is Witch || target is WitchAI || target is WitchPlusA || target is WitchPlusAAI || target is WitchPlusB || target is WitchPlusBAI)
-
                     {
                         unitBaseDamage = 8;
                         counterDamage = 4;
-
                     }
                     else if (target is HQ)
                     {
@@ -927,7 +740,6 @@ void Start()
                     {
                         unitBaseDamage = 3;
                         counterDamage = 2;
-
                         if (totalDistance > 1)
                         {
                             unitBaseDamage--;
@@ -935,7 +747,6 @@ void Start()
                         }
                     }
                     else if (target is Witch || target is WitchAI || target is WitchPlusA || target is WitchPlusAAI || target is WitchPlusB || target is WitchPlusBAI)
-
                     {
                         unitBaseDamage = 6;
                         counterDamage = 2;
@@ -943,7 +754,6 @@ void Start()
                         if (totalDistance > 1)
                         {
                             unitBaseDamage--;
-
                             counterDamage--;
                         }
                     }
@@ -960,15 +770,9 @@ void Start()
                 }
             }
 
-
-
             if (target != null)
             {
-                // below checks if you're adjacent; USE THIS FOR WITCH ATTACKS
-                //if (attacker.gridPosition.x >= target.gridPosition.x - 1 && attacker.gridPosition.x <= target.gridPosition.x + 1
-                //    && attacker.gridPosition.y >= target.gridPosition.y - 1 && attacker.gridPosition.y <= target.gridPosition.y + 1)
-
-
+               
                 // TODO: trying to get base damage stuff happening here
                 /* public int getBaseDamageAgainst(Player attacker, Player defender)
                 {
@@ -979,10 +783,6 @@ void Start()
                     return baseDamageAgainst;
                 }
                 //*/
-
-                //  {
-                //print("Attacker: "  + players[currentPlayerIndex].)
-
 
                 attacker.waiting = true;
                 if (attacker.isFleaUpB)
@@ -1000,12 +800,9 @@ void Start()
                 removeTileHighlights();
                 attacker.attacking = false;
 
-
-
                 int amountOfDamage = unitBaseDamage;
 
                 // at certain hp levels, damage output decreases. not if you're targeting an ally though (that means you're healing them)
-
                 if ((attacker.isOwnedByPlayerOne && target.isOwnedByPlayerTwo) || (attacker.isOwnedByPlayerOne && target.isOwnedByAI) || (attacker.isOwnedByPlayerTwo && target.isOwnedByPlayerOne) || (attacker.isOwnedByPlayerTwo && target.isOwnedByAI)
                  || (attacker.isOwnedByAI && target.isOwnedByPlayerOne) || (attacker.isOwnedByAI && target.isOwnedByPlayerTwo))
                 {
@@ -1015,7 +812,6 @@ void Start()
                         if (attacker.HP < 3)
                         {
                             amountOfDamage = amountOfDamage - 1;
-
                         }
                     }
                 }
