@@ -5,8 +5,6 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine.SceneManagement;
 
-
-
 public class GameManager : MonoBehaviour
 {
     public int currentCampaignMap = 1;
@@ -834,35 +832,23 @@ public class GameManager : MonoBehaviour
                             amountOfDamage = -2;
                             counterDamage = -1;
                         }
-
                     }
                     else
                     {
                         amountOfDamage = 0;
                     }
                 }
-
-
+                
                 target.HP -= amountOfDamage;
                     if (target.HP <= 0)
                     {
                         KillUnit(target);
-
-                        /*
-                       else
-                        if (target.HP > 0 && target.HP < 10)
-                        {
-                            HPDisplay.instance.UpdateHPIndicator(target.HP);
-                        }*/
-
                         Debug.Log(attacker.playerName + " hit " + target.playerName + " but it feels good. " + amountOfDamage + " damage.");
 
                         //promote unit if it killed the enemy
                         if ((playerAICount > 0 && playerOneCount > 0) || (playerOneCount > 0 && playerTwoCount > 0))
                         {
-
-                            // currently this only works for player one
-                            // if attacker has a certain amount of HP, promotes to A branch. if not, B branch
+                            // if attacker has more than a certain amount of HP, promotes to A branch. if not, B branch
                             //Flea
                             if (attacker is Flea && attacker.HP > 5 && attacker.isOwnedByPlayerOne)
                             {
@@ -875,17 +861,13 @@ public class GameManager : MonoBehaviour
 
                                 playerFleaUpA.isOwnedByPlayerOne = true;
 
-                                //playerWitchUpA.HP = attacker.HP;
-
-
                                 players.Add(playerFleaUpA);
                                 playerOneCount++;
 
                                 FleaPlusA.Promotion(playerFleaUpA, attacker.HP);
 
                                 KillUnit(attacker);
-                                // destroy and respawn as the new unit i guess. this will probably cause all sorts of issues with AI though. hm
-                                // is there a way to just have the unit transform 
+                                // destroy and respawn as the new unit
                             }
                             else if (attacker is Flea && attacker.HP <= 5 && attacker.isOwnedByPlayerOne)
                             {
@@ -899,19 +881,14 @@ public class GameManager : MonoBehaviour
                                 playerFleaUpB.isOwnedByPlayerOne = true;
                                 playerFleaUpB.isFleaUpB = true;
 
-                                //playerWitchUpA.HP = attacker.HP;
-
-
                                 players.Add(playerFleaUpB);
                                 playerOneCount++;
                                 playerFleaUpB.waiting = false;
 
-
                                 FleaPlusB.Promotion(playerFleaUpB, attacker.HP);
 
                                 KillUnit(attacker);
-                                // destroy and respawn as the new unit i guess. this will probably cause all sorts of issues with AI though. hm
-                                // is there a way to just have the unit transform 
+                                // destroy and respawn as the new unit 
                             }
                             else
                              if (attacker is Flea && attacker.HP > 5 && attacker.isOwnedByPlayerTwo)
@@ -925,17 +902,13 @@ public class GameManager : MonoBehaviour
 
                                 playerFleaUpA.isOwnedByPlayerTwo = true;
 
-                                //playerWitchUpA.HP = attacker.HP;
-
-
                                 players.Add(playerFleaUpA);
                                 playerTwoCount++;
 
                                 FleaPlusA.Promotion(playerFleaUpA, attacker.HP);
 
                                 KillUnit(attacker);
-                                // destroy and respawn as the new unit i guess. this will probably cause all sorts of issues with AI though. hm
-                                // is there a way to just have the unit transform 
+                                // destroy and respawn as the new unit 
                             }
                             else if (attacker is Flea && attacker.HP <= 5 && attacker.isOwnedByPlayerTwo)
                             {
@@ -949,19 +922,14 @@ public class GameManager : MonoBehaviour
                                 playerFleaUpB.isOwnedByPlayerTwo = true;
                                 playerFleaUpB.isFleaUpB = true;
 
-                                //playerWitchUpA.HP = attacker.HP;
-
-
                                 players.Add(playerFleaUpB);
                                 playerTwoCount++;
                                 playerFleaUpB.waiting = false;
 
-
                                 FleaPlusB.Promotion(playerFleaUpB, attacker.HP);
 
                                 KillUnit(attacker);
-                                // destroy and respawn as the new unit i guess. this will probably cause all sorts of issues with AI though. hm
-                                // is there a way to just have the unit transform 
+                                // destroy and respawn as the new unit 
                             }
                             // AI-controlled Flea
                             if (attacker is FleaAI && attacker.HP > 5)
@@ -974,22 +942,17 @@ public class GameManager : MonoBehaviour
                                 AIFleaUpA.playerName = "Juicenjam";
 
                                 AIFleaUpA.isOwnedByAI = true;
-
-                                //playerWitchUpA.HP = attacker.HP;
-
-
+                            
                                 players.Add(AIFleaUpA);
                                 aiPlayers.Add(AIFleaUpA);
                                 numberOfActiveAIUnits++;
                                 playerAICount++;
                                 playerTwoCount++;
 
-
                                 FleaPlusAAI.Promotion(AIFleaUpA, attacker.HP);
 
                                 KillUnit(attacker);
-                                // destroy and respawn as the new unit i guess. this will probably cause all sorts of issues with AI though. hm
-                                // is there a way to just have the unit transform 
+                                // destroy and respawn as the new unit 
                             }
                             else if (attacker is FleaAI && attacker.HP <= 5)
                             {
@@ -1004,26 +967,19 @@ public class GameManager : MonoBehaviour
                                 AIFleaUpB.isOwnedByAI = true;
                                 AIFleaUpB.isFleaUpB = true;
 
-                                //playerWitchUpA.HP = attacker.HP;
-
-
                                 players.Add(AIFleaUpB);
                                 aiPlayers.Add(AIFleaUpB);
                                 playerAICount++;
                                 numberOfActiveAIUnits++;
                                 playerTwoCount++;
 
-
                                 FleaPlusBAI.Promotion(AIFleaUpB, attacker.HP);
 
                                 KillUnit(attacker);
-                                // destroy and respawn as the new unit i guess. this will probably cause all sorts of issues with AI though. hm
-                                // is there a way to just have the unit transform 
+                                // destroy and respawn as the new unit 
                             }
 
-
                             //Spider
-
                             if (attacker is Spider && attacker.HP > 5 && attacker.isOwnedByPlayerOne)
                             {
                                 SpiderPlusA playerSpiderUpA;
@@ -1034,18 +990,14 @@ public class GameManager : MonoBehaviour
                                 playerSpiderUpA.playerName = "Juicenjam";
 
                                 playerSpiderUpA.isOwnedByPlayerOne = true;
-
-                                //playerWitchUpA.HP = attacker.HP;
-
-
+                            
                                 players.Add(playerSpiderUpA);
                                 playerOneCount++;
 
                                 SpiderPlusA.Promotion(playerSpiderUpA, attacker.HP);
 
                                 KillUnit(attacker);
-                                // destroy and respawn as the new unit i guess. this will probably cause all sorts of issues with AI though. hm
-                                // is there a way to just have the unit transform 
+                                // destroy and respawn as the new unit 
                             }
                             else if (attacker is Spider && attacker.HP <= 5 && attacker.isOwnedByPlayerOne)
                             {
@@ -1057,20 +1009,15 @@ public class GameManager : MonoBehaviour
                                 playerSpiderUpB.playerName = "Juicenjam";
 
                                 playerSpiderUpB.isOwnedByPlayerOne = true;
-
-                                //playerWitchUpA.HP = attacker.HP;
-
-
+                            
                                 players.Add(playerSpiderUpB);
                                 playerOneCount++;
 
                                 SpiderPlusA.Promotion(playerSpiderUpB, attacker.HP);
 
                                 KillUnit(attacker);
-                                // destroy and respawn as the new unit i guess. this will probably cause all sorts of issues with AI though. hm
-                                // is there a way to just have the unit transform 
+                                // destroy and respawn as the new unit 
                             }
-
                             else
                              if (attacker is Spider && attacker.HP > 5 && attacker.isOwnedByPlayerTwo)
                             {
@@ -1083,17 +1030,13 @@ public class GameManager : MonoBehaviour
 
                                 playerSpiderUpA.isOwnedByPlayerTwo = true;
 
-                                //playerWitchUpA.HP = attacker.HP;
-
-
                                 players.Add(playerSpiderUpA);
                                 playerTwoCount++;
 
                                 SpiderPlusA.Promotion(playerSpiderUpA, attacker.HP);
 
                                 KillUnit(attacker);
-                                // destroy and respawn as the new unit i guess. this will probably cause all sorts of issues with AI though. hm
-                                // is there a way to just have the unit transform 
+                                // destroy and respawn as the new unit 
                             }
                             else if (attacker is Spider && attacker.HP <= 5 && attacker.isOwnedByPlayerTwo)
                             {
@@ -1105,21 +1048,16 @@ public class GameManager : MonoBehaviour
                                 playerSpiderUpB.playerName = "Juicenjam";
 
                                 playerSpiderUpB.isOwnedByPlayerTwo = true;
-
-                                //playerWitchUpA.HP = attacker.HP;
-
-
+                            
                                 players.Add(playerSpiderUpB);
                                 playerTwoCount++;
 
                                 SpiderPlusA.Promotion(playerSpiderUpB, attacker.HP);
 
                                 KillUnit(attacker);
-                                // destroy and respawn as the new unit i guess. this will probably cause all sorts of issues with AI though. hm
-                                // is there a way to just have the unit transform 
+                                // destroy and respawn as the new unit 
                             }
                             // AI controlled spider
-
                             if (attacker is SpiderAI && attacker.HP > 5)
                             {
                                 SpiderPlusAAI AISpiderUpA;
@@ -1130,22 +1068,17 @@ public class GameManager : MonoBehaviour
                                 AISpiderUpA.playerName = "Juicenjam";
 
                                 AISpiderUpA.isOwnedByAI = true;
-
-                                //playerWitchUpA.HP = attacker.HP;
-
-
+                            
                                 players.Add(AISpiderUpA);
                                 aiPlayers.Add(AISpiderUpA);
                                 playerAICount++;
                                 numberOfActiveAIUnits++;
                                 playerTwoCount++;
 
-
                                 SpiderPlusAAI.Promotion(AISpiderUpA, attacker.HP);
 
                                 KillUnit(attacker);
-                                // destroy and respawn as the new unit i guess. this will probably cause all sorts of issues with AI though. hm
-                                // is there a way to just have the unit transform 
+                                // destroy and respawn as the new unit 
                             }
                             else
                             if (attacker is SpiderAI && attacker.HP <= 5)
@@ -1158,28 +1091,22 @@ public class GameManager : MonoBehaviour
                                 AISpiderUpB.playerName = "Juicenjam";
 
                                 AISpiderUpB.isOwnedByAI = true;
-
-                                //playerWitchUpA.HP = attacker.HP;
-
-
+                            
                                 players.Add(AISpiderUpB);
                                 aiPlayers.Add(AISpiderUpB);
                                 playerAICount++;
                                 numberOfActiveAIUnits++;
                                 playerTwoCount++;
 
-
                                 SpiderPlusBAI.Promotion(AISpiderUpB, attacker.HP);
 
                                 KillUnit(attacker);
-                                // destroy and respawn as the new unit i guess. this will probably cause all sorts of issues with AI though. hm
-                                // is there a way to just have the unit transform 
+                                // destroy and respawn as the new unit 
                             }
 
                             //Witch
                             if (attacker is Witch && attacker.HP > 5 && attacker.isOwnedByPlayerOne)
                             {
-
                                 WitchPlusA playerWitchUpA;
 
                                 playerWitchUpA = ((GameObject)Instantiate(WitchUpAPrefab, new Vector3(attacker.transform.position.x, 0.55f, attacker.transform.position.z), Quaternion.Euler(new Vector3(0, 0, 180)))).GetComponent<WitchPlusA>();
@@ -1188,18 +1115,14 @@ public class GameManager : MonoBehaviour
                                 playerWitchUpA.playerName = "Juicenjam";
 
                                 playerWitchUpA.isOwnedByPlayerOne = true;
-
-                                //playerWitchUpA.HP = attacker.HP;
-
-
+                            
                                 players.Add(playerWitchUpA);
                                 playerOneCount++;
 
                                 WitchPlusA.Promotion(playerWitchUpA, attacker.HP);
 
                                 KillUnit(attacker);
-                                // destroy and respawn as the new unit i guess. this will probably cause all sorts of issues with AI though. hm
-                                // is there a way to just have the unit transform 
+                                // destroy and respawn as the new unit 
                             }
                             else if (attacker is Witch && attacker.HP <= 5 && attacker.isOwnedByPlayerOne)
                             {
@@ -1211,18 +1134,14 @@ public class GameManager : MonoBehaviour
                                 playerWitchUpB.playerName = "Juicenjam";
 
                                 playerWitchUpB.isOwnedByPlayerOne = true;
-
-                                //playerWitchUpA.HP = attacker.HP;
-
-
+                            
                                 players.Add(playerWitchUpB);
                                 playerOneCount++;
 
                                 WitchPlusB.Promotion(playerWitchUpB, attacker.HP);
 
                                 KillUnit(attacker);
-                                // destroy and respawn as the new unit i guess. this will probably cause all sorts of issues with AI though. hm
-                                // is there a way to just have the unit transform 
+                                // destroy and respawn as the new unit 
                             }
                             else
                           // AI-controlled witch
@@ -1237,18 +1156,14 @@ public class GameManager : MonoBehaviour
                                 playerWitchUpA.playerName = "Juicenjam";
 
                                 playerWitchUpA.isOwnedByPlayerTwo = true;
-
-                                //playerWitchUpA.HP = attacker.HP;
-
-
+                            
                                 players.Add(playerWitchUpA);
                                 playerTwoCount++;
 
                                 WitchPlusA.Promotion(playerWitchUpA, attacker.HP);
 
                                 KillUnit(attacker);
-                                // destroy and respawn as the new unit i guess. this will probably cause all sorts of issues with AI though. hm
-                                // is there a way to just have the unit transform 
+                                // destroy and respawn as the new unit
                             }
                             else if (attacker is Witch && attacker.HP <= 5 && attacker.isOwnedByPlayerTwo)
                             {
@@ -1260,18 +1175,14 @@ public class GameManager : MonoBehaviour
                                 playerWitchUpB.playerName = "Juicenjam";
 
                                 playerWitchUpB.isOwnedByPlayerTwo = true;
-
-                                //playerWitchUpA.HP = attacker.HP;
-
-
+                            
                                 players.Add(playerWitchUpB);
                                 playerTwoCount++;
 
                                 WitchPlusB.Promotion(playerWitchUpB, attacker.HP);
 
                                 KillUnit(attacker);
-                                // destroy and respawn as the new unit i guess. this will probably cause all sorts of issues with AI though. hm
-                                // is there a way to just have the unit transform 
+                                // destroy and respawn as the new unit 
                             }
                             if (attacker is WitchAI && attacker.HP > 5)
                             {
@@ -1283,10 +1194,7 @@ public class GameManager : MonoBehaviour
                                 AIWitchUpA.playerName = "Juicenjam";
 
                                 AIWitchUpA.isOwnedByAI = true;
-
-                                //playerWitchUpA.HP = attacker.HP;
-
-
+                            
                                 players.Add(AIWitchUpA);
                                 aiPlayers.Add(AIWitchUpA);
                                 numberOfActiveAIUnits++;
@@ -1295,8 +1203,7 @@ public class GameManager : MonoBehaviour
                                 WitchPlusAAI.Promotion(AIWitchUpA, attacker.HP);
 
                                 KillUnit(attacker);
-                                // destroy and respawn as the new unit i guess. this will probably cause all sorts of issues with AI though. hm
-                                // is there a way to just have the unit transform 
+                                // destroy and respawn as the new unit 
                             }
                             else
                             if (attacker is WitchAI && attacker.HP <= 5)
@@ -1309,10 +1216,7 @@ public class GameManager : MonoBehaviour
                                 AIWitchUpB.playerName = "Juicenjam";
 
                                 AIWitchUpB.isOwnedByAI = true;
-
-                                //playerWitchUpA.HP = attacker.HP;
-
-
+                            
                                 players.Add(AIWitchUpB);
                                 aiPlayers.Add(AIWitchUpB);
                                 numberOfActiveAIUnits++;
@@ -1323,12 +1227,10 @@ public class GameManager : MonoBehaviour
                                 WitchPlusBAI.Promotion(AIWitchUpB, attacker.HP);
 
                                 KillUnit(attacker);
-                                // destroy and respawn as the new unit i guess. this will probably cause all sorts of issues with AI though. hm
-                                // is there a way to just have the unit transform 
+                                // destroy and respawn as the new unit 
                             }
                         }
                     }
-
 
                 //counterattack
                 if (target.HP > 0)
@@ -1341,12 +1243,8 @@ public class GameManager : MonoBehaviour
                             counterDamage = counterDamage - 1;
                         }
                     }
-
-
-
                     // unless a healer is healing, negative damage cannot happen
                     if ((counterDamage < 0) && (attacker is WitchPlusB || attacker is WitchPlusBAI) && ((attacker.isOwnedByPlayerOne && target.isOwnedByPlayerOne) || (attacker.isOwnedByPlayerTwo && target.isOwnedByPlayerTwo) || (attacker.isOwnedByAI && target.isOwnedByAI)) != true)
-
                     {
                         if (counterDamage < 0)
                         {
@@ -1357,29 +1255,14 @@ public class GameManager : MonoBehaviour
                     {
                         counterDamage = -1;
                     }
-
-
                     attacker.HP -= counterDamage;
 
-
-                // maybe bracket here
                         Debug.Log(target.playerName + " countered for " + counterDamage);
-                        /*
-                                            if (attacker.HP > 0 && attacker.HP < 10)
-                                            {
-                                                HPDisplay.instance.UpdateHPForDisplay(attacker.HP);
-                                            }else*/
-                        // counterattacking units can also promote if they get a kill,
+                      
                         if (attacker.HP <= 0)
                         {
-
                             KillUnit(attacker);
-
-
-
                             {
-
-                                // currently this only works for player one
                                 // if attacker has a certain amount of HP, promotes to A branch. if not, B branch
                                 //Flea
                                 if (target is Flea && target.HP > 5)
@@ -1399,8 +1282,7 @@ public class GameManager : MonoBehaviour
                                     FleaPlusA.Promotion(playerFleaUpA, target.HP);
 
                                     KillUnit(target);
-                                    // destroy and respawn as the new unit i guess. this will probably cause all sorts of issues with AI though. hm
-                                    // is there a way to just have the unit transform 
+                                    // destroy and respawn as the new unit 
                                 }
                                 else if (target is Flea && target.HP <= 5)
                                 {
@@ -1419,8 +1301,7 @@ public class GameManager : MonoBehaviour
                                     FleaPlusB.Promotion(playerFleaUpB, target.HP);
 
                                     KillUnit(target);
-                                    // destroy and respawn as the new unit i guess. this will probably cause all sorts of issues with AI though. hm
-                                    // is there a way to just have the unit transform 
+                                    // destroy and respawn as the new unit
                                 }
                                 else
                         // AI-controlled Flea
@@ -1441,12 +1322,10 @@ public class GameManager : MonoBehaviour
                                     playerTwoCount++;
                                     playerAICount++;
 
-
                                     FleaPlusAAI.Promotion(AIFleaUpA, target.HP);
 
                                     KillUnit(target);
-                                    // destroy and respawn as the new unit i guess. this will probably cause all sorts of issues with AI though. hm
-                                    // is there a way to just have the unit transform 
+                                    // destroy and respawn as the new unit 
                                 }
                                 else if (target is FleaAI && target.HP <= 5)
                                 {
@@ -1459,27 +1338,19 @@ public class GameManager : MonoBehaviour
 
                                     AIFleaUpB.isOwnedByAI = true;
 
-                                    //playerWitchUpA.HP = attacker.HP;
-
-
                                     players.Add(AIFleaUpB);
                                     aiPlayers.Add(AIFleaUpB);
                                     numberOfActiveAIUnits++;
                                     playerTwoCount++;
                                     playerAICount++;
 
-
                                     FleaPlusBAI.Promotion(AIFleaUpB, target.HP);
 
                                     KillUnit(target);
-                                    // destroy and respawn as the new unit i guess. this will probably cause all sorts of issues with AI though. hm
-                                    // is there a way to just have the unit transform 
+                                    // destroy and respawn as the new unit 
                                 }
 
-
-
                                 //Spider
-
                                 if (target is Spider && target.HP > 5)
                                 {
                                     SpiderPlusA playerSpiderUpA;
@@ -1490,18 +1361,14 @@ public class GameManager : MonoBehaviour
                                     playerSpiderUpA.playerName = "Juicenjam";
 
                                     playerSpiderUpA.isOwnedByPlayerOne = true;
-
-                                    //playerWitchUpA.HP = attacker.HP;
-
-
+                                
                                     players.Add(playerSpiderUpA);
                                     playerOneCount++;
 
                                     SpiderPlusA.Promotion(playerSpiderUpA, target.HP);
 
                                     KillUnit(target);
-                                    // destroy and respawn as the new unit i guess. this will probably cause all sorts of issues with AI though. hm
-                                    // is there a way to just have the unit transform 
+                                    // destroy and respawn as the new unit
                                 }
                                 else if (target is Spider && target.HP <= 5)
                                 {
@@ -1513,22 +1380,17 @@ public class GameManager : MonoBehaviour
                                     playerSpiderUpB.playerName = "Juicenjam";
 
                                     playerSpiderUpB.isOwnedByPlayerOne = true;
-
-                                    //playerWitchUpA.HP = attacker.HP;
-
-
+                                
                                     players.Add(playerSpiderUpB);
                                     playerOneCount++;
 
                                     SpiderPlusA.Promotion(playerSpiderUpB, target.HP);
 
                                     KillUnit(target);
-                                    // destroy and respawn as the new unit i guess. this will probably cause all sorts of issues with AI though. hm
-                                    // is there a way to just have the unit transform 
+                                    // destroy and respawn as the new unit
                                 }
                                 else
                         // AI controlled spider
-
                         if (target is SpiderAI && target.HP > 5)
                                 {
                                     SpiderPlusAAI AISpiderUpA;
@@ -1539,22 +1401,17 @@ public class GameManager : MonoBehaviour
                                     AISpiderUpA.playerName = "Juicenjam";
 
                                     AISpiderUpA.isOwnedByAI = true;
-
-                                    //playerWitchUpA.HP = attacker.HP;
-
-
+                                
                                     players.Add(AISpiderUpA);
                                     aiPlayers.Add(AISpiderUpA);
                                     numberOfActiveAIUnits++;
                                     playerTwoCount++;
                                     playerAICount++;
 
-
                                     SpiderPlusAAI.Promotion(AISpiderUpA, target.HP);
 
                                     KillUnit(target);
-                                    // destroy and respawn as the new unit i guess. this will probably cause all sorts of issues with AI though. hm
-                                    // is there a way to just have the unit transform 
+                                    // destroy and respawn as the new unit
                                 }
                                 else
                         if (target is SpiderAI && target.HP <= 5)
@@ -1567,28 +1424,22 @@ public class GameManager : MonoBehaviour
                                     AISpiderUpB.playerName = "Juicenjam";
 
                                     AISpiderUpB.isOwnedByAI = true;
-
-                                    //playerWitchUpA.HP = attacker.HP;
-
-
+                                
                                     players.Add(AISpiderUpB);
                                     aiPlayers.Add(AISpiderUpB);
                                     numberOfActiveAIUnits++;
                                     playerTwoCount++;
                                     playerAICount++;
 
-
                                     SpiderPlusBAI.Promotion(AISpiderUpB, target.HP);
 
                                     KillUnit(target);
-                                    // destroy and respawn as the new unit i guess. this will probably cause all sorts of issues with AI though. hm
-                                    // is there a way to just have the unit transform 
+                                    // destroy and respawn as the new unit 
                                 }
 
                                 //Witch
                                 if (target is Witch && target.HP > 5)
                                 {
-
                                     WitchPlusA playerWitchUpA;
 
                                     playerWitchUpA = ((GameObject)Instantiate(WitchUpAPrefab, new Vector3(target.transform.position.x, 0.55f, target.transform.position.z), Quaternion.Euler(new Vector3(0, 0, 180)))).GetComponent<WitchPlusA>();
@@ -1597,18 +1448,14 @@ public class GameManager : MonoBehaviour
                                     playerWitchUpA.playerName = "Juicenjam";
 
                                     playerWitchUpA.isOwnedByPlayerOne = true;
-
-                                    //playerWitchUpA.HP = attacker.HP;
-
-
+                                
                                     players.Add(playerWitchUpA);
                                     playerOneCount++;
 
                                     WitchPlusA.Promotion(playerWitchUpA, target.HP);
 
                                     KillUnit(target);
-                                    // destroy and respawn as the new unit i guess. this will probably cause all sorts of issues with AI though. hm
-                                    // is there a way to just have the unit transform 
+                                    // destroy and respawn as the new unit  
                                 }
                                 else if (target is Witch && target.HP <= 5)
                                 {
@@ -1620,18 +1467,14 @@ public class GameManager : MonoBehaviour
                                     playerWitchUpB.playerName = "Juicenjam";
 
                                     playerWitchUpB.isOwnedByPlayerOne = true;
-
-                                    //playerWitchUpA.HP = attacker.HP;
-
-
+                                
                                     players.Add(playerWitchUpB);
                                     playerOneCount++;
 
                                     WitchPlusB.Promotion(playerWitchUpB, target.HP);
 
                                     KillUnit(target);
-                                    // destroy and respawn as the new unit i guess. this will probably cause all sorts of issues with AI though. hm
-                                    // is there a way to just have the unit transform 
+                                    // destroy and respawn as the new unit 
                                 }
                                 // AI-controlled witch
                                 else
@@ -1645,22 +1488,17 @@ public class GameManager : MonoBehaviour
                                     AIWitchUpA.playerName = "Juicenjam";
 
                                     AIWitchUpA.isOwnedByAI = true;
-
-                                    //playerWitchUpA.HP = attacker.HP;
-
-
+                                
                                     players.Add(AIWitchUpA);
                                     aiPlayers.Add(AIWitchUpA);
                                     numberOfActiveAIUnits++;
                                     playerTwoCount++;
                                     playerAICount++;
 
-
                                     WitchPlusAAI.Promotion(AIWitchUpA, target.HP);
 
                                     KillUnit(target);
-                                    // destroy and respawn as the new unit i guess. this will probably cause all sorts of issues with AI though. hm
-                                    // is there a way to just have the unit transform 
+                                    // destroy and respawn as the new unit  
                                 }
                                 else
                                    if (target is WitchAI && target.HP <= 5)
@@ -1673,33 +1511,22 @@ public class GameManager : MonoBehaviour
                                     AIWitchUpB.playerName = "Juicenjam";
 
                                     AIWitchUpB.isOwnedByAI = true;
-
-                                    //playerWitchUpA.HP = attacker.HP;
-
-
+                                
                                     players.Add(AIWitchUpB);
                                     aiPlayers.Add(AIWitchUpB);
                                     numberOfActiveAIUnits++;
                                     playerTwoCount++;
                                     playerAICount++;
 
-
                                     WitchPlusBAI.Promotion(AIWitchUpB, target.HP);
 
                                     KillUnit(target);
-                                    // destroy and respawn as the new unit i guess. this will probably cause all sorts of issues with AI though. hm
-                                    // is there a way to just have the unit transform 
+                                    // destroy and respawn as the new unit  
                                 }
                             }
-                        
-                        //
-
                     }
-                    // }
-
                 }
             }
-
             else
             {
                 Debug.Log("target is invalid");
@@ -1713,29 +1540,19 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    
-
     //destroy units
     public static void KillUnit(Player player)
     {
-
-
         player.isDestroyed = true;
-
-
-            
             Destroy(player.gameObject);
 
         // revise the list of units
-
         for (int i = 0; i < instance.players.Count; i++)
         {
             if (instance.players[i] == player)
             {
                 instance.players.RemoveAt(i);
             }
-
-
         }
 
         // revise list of AI units too, so that queue doesn't screw up
@@ -1751,22 +1568,8 @@ public class GameManager : MonoBehaviour
                     instance.diedOnCounter = true;
                     instance.currentAIUnitIndex--;
                 }
-                
             }
         }
-
-        // get rid of gridposition of the destroyed unit too please. maybe not necessary now thoughor only?
-        //player.gridPosition = null;
-
-
-        // there may be issues here with units being promoted right AFTER revising the list. so look into that. 
-        // alternatively we could just have the promoted units take on the same reference number as the unit they're replacing or whatever. 
-        // that wouldn't be too hard.  this current solution would still be required though, for when maps transfer over.
-
-
-
-
-
 
         // revise various 'unit counts' which may become redundant soon anyway but whatever
         if (player.isOwnedByAI == true)
@@ -1774,9 +1577,7 @@ public class GameManager : MonoBehaviour
             playerAICount--;
            // instance.numberOfActiveAIUnits--;
             playerTwoCount--;
-
         }
-
         if (player.isOwnedByPlayerOne == true)
         {
             playerOneCount--;
@@ -1785,11 +1586,7 @@ public class GameManager : MonoBehaviour
         {
             playerTwoCount--;
         }
-
     }
-
-
-
 
     void generateMap()
     {
@@ -1797,7 +1594,6 @@ public class GameManager : MonoBehaviour
         if (currentCampaignMap == 1)
         {
         loadMapFromXml("map.xml");
-
         }
         else
             if (currentCampaignMap == 2)
@@ -1849,8 +1645,6 @@ public class GameManager : MonoBehaviour
             Destroy(YouWin, 2);
             loadMapFromXml("map6.xml");
         }
-
-
         /* map = new List<List<Tile>>();
          for (int i = 0; i < mapSize; i++)
          {
@@ -1869,8 +1663,6 @@ public class GameManager : MonoBehaviour
     void loadMapFromXml(string s)
     {
         MapXmlContainer container = MapSaveLoad.Load(s);
-
-
         mapSize = container.size;
 
         // initially remove all children
@@ -1880,49 +1672,32 @@ public class GameManager : MonoBehaviour
         }
 
         // also destroy all units
-      
         for (int i = 0; i < players.Count; i++)
         {
-            //if (players[i] != null)
-            // {
             KillUnit(players[i]);
-            // }
         }
         // for some reason that leaves one unit, so for now, just, destroy it by destroying all units AGAIN:
         for (int i = 0; i < players.Count; i++)
         {
-            //if (players[i] != null)
-            // {
             KillUnit(players[i]);
-            // }
         }
         for (int i = 0; i < players.Count; i++)
         {
-            //if (players[i] != null)
-            // {
             KillUnit(players[i]);
-            // }
         }
         for (int i = 0; i < players.Count; i++)
         {
-            //if (players[i] != null)
-            // {
             KillUnit(players[i]);
-            // }
         }
         for (int i = 0; i < players.Count; i++)
         {
-            //if (players[i] != null)
-            // {
             KillUnit(players[i]);
-            // }
         }
         // don't ask me why i need ot murder them five fucking times
 
         // don't let this carry over between matches.
         // this is probably not necessary
         currentAIUnitIndex = 0;
-
 
         map = new List<List<Tile>>();
         for (int i = 0; i < mapSize; i++)
@@ -2078,7 +1853,6 @@ public class GameManager : MonoBehaviour
                     //playerTwoCount++;
                     playerAICount++;
                 }
-                
             }
             map.Add(row);
         }
@@ -2087,7 +1861,6 @@ public class GameManager : MonoBehaviour
     // use this to autogenerate stuff on particular single player maps
     void generatePlayers()
     {
-        
        /*Flea playerFlea;
         playerFlea = ((GameObject)Instantiate(FleaPrefab, new Vector3(0 - Mathf.Floor(mapSize / 2), 0.55f, -0 + Mathf.Floor(mapSize / 2)), Quaternion.Euler(new Vector3()))).GetComponent<Flea>();
         playerFlea.gridPosition = new Vector2(0, 0);
@@ -2130,14 +1903,12 @@ public class GameManager : MonoBehaviour
         */
 
 
-
         // YOU WANT THIS DONT YOU
         /*
          AIPlayerFix aiFlea = ((GameObject)Instantiate(AIFleaPrefab, new Vector3((mapSize - 2) - Mathf.Floor(mapSize / 2), 0.55f, -(mapSize - 2) + Mathf.Floor(mapSize / 2)), Quaternion.Euler(new Vector3()))).GetComponent<AIPlayerFix>();
          aiFlea.gridPosition = new Vector2(mapSize - 2, mapSize - 2);
          aiFlea.playerName = "compydomp";
 
-        
         aiFlea.isOwnedByPlayerTwo = true;
         aiFlea.isOwnedByAI = true;
 
@@ -2189,7 +1960,6 @@ public class GameManager : MonoBehaviour
      
     }
 
-
     public void BuildUnitsGUI()
     {
         Rect rect = new Rect(10, Screen.height - 80, 100, 20);
@@ -2199,54 +1969,37 @@ public class GameManager : MonoBehaviour
             if (playerOneTurn && fundsArmyOne >= Flea.cost)
             {
                 Flea newFlea;
-                //newInfantry = ((GameObject)Instantiate(GameManager.instance.InfantryPrefab, new Vector3(0 - Mathf.Floor(GameManager.instance.mapSize / 2), 1.5f, -0 + Mathf.Floor(GameManager.instance.mapSize / 2)), Quaternion.Euler(new Vector3()))).GetComponent<Infantry>();
-                //newInfantry.gridPosition = new Vector2(0, 0);
-
-               
-                // i dont know how the gridPosition math works out on the y axis but whatever it works.
+            
                 newFlea = ((GameObject)Instantiate(FleaPrefab, new Vector3(Tile.myTile.transform.position.x, 0.55f, Tile.myTile.transform.position.z), Quaternion.Euler(new Vector3(0, 180, 0)))).GetComponent<Flea>();
                 newFlea.gridPosition = new Vector2(Tile.myTile.transform.position.x + Mathf.Floor(mapSize / 2), -Tile.myTile.transform.position.z + Mathf.Floor(mapSize / 2));
                 newFlea.playerName = "Juicenjam";
                 newFlea.waiting = true;
-                // need to figure out how to make this update properly next turn so you can move it.
 
                 newFlea.isOwnedByPlayerOne = true;
 
                 players.Add(newFlea);
                 playerOneCount++;
                 fundsArmyOne -= Flea.cost;
-
-                //trying to get rid of button after usage, add it, after calling this method, to tile
-                //TilebuttonPressed = false;
             }
             // if player two, spawn player two infantry
             else if (playerTwoTurn && fundsArmyTwo >= Flea.cost)
             {
                 Flea newFlea;
-                //newInfantry = ((GameObject)Instantiate(GameManager.instance.InfantryPrefab, new Vector3(0 - Mathf.Floor(GameManager.instance.mapSize / 2), 1.5f, -0 + Mathf.Floor(GameManager.instance.mapSize / 2)), Quaternion.Euler(new Vector3()))).GetComponent<Infantry>();
-                //newInfantry.gridPosition = new Vector2(0, 0);
-
-
-                // i dont know how the gridPosition math works out on the y axis but whatever it works.
+    
                 newFlea = ((GameObject)Instantiate(P2FleaPrefab, new Vector3(Tile.myTile.transform.position.x, 0.55f, Tile.myTile.transform.position.z), Quaternion.Euler(new Vector3(0, 180, 0)))).GetComponent<Flea>();
                 newFlea.gridPosition = new Vector2(Tile.myTile.transform.position.x + Mathf.Floor(mapSize / 2), -Tile.myTile.transform.position.z + Mathf.Floor(mapSize / 2));
                 newFlea.playerName = "Juicenjam";
                 newFlea.waiting = true;
-                // need to figure out how to make this update properly next turn so you can move it.
 
                 newFlea.isOwnedByPlayerTwo = true;
 
                 players.Add(newFlea);
                 playerTwoCount++;
                 fundsArmyTwo -= Flea.cost;
-
-                //trying to get rid of button after usage, add it, after calling this method, to tile
-                //TilebuttonPressed = false;
             }
         }
 
-
-        //mech
+        //spider
         rect = new Rect(10, Screen.height -110, 100, 20);
         if (GUI.Button(rect, "Spider"))
         {
@@ -2255,49 +2008,36 @@ public class GameManager : MonoBehaviour
             {
                 Spider newSpider;
                
-                // i dont know how the gridPosition math works out on the y axis but whatever it works.
                 newSpider = ((GameObject)Instantiate(SpiderPrefab, new Vector3(Tile.myTile.transform.position.x, 0.55f, Tile.myTile.transform.position.z), Quaternion.Euler(new Vector3(0, 180, 0)))).GetComponent<Spider>();
                 newSpider.gridPosition = new Vector2(Tile.myTile.transform.position.x + Mathf.Floor(mapSize / 2), -Tile.myTile.transform.position.z + Mathf.Floor(mapSize / 2));
                 newSpider.playerName = "Juicenjam";
                 newSpider.waiting = true;
-                // need to figure out how to make this update properly next turn so you can move it.
 
                 newSpider.isOwnedByPlayerOne = true;
 
                 players.Add(newSpider);
                 playerOneCount++;
                 fundsArmyOne -= Spider.cost;
-
-                //trying to get rid of button after usage, add it, after calling this method, to tile
-                //TilebuttonPressed = false;
             }
             // if player two, spawn for player two
             else if (playerTwoTurn && fundsArmyTwo >= Spider.cost)
             {
                 Spider newSpider;
-                //newInfantry = ((GameObject)Instantiate(GameManager.instance.InfantryPrefab, new Vector3(0 - Mathf.Floor(GameManager.instance.mapSize / 2), 1.5f, -0 + Mathf.Floor(GameManager.instance.mapSize / 2)), Quaternion.Euler(new Vector3()))).GetComponent<Infantry>();
-                //newInfantry.gridPosition = new Vector2(0, 0);
-
-
-                // i dont know how the gridPosition math works out on the y axis but whatever it works.
+           
                 newSpider = ((GameObject)Instantiate(P2SpiderPrefab, new Vector3(Tile.myTile.transform.position.x, 0.55f, Tile.myTile.transform.position.z), Quaternion.Euler(new Vector3(0, 180, 0)))).GetComponent<Spider>();
                 newSpider.gridPosition = new Vector2(Tile.myTile.transform.position.x + Mathf.Floor(mapSize / 2), -Tile.myTile.transform.position.z + Mathf.Floor(mapSize / 2));
                 newSpider.playerName = "Juicenjam";
                 newSpider.waiting = true;
-                // need to figure out how to make this update properly next turn so you can move it.
 
                 newSpider.isOwnedByPlayerTwo = true;
 
                 players.Add(newSpider);
                 playerTwoCount++;
                 fundsArmyTwo -= Spider.cost;
-
-                //trying to get rid of button after usage, add it, after calling this method, to tile
-                //TilebuttonPressed = false;
             }
         }
 
-        //bike
+        //witch
         rect = new Rect(10, Screen.height - 140, 100, 20);
         if (GUI.Button(rect, "Witch"))
         {
@@ -2305,52 +2045,34 @@ public class GameManager : MonoBehaviour
             if (playerOneTurn && fundsArmyOne >= Witch.cost)
             {
                 Witch newWitch;
-                //newInfantry = ((GameObject)Instantiate(GameManager.instance.InfantryPrefab, new Vector3(0 - Mathf.Floor(GameManager.instance.mapSize / 2), 1.5f, -0 + Mathf.Floor(GameManager.instance.mapSize / 2)), Quaternion.Euler(new Vector3()))).GetComponent<Infantry>();
-                //newInfantry.gridPosition = new Vector2(0, 0);
-
-
-                // i dont know how the gridPosition math works out on the y axis but whatever it works.
+           
                 newWitch = ((GameObject)Instantiate(WitchPrefab, new Vector3(Tile.myTile.transform.position.x, 0.55f, Tile.myTile.transform.position.z), Quaternion.Euler(new Vector3(0, 180, 0)))).GetComponent<Witch>();
                 newWitch.gridPosition = new Vector2(Tile.myTile.transform.position.x + Mathf.Floor(mapSize / 2), -Tile.myTile.transform.position.z + Mathf.Floor(mapSize / 2));
                 newWitch.playerName = "Juicenjam";
                 newWitch.waiting = true;
-                // need to figure out how to make this update properly next turn so you can move it.
 
                 newWitch.isOwnedByPlayerOne = true;
 
                 players.Add(newWitch);
                 playerOneCount++;
                 fundsArmyOne -= Witch.cost;
-
-                //trying to get rid of button after usage, add it, after calling this method, to tile
-                //TilebuttonPressed = false;
             }
             // if player two, spawn player two infantry
             else if (playerTwoTurn && fundsArmyTwo >= Witch.cost)
             {
                 Witch newWitch;
-                //newInfantry = ((GameObject)Instantiate(GameManager.instance.InfantryPrefab, new Vector3(0 - Mathf.Floor(GameManager.instance.mapSize / 2), 1.5f, -0 + Mathf.Floor(GameManager.instance.mapSize / 2)), Quaternion.Euler(new Vector3()))).GetComponent<Infantry>();
-                //newInfantry.gridPosition = new Vector2(0, 0);
-
-
-                // i dont know how the gridPosition math works out on the y axis but whatever it works.
+          
                 newWitch = ((GameObject)Instantiate(P2WitchPrefab, new Vector3(Tile.myTile.transform.position.x, 0.55f, Tile.myTile.transform.position.z), Quaternion.Euler(new Vector3(0, 180, 0)))).GetComponent<Witch>();
                 newWitch.gridPosition = new Vector2(Tile.myTile.transform.position.x + Mathf.Floor(mapSize / 2), -Tile.myTile.transform.position.z + Mathf.Floor(mapSize / 2));
                 newWitch.playerName = "Juicenjam";
                 newWitch.waiting = true;
-                // need to figure out how to make this update properly next turn so you can move it.
 
                 newWitch.isOwnedByPlayerTwo = true;
 
                 players.Add(newWitch);
                 playerTwoCount++;
                 fundsArmyTwo -= Witch.cost;
-
-                //trying to get rid of button after usage, add it, after calling this method, to tile
-                //TilebuttonPressed = false;
             }
-      
-
         }
     }
 }
