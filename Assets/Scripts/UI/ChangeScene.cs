@@ -10,7 +10,14 @@ public class ChangeScene : MonoBehaviour {
     {
         SceneManager.LoadScene("Campaign");
     }
-
+    public void About()
+    {
+        SceneManager.LoadScene("AboutScreen");
+    }
+    public void HowToPlay()
+    {
+        SceneManager.LoadScene("HowToPlay");
+    }
     public void TestTime()
     {
         print("something");

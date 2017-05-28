@@ -9,10 +9,10 @@ EditorBuildSettings:
     path: Assets/TBS Tutorial (outdated).unity
     guid: e8cc0af4d74aa2348b5f11ba82286e54
   - enabled: 1
-    path: Assets/Main Menu.unity
+    path: Assets/Scenes/Main Menu.unity
     guid: c2b5f3724fbd30b4bb73f1aa94e30f81
   - enabled: 1
-    path: Assets/Campaign.unity
+    path: Assets/Scenes/Campaign.unity
     guid: fbd660f462b851b419803989329539bd
   - enabled: 0
     path: Assets/NetworkVersus.unity
@@ -26,3 +26,9 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Online Menu.unity
     guid: aecbab4e75808154991198c5bcf3939a
+  - enabled: 1
+    path: Assets/Scenes/AboutScreen.unity
+    guid: ba98b838a8d8afc40a477703d9751478
+  - enabled: 1
+    path: Assets/Scenes/HowToPlay.unity
+    guid: 75d71c496bd855543ad3a9a43c39757d

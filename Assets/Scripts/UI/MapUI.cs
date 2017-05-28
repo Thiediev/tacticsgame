@@ -6,18 +6,12 @@ using UnityEngine.SceneManagement;
 
 public class MapUI : MonoBehaviour {
     // various info such as turn counter, player funds, power meter (if there is any), etc
-
-
+    
     public static MapUI instance;
-
     private Text turnTxtRef;
-
-
 
     [SerializeField]
     private Text turnCountText;
-
-
 
     private void Awake()
     {
@@ -33,19 +27,9 @@ public class MapUI : MonoBehaviour {
     
     private void Update()
     {
-        // Switch it
         UpdateTurnCounter();
-        /*
-        if (GameManager.instance.turnCount == 1)
-            turnCountText.text = "Turn 1";
-        else if (GameManager.instance.turnCount == 2)
-            turnCountText.text = "Turn 2";
-            */
     }
 
-  
-
-    // if 
     public void UpdateTurnCounter()
     {
 

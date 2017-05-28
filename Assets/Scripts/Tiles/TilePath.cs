@@ -20,10 +20,7 @@ public class TilePath
         listOfTiles = tp.listOfTiles.ToList();
         costOfPath = tp.costOfPath;
         lastTile = tp.lastTile;
-        // im not sure what this last tile deal is.  figure that out later i guess
     }
-
-
 
     public void addTile(Tile t)
     {

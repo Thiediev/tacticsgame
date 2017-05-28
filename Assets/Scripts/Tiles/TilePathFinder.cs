@@ -15,7 +15,6 @@ public class TilePathFinder : MonoBehaviour {
         List<Tile> closed = new List<Tile>();
         List<TilePath> open = new List<TilePath>();
 
-
         TilePath originPath = new TilePath();
         originPath.addTile(originTile);
 
@@ -30,7 +29,6 @@ public class TilePathFinder : MonoBehaviour {
             {
                 continue;
             }
-            // there may be some stuff here inconsistent with how i was told to do it so check on that later if you have issues
          
             if (current.lastTile == destinationTile)
             {

@@ -2,17 +2,16 @@
 using UnityEngine.UI;
 using System.Collections;
 
-public class HPDisplay : MonoBehaviour {
+public class HPDisplay : MonoBehaviour
+{
 
     public static HPDisplay instance;
 
     private int HPForDisplay;
     public Unit thisUnit = instance.transform.parent.transform.GetComponent<Unit>();
 
-
     [SerializeField]
     private Text txtRef;
-
 
     private void Awake()
     {
@@ -36,7 +35,6 @@ public class HPDisplay : MonoBehaviour {
         instance.HPForDisplay = i;
     }
 
-    // if 
     public void UpdateHPIndicator()
     {
         if (thisUnit is HQ)
@@ -252,8 +250,6 @@ public class HPDisplay : MonoBehaviour {
             }
         }
         else
-
-        // Switch it
         if (thisUnit.HP < 10 && thisUnit.HP > 0)
         {
             if (thisUnit.HP == 1)
@@ -275,11 +271,10 @@ public class HPDisplay : MonoBehaviour {
             else if (thisUnit.HP == 9)
                 txtRef.text = "9";
         }
-        }
-        /*
-        if (HPForDisplay < 10)
-        {
-            txtRef.text = "8";
-        }    */  
     }
-
+    /*
+    if (HPForDisplay < 10)
+    {
+        txtRef.text = "8";
+    }    */
+}

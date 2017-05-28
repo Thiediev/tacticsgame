@@ -38,8 +38,6 @@ public class PrefabHolder : MonoBehaviour {
     public GameObject TILE_HQ_PLAYER_ONE_PREFAB;
     public GameObject TILE_HQ_PLAYER_TWO_PREFAB;
 
-    //
-
     // predeployed unit tiles
     public GameObject TILE_P1FLEA_PREFAB;
     public GameObject TILE_P2FLEA_PREFAB;
@@ -53,7 +51,6 @@ public class PrefabHolder : MonoBehaviour {
     public GameObject TILE_P2WITCH_PREFAB;
     public GameObject TILE_AIWITCH_PREFAB;
 
-
     //menus
    /* // Menus
     public GameObject MapmakerCanvas;
@@ -66,5 +63,4 @@ public class PrefabHolder : MonoBehaviour {
     {
         instance = this;
     }
-
 }

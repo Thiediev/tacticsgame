@@ -9,7 +9,6 @@ public class Player : MonoBehaviour {
 
     public static Player instance;
 
-
     public Vector3 moveDestination;
     public float moveSpeed =  10.0f;
     public int baseAttackRange = 1;
@@ -20,7 +19,6 @@ public class Player : MonoBehaviour {
     public bool attacking = false;
     public bool waiting = false;
     public bool inactive = false;
-
 
     //who owns the units
     public bool isOwnedByPlayerOne = false;
@@ -38,33 +36,24 @@ public class Player : MonoBehaviour {
     public int fleaActionPoints = 2;
 
     public int attackRange;
-
     public int movementPerActionPoint = 5;
-
     public int damageBase = 55;
-
 
     public string playerName = "Celery";
     public int HP = 10;
 
-    
-
-
     // movement animation
     public List<Vector3> positionQueue = new List<Vector3>();
-
 
     void Awake ()
     {
         moveDestination = transform.position;
     }
 
-	// Use this for initialization
 	void Start () {
 	
 	}
 	
-	// Update is called once per frame
 	public virtual void Update () {
         if (waiting)
         {
@@ -74,19 +63,8 @@ public class Player : MonoBehaviour {
         {
             transform.GetComponent<Renderer>().material.color = Color.white;
         }
-
-        /*
-        if (HP <= 0)
-        {
-            GameManager.KillUnit(this);
-
-        
-        }
-        */
     }
 
-
-    //TODO: i dont know what to do with this yet
     public virtual void TurnUpdate()
     {
         /*if (actionPoints <= 0)

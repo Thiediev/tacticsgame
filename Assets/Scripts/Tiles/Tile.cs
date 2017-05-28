@@ -9,7 +9,6 @@ public class Tile : MonoBehaviour {
 
     bool readyToBuild = true;
    
-
     public GameObject visual;
 
     public static Tile myTile;
@@ -37,8 +36,6 @@ public class Tile : MonoBehaviour {
 
     public List<Tile> neighbors = new List<Tile>();
 
-
-    // Use this for initialization
     void Start() {
         if (Application.loadedLevelName == "Campaign")
         {
@@ -46,15 +43,10 @@ public class Tile : MonoBehaviour {
             // will only happen gamescene but may want this in mapmaking and whatnot to change tile visuals based on neighbors (clustered forests etc)
         }
     }
-
   
-
-   
     void generateNeighbors()
     {
         neighbors = new List<Tile>();
-
-        // this stuff will be wrong if you don't use a square grid
 
         //up
         if (gridPosition.y > 0)
@@ -62,33 +54,24 @@ public class Tile : MonoBehaviour {
             Vector2 n = new Vector2(gridPosition.x, gridPosition.y - 1);
             neighbors.Add(GameManager.instance.map[(int)Mathf.Round(n.x)][(int)Mathf.Round(n.y)]);
         }
-
-
-
         //down
         if (gridPosition.y < GameManager.instance.map.Count - 1)
         {
             Vector2 n = new Vector2(gridPosition.x, gridPosition.y + 1);
             neighbors.Add(GameManager.instance.map[(int)Mathf.Round(n.x)][(int)Mathf.Round(n.y)]);
         }
-
-
-
         //left
         if (gridPosition.x > 0)
         {
             Vector2 n = new Vector2(gridPosition.x - 1, gridPosition.y);
             neighbors.Add(GameManager.instance.map[(int)Mathf.Round(n.x)][(int)Mathf.Round(n.y)]);
         }
-
-
         //right
         if (gridPosition.x < GameManager.instance.map.Count - 1)
         {
             Vector2 n = new Vector2(gridPosition.x + 1, gridPosition.y);
             neighbors.Add(GameManager.instance.map[(int)Mathf.Round(n.x)][(int)Mathf.Round(n.y)]);
         }
-
     }
 
   /*  void generateUnits()
@@ -105,7 +88,6 @@ public class Tile : MonoBehaviour {
         GameManager.playerOneCount++;
     }*/
 
-    // Update is called once per frame
     void Update()
     {
         if (Input.GetKey("mouse 0"))
@@ -113,7 +95,6 @@ public class Tile : MonoBehaviour {
             buttonPressed = true;
             //Debug.Log("xyz position is " + myTile.transform.position.x + ", " + myTile.transform.position.y + ", " + myTile.transform.position.z);
         }
-
     }
 
     void OnMouseEnter()
@@ -122,7 +103,6 @@ public class Tile : MonoBehaviour {
         {
             setType(MapCreatorManager.instance.paletteSelection);
         }
-
         /*
             if (GameManager.instance.players[GameManager.instance.currentPlayerIndex].moving)
         {
@@ -136,13 +116,10 @@ public class Tile : MonoBehaviour {
         */
     }
 
-
-
     void OnMouseExit()
     {
         // transform.gameObject.GetComponent<Renderer>().material.color = Color.white;
     }
-
 
     // right click to cancel unit stuff
     void OnMouseOver()
@@ -153,21 +130,16 @@ public class Tile : MonoBehaviour {
             {
                 GameManager.myUnit.moving = false;
                 GameManager.instance.removeTileHighlights();
-
-
             }
             if (GameManager.myUnit.attacking == true)
             {
                 GameManager.myUnit.attacking = false;
                 GameManager.instance.removeTileHighlights();
-
             }
             GameManager.instance.ButtonCanvas.transform.position = new Vector3(-20, 0, 0);
             GameManager.instance.BuildUnitCanvas.transform.position = new Vector3(-20, 0, 0);
-
         }
     }
-
 
     void OnMouseUp()
     {
@@ -177,57 +149,33 @@ public class Tile : MonoBehaviour {
             GameManager.instance.myUnitIsBeingUsed = false;
             GameManager.instance.myUnitMustWaitOrAttack = true;
             GameManager.instance.DeactivateAButton();
-
         }
-
     }
-
 
     void OnMouseDown()
     {
-      
-
         myTile = this;
-        // change that game scnee to whatver the acutal name of the game scene is.  this applies to other situatios where i did this, make sur eyou get it right
         if (Application.loadedLevelName == "Campaign")
         {
-
-
-
-
-
-            //Player.instance.moving
-            //GameManager.instance.players[GameManager.instance.currentPlayerIndex].moving
-
             if (GameManager.myUnit != null)
             {
                 if (GameManager.myUnit.moving && !(GameManager.myUnit is HQ))
                 {
-
                     // can call something like 'confirm path' method here, in the future
                     GameManager.instance.moveCurrentPlayer(this);
-                    // now occurring onMouseUp
-                    //GameManager.instance.ButtonCanvas.transform.position = new Vector3(transform.position.x + 3.5f, transform.position.y, transform.position.z + 6);
-
                 }
-                //else if (GameManager.instance.players[GameManager.instance.currentPlayerIndex].attacking)
                 else if (GameManager.myUnit.attacking && !(GameManager.myUnit is HQ))
                 {
                     // trying to first call ConfirmTarget method
                     GameManager.instance.confirmTarget(this);
                     // may need to move attackWithCurrentPlayer to confirmTarget or something?
                     GameManager.instance.attackWithCurrentPlayer(this);
-
                 }
             }
-            
-
                 if (this.canBuildLandUnits && ((this.addsIncomePlayerOne && GameManager.instance.playerOneTurn) || (addsIncomePlayerTwo && GameManager.instance.playerTwoTurn)))
             {
                 buildTile = myTile;
                 GameManager.instance.BuildUnitCanvas.transform.position = new Vector3(transform.position.x + 3.5f, transform.position.y, transform.position.z + 6);
-
-                // spawn buttons???
             }
             /* else
              {
@@ -253,24 +201,17 @@ public class Tile : MonoBehaviour {
 
              }*/
         }
-        
-
+      
         else if (Application.loadedLevelName == "Map Creator")
         {
             setType(MapCreatorManager.instance.paletteSelection);
         }
             }
 
-
-
-
-
     public void OnGUI()
     {
         if (Application.loadedLevelName == "Campaign" || Application.loadedLevelName == "NetworkVersus")
         {
-            
-
             if (buttonPressed && myTile != null)
             {
                 // if the tile clicked is a base and it's owned by the player whose turn it is, you can build a unit.
@@ -290,10 +231,8 @@ public class Tile : MonoBehaviour {
                     }
                     if (readyToBuild)
                     {
-
                         GameManager.instance.BuildUnitsGUI();
                     }
-
 
                     /*rect = new Rect(10 + (100 + 10) * 1, Screen.height - 80, 100, 60);
                     if (GUI.Button(rect, "Antiair"))
@@ -317,9 +256,6 @@ public class Tile : MonoBehaviour {
             }
         }
     }
-
-
-    
     
     public void setType(TileType t)
     {
@@ -404,11 +340,6 @@ public class Tile : MonoBehaviour {
                 capturePoints = 20;
                 endsGame = true;
                 PREFAB = PrefabHolder.instance.TILE_HQ_PLAYER_ONE_PREFAB;
-
-
-
-
-
                 break;
             case TileType.HQPlayerTwo:
                 movementCost = 1;
@@ -419,8 +350,6 @@ public class Tile : MonoBehaviour {
                 endsGame = true;
                 PREFAB = PrefabHolder.instance.TILE_HQ_PLAYER_TWO_PREFAB;
                 break;
-
-
 
             case TileType.Normal:
                 movementCost = 1;
@@ -443,12 +372,7 @@ public class Tile : MonoBehaviour {
                 PREFAB = PrefabHolder.instance.TILE_IMPASSABLE_PREFAB;
                 break;
 
-
             // Unit Spawn Tiles
-
-            //SceneManager. == "Campaign")
-
-
             case TileType.FleaP1:
                 movementCost = 1;
                 impassable = false;
@@ -521,18 +445,13 @@ public class Tile : MonoBehaviour {
                     PREFAB = PrefabHolder.instance.TILE_NORMAL_PREFAB;
                 }
                 break;
-        
-
-
             default:
                 movementCost = 1;
                 impassable = false;
                 PREFAB = PrefabHolder.instance.TILE_NORMAL_PREFAB;
                 break;
         }
-
         generateVisuals();
-          
     }
     public void generateVisuals()
     {
@@ -544,7 +463,6 @@ public class Tile : MonoBehaviour {
         }
         GameObject newVisual = (GameObject)Instantiate(PREFAB, transform.position, Quaternion.Euler(new Vector3(0, 180, 0)));
         newVisual.transform.parent = container.transform;
-
         visual = newVisual;
     }
 }

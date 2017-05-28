@@ -3,87 +3,73 @@ using System.Collections;
 
 public class MapmakingUI : MonoBehaviour {
     
-    // Save/Load
+    // Load
     public void LoadCampaign1()
     {
         MapCreatorManager.instance.UILoadMap("map.xml");
     }
-    // Save/Load
     public void LoadCampaign2()
     {
         MapCreatorManager.instance.UILoadMap("map2.xml");
     }
-    // Save/Load
     public void LoadCampaign3()
     {
         MapCreatorManager.instance.UILoadMap("map3.xml");
     }
-    // Save/Load
     public void LoadCampaign4()
     {
         MapCreatorManager.instance.UILoadMap("map4.xml");
     }
-    // Save/Load
     public void LoadCampaign5()
     {
         MapCreatorManager.instance.UILoadMap("map5.xml");
     }
-    // Save/Load
     public void LoadCampaign6()
     {
         MapCreatorManager.instance.UILoadMap("map6.xml");
     }
-    // Save/Load
     public void LoadCampaign7()
     {
         MapCreatorManager.instance.UILoadMap("map7.xml");
     }
-    // Save/Load
     public void LoadCampaign8()
     {
         MapCreatorManager.instance.UILoadMap("map8.xml");
     }
-    // Save/Load
     public void LoadCampaign9()
     {
         MapCreatorManager.instance.UILoadMap("map9.xml");
     }
-    // Save/Load
     public void LoadCampaign10()
     {
         MapCreatorManager.instance.UILoadMap("map10.xml");
     }
-    // Save/Load
     public void LoadCampaign11()
     {
         MapCreatorManager.instance.UILoadMap("map11.xml");
     }
-    // Save/Load
     public void LoadCampaign12()
     {
         MapCreatorManager.instance.UILoadMap("map12.xml");
     }
-    // Save/Load
     public void LoadCampaign13()
     {
         MapCreatorManager.instance.UILoadMap("map13.xml");
     }
-    // Save/Load
     public void LoadCampaign14()
     {
         MapCreatorManager.instance.UILoadMap("map14.xml");
     }
-    // Save/Load
     public void LoadCampaign15()
     {
         MapCreatorManager.instance.UILoadMap("map15.xml");
     }
-    // Save/Load
     public void LoadCampaign16()
     {
         MapCreatorManager.instance.UILoadMap("map16.xml");
     }
 
+    //Save
     public void SaveCampaign1()
     {
         MapCreatorManager.instance.UISaveMap("map.xml");
@@ -149,38 +135,30 @@ public class MapmakingUI : MonoBehaviour {
         MapCreatorManager.instance.UISaveMap("map16.xml");
     }
 
-
-
     public void LoadVersus1()
     {
         MapCreatorManager.instance.UISaveMap("versus1.xml");
-
     }
     public void LoadVersus2()
     {
         MapCreatorManager.instance.UISaveMap("versus2.xml");
-
     }
     public void LoadVersus3()
     {
         MapCreatorManager.instance.UISaveMap("versus3.xml");
-
     }
 
     public void SaveVersus1()
     {
         MapCreatorManager.instance.UISaveMap("versus1.xml");
-
     }
     public void SaveVersus2()
     {
         MapCreatorManager.instance.UISaveMap("versus2.xml");
-
     }
     public void SaveVersus3()
     {
         MapCreatorManager.instance.UISaveMap("versus3.xml");
-
     }
 
     public void ClearMap()
@@ -191,12 +169,10 @@ public class MapmakingUI : MonoBehaviour {
 
 
     //Units
-
     // player one
     public void SelectP1Flea()
     {
         MapCreatorManager.instance.paletteSelection = TileType.FleaP1;
-
     }
     public void SelectP1FleaUpA()
     {
@@ -209,7 +185,6 @@ public class MapmakingUI : MonoBehaviour {
     public void SelectP1Spider()
     {
         MapCreatorManager.instance.paletteSelection = TileType.SpiderP1;
-
     }
     public void SelectP1SpiderUpA()
     {
@@ -222,7 +197,6 @@ public class MapmakingUI : MonoBehaviour {
     public void SelectP1Witch()
     {
         MapCreatorManager.instance.paletteSelection = TileType.WitchP1;
-
     }
     public void SelectP1WitchUpA()
     {
@@ -237,12 +211,10 @@ public void SelectP1HQ()
         MapCreatorManager.instance.paletteSelection = TileType.HQP1;
     }
 
-
-    // player tw
+    // player two
     public void SelectP2Flea()
     {
         MapCreatorManager.instance.paletteSelection = TileType.FleaP2;
-
     }
     public void SelectP2FleaUpA()
     {
@@ -255,7 +227,6 @@ public void SelectP1HQ()
     public void SelectP2Spider()
     {
         MapCreatorManager.instance.paletteSelection = TileType.SpiderP2;
-
     }
     public void SelectP2SpiderUpA()
     {
@@ -268,7 +239,6 @@ public void SelectP1HQ()
     public void SelectP2Witch()
     {
         MapCreatorManager.instance.paletteSelection = TileType.WitchP2;
-
     }
     public void SelectP2WitchUpA()
     {
@@ -283,12 +253,10 @@ public void SelectP1HQ()
         MapCreatorManager.instance.paletteSelection = TileType.HQP2;
     }
 
-
     // AI-controlled
     public void SelectAIFlea()
     {
         MapCreatorManager.instance.paletteSelection = TileType.FleaAI;
-
     }
     public void SelectAIFleaUpA()
     {
@@ -301,7 +269,6 @@ public void SelectP1HQ()
     public void SelectAISpider()
     {
         MapCreatorManager.instance.paletteSelection = TileType.SpiderAI;
-
     }
     public void SelectAISpiderUpA()
     {
@@ -324,9 +291,7 @@ public void SelectP1HQ()
 
     }
     
-
     //Tiles
-
     public void TileSelectNormal()
     {
 
@@ -335,20 +300,15 @@ public void SelectP1HQ()
     public void TileSelectP1Base()
     {
         MapCreatorManager.instance.paletteSelection = TileType.BasePlayerOne;
-
     }
 
     public void TileSelectP2Base()
     {
         MapCreatorManager.instance.paletteSelection = TileType.BasePlayerTwo;
-
     }
 
     public void TileSelectWall()
     {
         MapCreatorManager.instance.paletteSelection = TileType.Impassable;
-
     }
-
-
 }

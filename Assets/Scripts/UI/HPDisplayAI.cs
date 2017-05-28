@@ -2,17 +2,16 @@
 using UnityEngine.UI;
 using System.Collections;
 
-public class HPDisplayAI : MonoBehaviour {
+public class HPDisplayAI : MonoBehaviour
+{
 
     public static HPDisplayAI instance;
 
     private int HPForDisplay;
     public AIPlayerFix thisAIUnit = instance.transform.parent.transform.GetComponent<AIPlayerFix>();
 
-
     [SerializeField]
     private Text txtRef;
-
 
     private void Awake()
     {
@@ -36,11 +35,8 @@ public class HPDisplayAI : MonoBehaviour {
         instance.HPForDisplay = i;
     }
 
-    // if 
     public void UpdateHPIndicator()
     {
-
-        // Switch it
         if (thisAIUnit.HP < 10 && thisAIUnit.HP > 0)
         {
             if (thisAIUnit.HP == 1)
@@ -63,7 +59,4 @@ public class HPDisplayAI : MonoBehaviour {
                 txtRef.text = "9";
         }
     }
-   
-
-
 }

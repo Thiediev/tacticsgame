@@ -17,7 +17,6 @@ public class TileXml
 
     [XmlAttribute("locY")]
     public int locY;
-
 }
 
 [XmlRoot("MapCollection")]
@@ -34,8 +33,6 @@ public class MapXmlContainer
 public class MapSaveLoad  {
     public static MapXmlContainer CreateMapContainer(List<List<Tile>> map)
     {
-
-
         List<TileXml> tiles = new List<TileXml>();
         for (int i = 0; i < map.Count; i++)
         {
@@ -79,7 +76,5 @@ public class MapSaveLoad  {
         {
             return serializer.Deserialize(stream) as MapXmlContainer;
         }
-    }
-           
-       
+    } 
 }

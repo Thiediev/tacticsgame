@@ -5,9 +5,6 @@ using System.Linq;
 
 public class TileHighlight
 {
-
-
-
     public TileHighlight()
     {
 
@@ -31,14 +28,11 @@ public class TileHighlight
     {
         List<Tile> closed = new List<Tile>();
         List<TilePath> open = new List<TilePath>();
-
-
+        
         TilePath originPath = new TilePath();
         if (staticRange)
         {
             originPath.addStaticTile(originTile);
-
-
         }
         else
         {
@@ -56,7 +50,6 @@ public class TileHighlight
             {
                 continue;
             }
-            // there may be some stuff here inconsistent with how i was told to do it so check on that later if you have issues
             if (current.costOfPath > movementPoints + 1)
             {
                 continue;
@@ -67,8 +60,7 @@ public class TileHighlight
             foreach (Tile t in current.lastTile.neighbors)
             {
                 if (
-                   
-                    //t.impassable || 
+                   //t.impassable || 
                     occupied.Contains(t.gridPosition))
                 {
                     continue;
@@ -77,8 +69,6 @@ public class TileHighlight
                 if (staticRange)
                 {
                     newTilePath.addStaticTile(t);
-
-
                 }
                 else
                 {
@@ -86,7 +76,6 @@ public class TileHighlight
                 }
                 open.Add(newTilePath);
             }
-
         }
         closed.Remove(originTile);
         // closed.Remove(alliedUnitTiles), which is something we'll have to define and add to the method that determines that stuff,
@@ -95,7 +84,5 @@ public class TileHighlight
         // if it does i'm not sure what to do yet
         closed.Distinct();
         return closed;
-
         }
     }
-

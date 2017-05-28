@@ -6,19 +6,13 @@ public class UserPlayer : Player
     public AudioClip RightClickCancel;
     public AudioClip SelectUnit;
 
-    // Use this for initialization
     public void Start()
     {
 
-
     }
 
-
-
-    // Update is called once per frame
     public override void Update()
     {
-
         if (GameManager.myUnit == this)
         {
             if ((GameManager.instance.playerOneTurn && GameManager.myUnit.isOwnedByPlayerOne) || (GameManager.instance.playerTwoTurn && GameManager.myUnit.isOwnedByPlayerTwo))
@@ -30,17 +24,11 @@ public class UserPlayer : Player
         {
             transform.GetComponent<Renderer>().material.color = Color.white;
         }
-
         base.Update();
     }
 
-    // this could be the issue here
     public override void TurnUpdate()
     {
-        // highlight
-        // 
-        // 
-
         if (positionQueue.Count > 0)
         {
             transform.position += (positionQueue[0] - transform.position).normalized * moveSpeed * Time.deltaTime;
@@ -51,25 +39,17 @@ public class UserPlayer : Player
                 positionQueue.RemoveAt(0);
                 if (positionQueue.Count == 0)
                 {
-
                     fleaMovementPoints--;
-                    /// if (fleaMovementPoints == 0)
-                    // {
-                    //   fleaActionPoints--;
-                    // }
-
                 }
                 // GameManager.instance.NextTurn();  
                 // (probably best to have something like this for a chesslike but for an AWlike the current code makes more sense)
             }
         }
-
         base.TurnUpdate();
     }
 
     public override void TurnOnGUI()
     {
-
         base.TurnOnGUI();
     }
 
@@ -82,25 +62,20 @@ public class UserPlayer : Player
             {
                 GameManager.myUnit.moving = false;
                 GameManager.instance.removeTileHighlights();
-
             }
             if (GameManager.myUnit.attacking == true)
             {
                 GameManager.myUnit.attacking = false;
                 GameManager.instance.removeTileHighlights();
-
             }
             GetComponent<AudioSource>().PlayOneShot(RightClickCancel);
             GameManager.instance.ButtonCanvas.transform.position = new Vector3(-20, 0, 0);
             GameManager.myUnit = null;
-
-
         }
     }
     // choose a unit. or not
     void OnMouseDown()
     {
-        //
         // If the unit is already selected, clicking the unit again will open up the attack/wait menu without moving the unit
         if (this.waiting)
         { }
@@ -112,8 +87,6 @@ public class UserPlayer : Player
             GameManager.myUnit.moving = false;
             GameManager.instance.ButtonCanvas.transform.position = new Vector3(transform.position.x + 6, transform.position.y + 4, transform.position.z + 7);
             GameManager.instance.DeactivateAButton();
-
-
         }
         else
         {
@@ -125,26 +98,19 @@ public class UserPlayer : Player
 
             //GameManager.instance.ButtonCanvas.transform.position = new Vector3(transform.position.x + 3.5f, transform.position.y, transform.position.z + 6);
 
-
             // if the unit is owned by the player whose turn it is, can move unit
-            //if ((GameManager.instance.playerOneTurn && GameManager.instance.players[GameManager.instance.currentPlayerIndex].isOwnedByPlayerOne) || (GameManager.instance.playerTwoTurn && GameManager.instance.players[GameManager.instance.currentPlayerIndex].isOwnedByPlayerTwo))
             if ((GameManager.instance.playerOneTurn && GameManager.myUnit.isOwnedByPlayerOne) || (GameManager.instance.playerTwoTurn && GameManager.myUnit.isOwnedByPlayerTwo))
             {
-                // if flea promotion B, you get an extra action
-                // if (isFleaUpB)
-                // {
                 if (fleaMovementPoints > 0)
                 {
                     if (!moving && !waiting)
                     {
                         foreach (Player p in GameManager.instance.players)
                             p.moving = false;
-                       
-
+ 
                         // get rid of attack/wait buttons
                         GameManager.instance.ButtonCanvas.transform.position = new Vector3(-100, 0, 0);
-
-                       
+                     
                         GameManager.instance.removeTileHighlights();
                         moving = true;
                         attacking = false;
@@ -153,7 +119,6 @@ public class UserPlayer : Player
                     }
                     else
                     {
-
                         moving = false;
                         attacking = false;
                         GameManager.instance.removeTileHighlights();
@@ -206,6 +171,3 @@ public class UserPlayer : Player
         }
     }
 }
-
-
-

@@ -9,7 +9,6 @@ public enum TileType {
     Impassable,
 
     // Days of Ruin
-    //
     Road,
     Plains,
     Forest,
@@ -37,7 +36,6 @@ public enum TileType {
     HQPlayerOne,
     HQPlayerTwo,
 
-
         // tiles for predeployed units
         FleaP1,
         WitchP1,
@@ -52,5 +50,4 @@ public enum TileType {
         FleaAI,
         WitchAI,
         SpiderAI
-        	
 }

@@ -13,22 +13,13 @@ public class MapCreatorManager : MonoBehaviour
 
     public TileType paletteSelection = TileType.Normal;
 
-  //  public GameObject mapmakerCanvas;
-
-
-    // Use this for initialization
     void Awake()
     {
         instance = this;
-
         mapTransform = transform.FindChild("Map");
-
         generateBlankMap(mapSize);
-
-//        mapmakerCanvas = Instantiate(PrefabHolder.instance.MapmakerCanvas);
     }
 
-    // Update is called once per frame
     void Update()
     {
 
@@ -93,12 +84,6 @@ public class MapCreatorManager : MonoBehaviour
         MapSaveLoad.Save(MapSaveLoad.CreateMapContainer(map), s);
     }
 
-
-    // public versions for MapmakingUI cuz i'm scared
-    //
-
-    //
-
     public void UIGenerateBlankMap(int mSize)
     {
         mapSize = mSize;
@@ -135,7 +120,6 @@ public class MapCreatorManager : MonoBehaviour
             Destroy(mapTransform.GetChild(i).gameObject);
         }
 
-
         map = new List<List<Tile>>();
         for (int i = 0; i < mapSize; i++)
         {
@@ -157,125 +141,12 @@ public class MapCreatorManager : MonoBehaviour
                 MapSaveLoad.Save(MapSaveLoad.CreateMapContainer(map), s);
            }
 
-
     void OnGUI()
     {
-/*
-        // palette
-        Rect rect = new Rect(10, Screen.height - 80, 50, 20);
-        if (GUI.Button(rect, "Impass"))
-        {
-            paletteSelection = TileType.Impassable;
-        }
 
-        rect = new Rect(10 + (50 + 10) * 1, Screen.height - 80, 50, 20);
-        if (GUI.Button(rect, "CityP1"))
-        {
-            paletteSelection = TileType.CityPlayerOne;
-        }
-
-        rect = new Rect(10 + (50 + 10) * 2, Screen.height - 80, 50, 20);
-        if (GUI.Button(rect, "CityP2"))
-        {
-            paletteSelection = TileType.CityPlayerTwo;
-        }
-
-        rect = new Rect(10 + (50 + 10) * 3, Screen.height - 80, 50, 30);
-        if (GUI.Button(rect, "BaseP1"))
-        {
-            paletteSelection = TileType.BasePlayerOne;
-        }
-
-        rect = new Rect(10 + (50 + 10) * 4, Screen.height - 80, 50, 30);
-        if (GUI.Button(rect, "BaseP2"))
-        {
-            paletteSelection = TileType.BasePlayerTwo;
-        }
-
-        //
-
-
-        // Predeployed Units
-
-        rect = new Rect(10 + (50 + 10) * 8, Screen.height - 80, 50, 20);
-        if (GUI.Button(rect, "FleaP1"))
-        {
-            paletteSelection = TileType.FleaP1;
-        }
-
-        rect = new Rect(10 + (50 + 10) * 9, Screen.height - 80, 50, 20);
-        if (GUI.Button(rect, "FleaAI"))
-        {
-            paletteSelection = TileType.FleaAI;
-        }
-
-        rect = new Rect(10 + (50 + 10) * 10, Screen.height - 80, 50, 20);
-        if (GUI.Button(rect, "SpiderP1"))
-        {
-            paletteSelection = TileType.SpiderP1;
-        }
-
-        rect = new Rect(10 + (50 + 10) * 11, Screen.height - 80, 50, 20);
-        if (GUI.Button(rect, "SpiderAI"))
-        {
-            paletteSelection = TileType.SpiderAI;
-        }
-
-        rect = new Rect(10 + (50 + 10) * 12, Screen.height - 80, 50, 20);
-        if (GUI.Button(rect, "WitchP1"))
-        {
-            paletteSelection = TileType.WitchP1;
-        }
-
-        rect = new Rect(10 + (50 + 10) * 11, Screen.height - 100, 50, 20);
-        if (GUI.Button(rect, "WitchAI"))
-        {
-            paletteSelection = TileType.WitchAI;
-        }
-        //
-
-
-
-        // IO 
-        rect = new Rect(10 + (50 + 10) * 5, Screen.height - 80, 50, 30);
-        if (GUI.Button(rect, "Load Map"))
-        {
-            loadMapFromXml("map.xml");
-        }
-
-        rect = new Rect(10 + (50 + 10) * 6, Screen.height - 80, 50, 30);
-        if (GUI.Button(rect, "Save Map"))
-        {
-            saveMapToXml("map.xml");
-        }
-
-        
-
-        rect = new Rect(10 + (50 + 10) * 7, Screen.height - 80, 50, 30);
-        if (GUI.Button(rect, "Clear Map"))
-        {
-            generateBlankMap(mapSize);
-        }
-
-        // load/save second maps
-        rect = new Rect(10 + (50 + 10) * 5, Screen.height - 100, 50, 30);
-        if (GUI.Button(rect, "Load Map B"))
-        {
-            loadMapFromXml("map2.xml");
-        }
-
-        rect = new Rect(10 + (50 + 10) * 6, Screen.height - 100, 50, 30);
-        if (GUI.Button(rect, "Save Map B"))
-        {
-            saveMapToXml("map2.xml");
-        }
-        */
     }
 
-
-
     // MAP UI
-
     // Save/Load
     public void LoadCampaign1()
     {
@@ -304,12 +175,10 @@ public class MapCreatorManager : MonoBehaviour
 
 
     //Units
-
     // player one
     public void SelectP1Flea()
     {
         paletteSelection = TileType.FleaP1;
-
     }
     public void SelectP1FleaUpA()
     {
@@ -346,11 +215,10 @@ public class MapCreatorManager : MonoBehaviour
 
     }
 
-    // player tw
+    // player two
     public void SelectP2Flea()
     {
         paletteSelection = TileType.FleaP2;
-
     }
     public void SelectP2FleaUpA()
     {
@@ -376,7 +244,6 @@ public class MapCreatorManager : MonoBehaviour
     public void SelectP2Witch()
     {
         paletteSelection = TileType.WitchP2;
-
     }
     public void SelectP2WitchUpA()
     {
@@ -391,7 +258,6 @@ public class MapCreatorManager : MonoBehaviour
     public void SelectAIFlea()
     {
         paletteSelection = TileType.FleaAI;
-
     }
     public void SelectAIFleaUpA()
     {
@@ -404,7 +270,6 @@ public class MapCreatorManager : MonoBehaviour
     public void SelectAISpider()
     {
         paletteSelection = TileType.SpiderAI;
-
     }
     public void SelectAISpiderUpA()
     {
@@ -435,19 +300,15 @@ public class MapCreatorManager : MonoBehaviour
     public void TileSelectP1Base()
     {
        paletteSelection = TileType.BasePlayerOne;
-
     }
 
     public void TileSelectP2Base()
     {
       paletteSelection = TileType.BasePlayerTwo;
-
     }
 
     public void TileSelectWall()
     {
         paletteSelection = TileType.Impassable;
-
     }
-
 }
