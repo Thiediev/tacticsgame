@@ -142,9 +142,9 @@ public class AIPlayerFix : Player
 
         // after healing (or if no healing)
         else
-            if (!moving && movementTilesInRange.Where(x => GameManager.instance.players.Where(y => y.GetType() != typeof(AIPlayerFix) && y.isOwnedByAI != true && y.HP > 0 && y != this && y.gridPosition == x.gridPosition).Count() > 0).Count() > 0)
+            if (!moving && movementTilesInRange.Where(x => GameManager.instance.players.Where(y => y.GetType() != typeof(AIPlayerFix) && y.isOwnedByAI != true && y.inStorage != true && y.HP > 0 && y != this && y.gridPosition == x.gridPosition).Count() > 0).Count() > 0)
         {
-            var opponentsInRange = movementTilesInRange.Select(x => GameManager.instance.players.Where(y => y.GetType() != typeof(AIPlayerFix) && y.isOwnedByAI != true && y.HP > 0 && y != this && y.gridPosition == x.gridPosition).Count() > 0 ? GameManager.instance.players.Where(y => y.gridPosition == x.gridPosition && y.HP > 0).First() : null).ToList();
+            var opponentsInRange = movementTilesInRange.Select(x => GameManager.instance.players.Where(y => y.GetType() != typeof(AIPlayerFix) && y.isOwnedByAI != true && y.inStorage != true && y.HP > 0 && y != this && y.gridPosition == x.gridPosition).Count() > 0 ? GameManager.instance.players.Where(y => y.gridPosition == x.gridPosition && y.HP > 0).First() : null).ToList();
             Player opponent = opponentsInRange.OrderBy(x => x != null ? -x.HP : 1000).OrderBy(x => x != null ? TilePathFinder.FindPath(GameManager.instance.map[(int)gridPosition.x][(int)gridPosition.y], GameManager.instance.map[(int)x.gridPosition.x][(int)x.gridPosition.y]).Count() : 1000).First();
 
             GameManager.instance.aiPlayers[GameManager.instance.currentAIUnitIndex].moving = true;
@@ -210,9 +210,9 @@ public class AIPlayerFix : Player
         }
         // after healing
         else
-            if (attackTilesInRange.Where(x => GameManager.instance.players.Where(y => y.GetType() != typeof(AIPlayerFix) && y.isOwnedByAI != true && y.HP > 0 && y != null && y != this && y.gridPosition == x.gridPosition).Count() > 0).Count() > 0)
+            if (attackTilesInRange.Where(x => GameManager.instance.players.Where(y => y.GetType() != typeof(AIPlayerFix) && y.inStorage != true && y.isOwnedByAI != true && y.HP > 0 && y != null && y != this && y.gridPosition == x.gridPosition).Count() > 0).Count() > 0)
         {
-            var opponentsInRange = attackTilesInRange.Select(x => GameManager.instance.players.Where(y => y.GetType() != typeof(AIPlayerFix) && y.HP > 0 && y != this && y.isOwnedByAI != true && y.gridPosition == x.gridPosition).Count() > 0 ? GameManager.instance.players.Where(y => y.gridPosition == x.gridPosition).First() : null).ToList();
+            var opponentsInRange = attackTilesInRange.Select(x => GameManager.instance.players.Where(y => y.GetType() != typeof(AIPlayerFix) && y.inStorage != true && y.HP > 0 && y != this && y.isOwnedByAI != true && y.gridPosition == x.gridPosition).Count() > 0 ? GameManager.instance.players.Where(y => y.gridPosition == x.gridPosition).First() : null).ToList();
             Player opponent = opponentsInRange.OrderBy(x => x != null ? -x.HP : 1000).First();
 
             GameManager.instance.removeTileHighlights();

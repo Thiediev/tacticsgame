@@ -157,51 +157,62 @@ public class Tile : MonoBehaviour {
         myTile = this;
         if (Application.loadedLevelName == "Campaign")
         {
-            if (GameManager.myUnit != null)
+            if (GameManager.instance.pocketScreenOn == true)
             {
-                if (GameManager.myUnit.moving && !(GameManager.myUnit is HQ))
+                GameManager.instance.dropCurrentUnit(this);
+                for (int i = 0; i < GameManager.instance.survivingUnits.Count; i++)
                 {
-                    // can call something like 'confirm path' method here, in the future
-                    GameManager.instance.moveCurrentPlayer(this);
+                    GameManager.instance.survivingUnits[i].transform.position = new Vector3(100, 2, 0);
                 }
-                else if (GameManager.myUnit.attacking && !(GameManager.myUnit is HQ))
-                {
-                    // trying to first call ConfirmTarget method
-                    GameManager.instance.confirmTarget(this);
-                    // may need to move attackWithCurrentPlayer to confirmTarget or something?
-                    GameManager.instance.attackWithCurrentPlayer(this);
-                }
+                GameManager.dropUnit = null;
             }
+            else
+            {
+                if (GameManager.myUnit != null)
+                {
+                    if (GameManager.myUnit.moving && !(GameManager.myUnit is HQ))
+                    {
+                        // can call something like 'confirm path' method here, in the future
+                        GameManager.instance.moveCurrentPlayer(this);
+                    }
+                    else if (GameManager.myUnit.attacking && !(GameManager.myUnit is HQ))
+                    {
+                        // trying to first call ConfirmTarget method
+                        GameManager.instance.confirmTarget(this);
+                        // may need to move attackWithCurrentPlayer to confirmTarget or something?
+                        GameManager.instance.attackWithCurrentPlayer(this);
+                    }
+                }
                 if (this.canBuildLandUnits && ((this.addsIncomePlayerOne && GameManager.instance.playerOneTurn) || (addsIncomePlayerTwo && GameManager.instance.playerTwoTurn)))
-            {
-                buildTile = myTile;
-                GameManager.instance.BuildUnitCanvas.transform.position = new Vector3(transform.position.x + 3.5f, transform.position.y, transform.position.z + 6);
+                {
+                    buildTile = myTile;
+                    GameManager.instance.BuildUnitCanvas.transform.position = new Vector3(transform.position.x + 3.5f, transform.position.y, transform.position.z + 6);
+                }
+                /* else
+                 {
+                     // if the tile is a base, and is owned by the player whose turn it is, you can build units from it
+                     if (this.canBuildLandUnits && ((this.addsIncomePlayerOne && GameManager.instance.playerOneTurn) || (addsIncomePlayerTwo && GameManager.instance.playerTwoTurn)))
+                     {
+                         // need some sort of gui thing to pick a unit
+
+                         OnGUI();
+                         // then, it'll instantiate the unit just like in gamemanager's auto unit generation.
+                     }
+
+                     /* this is test code that allows you to click tiles to highlight them and make them impassable
+                     impassable = impassable ? false : true;
+                     if (impassable)
+                     {
+                         visual.transform.GetComponent<Renderer>().materials[0].color = new Color(0.5f, 0.5f, 0.0f);
+                     }
+                     else
+                     {
+                         visual.transform.GetComponent<Renderer>().materials[0].color = Color.white;
+                     }
+
+                 }*/
             }
-            /* else
-             {
-                 // if the tile is a base, and is owned by the player whose turn it is, you can build units from it
-                 if (this.canBuildLandUnits && ((this.addsIncomePlayerOne && GameManager.instance.playerOneTurn) || (addsIncomePlayerTwo && GameManager.instance.playerTwoTurn)))
-                 {
-                     // need some sort of gui thing to pick a unit
-
-                     OnGUI();
-                     // then, it'll instantiate the unit just like in gamemanager's auto unit generation.
-                 }
-
-                 /* this is test code that allows you to click tiles to highlight them and make them impassable
-                 impassable = impassable ? false : true;
-                 if (impassable)
-                 {
-                     visual.transform.GetComponent<Renderer>().materials[0].color = new Color(0.5f, 0.5f, 0.0f);
-                 }
-                 else
-                 {
-                     visual.transform.GetComponent<Renderer>().materials[0].color = Color.white;
-                 }
-
-             }*/
         }
-      
         else if (Application.loadedLevelName == "Map Creator")
         {
             setType(MapCreatorManager.instance.paletteSelection);

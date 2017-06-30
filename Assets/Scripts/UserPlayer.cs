@@ -77,8 +77,22 @@ public class UserPlayer : Player
     void OnMouseDown()
     {
         // If the unit is already selected, clicking the unit again will open up the attack/wait menu without moving the unit
+
+        //Cannot select units that are waiting
         if (this.waiting)
         { }
+ else
+ //if pocketscreen is displayed, can select a unit to drop
+ if (GameManager.instance.pocketScreenOn == true)
+        {
+            GameManager.instance.ReactivateAButton();
+            if (this.inStorage)
+            {
+                GameManager.instance.highlightTilesAt(GameManager.myUnit.gridPosition, Color.yellow, GameManager.myUnit.attackRange);
+                GameManager.dropUnit = this;
+            }
+
+        }
         else
         if (this == GameManager.myUnit && !(GameManager.myUnit is HQ))
         {

@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     public int currentCampaignMap = 1;
 
     public static UserPlayer myUnit;
+    public static UserPlayer dropUnit;
 
     public int turnCount = 1;
 
@@ -317,6 +318,8 @@ public class GameManager : MonoBehaviour
         //units and tiles are clickable again
         foreach (Player u in GameManager.instance.players)
         {
+            // temporary(?) measure to ensure storage units can still be clicked
+            if (u.inStorage != true)
             u.gameObject.layer = LayerMask.NameToLayer("Ignore Raycast");
         }
         for (int i = 0; i < GameManager.instance.mapSize; i++)
@@ -414,6 +417,29 @@ public class GameManager : MonoBehaviour
             }
         }
         MapUI.instance.UpdateTurnCounter();
+    }
+
+    public void dropCurrentUnit(Tile destTile)
+    {
+        if (destTile.visual.transform.GetComponent<Renderer>().materials[0].color == Color.yellow)
+        {
+            removeTileHighlights();
+            dropUnit.transform.position = new Vector3(Tile.myTile.transform.position.x, 0.55f, Tile.myTile.transform.position.z);
+            //dropUnit.transform.rotation = new Quaternion.Euler(new Vector3(0, 180, 0));
+            dropUnit.gridPosition = new Vector2(Tile.myTile.transform.position.x + Mathf.Floor(mapSize / 2), -Tile.myTile.transform.position.z + Mathf.Floor(mapSize / 2));
+            //remove dropped unit from list of pocket units
+            dropUnit.waiting = true;
+            myUnit.waiting = true;
+            dropUnit.inStorage = false;
+            survivingUnits.Remove(dropUnit);
+            GameManager.instance.ButtonCanvas.transform.position = new Vector3(-20, 0, 0);
+
+            pocketScreenOn = false;
+            ReactivateAButton();
+         
+            //turn off dropscreen
+            // drop unit is no longer a drop unit
+        }
     }
 
     public void moveCurrentPlayer(Tile destTile)
@@ -1598,6 +1624,7 @@ public class GameManager : MonoBehaviour
         else
             if (currentCampaignMap == 2)
         {
+            //Store surviving units before destroying them
             GameObject YouWin;
             YouWin = (GameObject)Instantiate(WinScreenPrefab, new Vector3(0, 7, 0), Quaternion.Euler(new Vector3(90, 0, 0)));
            
@@ -1672,29 +1699,34 @@ public class GameManager : MonoBehaviour
         }
 
         // also destroy all units
-        for (int i = 0; i < players.Count; i++)
-        {
-            KillUnit(players[i]);
-        }
-        // for some reason that leaves one unit, so for now, just, destroy it by destroying all units AGAIN:
-        for (int i = 0; i < players.Count; i++)
-        {
-            KillUnit(players[i]);
-        }
-        for (int i = 0; i < players.Count; i++)
-        {
-            KillUnit(players[i]);
-        }
-        for (int i = 0; i < players.Count; i++)
-        {
-            KillUnit(players[i]);
-        }
-        for (int i = 0; i < players.Count; i++)
-        {
-            KillUnit(players[i]);
-        }
-        // don't ask me why i need ot murder them five fucking times
+        StoreUnits();
 
+    
+        /*
+        for (int i = 0; i < players.Count; i++)
+        {
+            KillUnit(players[i]);
+
+        }*/
+        // for some reason that leaves one unit, so for now, just, destroy it by destroying all units AGAIN:
+        /*    for (int i = 0; i < players.Count; i++)
+            {
+                KillUnit(players[i]);
+            }
+            for (int i = 0; i < players.Count; i++)
+            {
+                KillUnit(players[i]);
+            }
+            for (int i = 0; i < players.Count; i++)
+            {
+                KillUnit(players[i]);
+            }
+            for (int i = 0; i < players.Count; i++)
+            {
+                KillUnit(players[i]);
+            }
+            // don't ask me why i need ot murder them five fucking times
+            */
         // don't let this carry over between matches.
         // this is probably not necessary
         currentAIUnitIndex = 0;
@@ -2073,6 +2105,50 @@ public class GameManager : MonoBehaviour
                 playerTwoCount++;
                 fundsArmyTwo -= Witch.cost;
             }
+        }
+    }
+
+
+
+   // UnitCarryover Class
+    public List<Player> survivingUnits = new List<Player>();
+    
+
+    // When you clear a level, your surviving units have their data stored and can be brought back in later levels
+    public void StoreUnits()
+    {
+        foreach (Player u in players)
+        {
+            if (u.inStorage != true)
+            {
+                survivingUnits.Add(u);
+                u.transform.position = new Vector3(-20, 0, 0);
+                u.inStorage = true;
+            }
+            /*
+            FleaPlusA playerFleaUpA;
+
+            playerFleaUpA = ((GameObject)Instantiate(FleaUpAPrefab, new Vector3(attacker.transform.position.x, 0.55f, attacker.transform.position.z), Quaternion.Euler(new Vector3(0, 0, 180)))).GetComponent<FleaPlusA>();
+
+            playerFleaUpA.gridPosition = new Vector2(attacker.transform.position.x + Mathf.Floor(mapSize / 2), -attacker.transform.position.z + Mathf.Floor(mapSize / 2));
+            playerFleaUpA.playerName = "Juicenjam";
+
+            playerFleaUpA.isOwnedByPlayerOne = true;
+
+            players.Add(playerFleaUpA);
+            playerOneCount++;
+
+            FleaPlusA.Promotion(playerFleaUpA, attacker.HP);*/
+        }
+    }
+
+    public bool pocketScreenOn = false;
+    public void DisplayPocket()
+    {
+        pocketScreenOn = true;
+        for (int i = 0; i < survivingUnits.Count; i++)
+        {
+            survivingUnits[i].transform.position = new Vector3(i, 2, 0);
         }
     }
 }
