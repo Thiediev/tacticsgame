@@ -23,6 +23,9 @@ public class GameManager : MonoBehaviour
     public GameObject highlights;
     public List<GameObject> highlightTiles;
 
+    public int totalPoints = 0;
+    public int thisLevelPoints = 0;
+
     public int numberOfPropsArmyOne
     {
         get
@@ -1619,12 +1622,13 @@ public class GameManager : MonoBehaviour
         //TODO: maybe add something that generates a map anyway, if no xml file.
         if (currentCampaignMap == 1)
         {
-        loadMapFromXml("map.xml");
+           
+            loadMapFromXml("map.xml");
         }
         else
             if (currentCampaignMap == 2)
         {
-            //Store surviving units before destroying them
+           
             GameObject YouWin;
             YouWin = (GameObject)Instantiate(WinScreenPrefab, new Vector3(0, 7, 0), Quaternion.Euler(new Vector3(90, 0, 0)));
            
@@ -1698,10 +1702,13 @@ public class GameManager : MonoBehaviour
             Destroy(mapTransform.GetChild(i).gameObject);
         }
 
-        // also destroy all units
+        // also store all surviving units
         StoreUnits();
 
-    
+        // Adding points to your total score here, including multipliers for turn efficiency and time bonus
+        totalPoints = thisLevelPoints + totalPoints;
+        thisLevelPoints = 0;
+
         /*
         for (int i = 0; i < players.Count; i++)
         {
@@ -2117,6 +2124,7 @@ public class GameManager : MonoBehaviour
     // When you clear a level, your surviving units have their data stored and can be brought back in later levels
     public void StoreUnits()
     {
+        // also handle point tallying here
         foreach (Player u in players)
         {
             if (u.inStorage != true)
@@ -2124,6 +2132,45 @@ public class GameManager : MonoBehaviour
                 survivingUnits.Add(u);
                 u.transform.position = new Vector3(-20, 0, 0);
                 u.inStorage = true;
+                if (u is Flea)
+                    thisLevelPoints = thisLevelPoints + (u.HP * 5);
+                else if (u is FleaPlusA)
+                    thisLevelPoints = thisLevelPoints + (u.HP * 10);
+                else if (u is FleaPlusB)
+                    thisLevelPoints = thisLevelPoints + (u.HP * 40);
+                else if (u is Witch)
+                    thisLevelPoints = thisLevelPoints + (u.HP * 15);
+                else if (u is WitchPlusA)
+                    thisLevelPoints = thisLevelPoints + (u.HP * 25);
+                else if (u is WitchPlusB)
+                    thisLevelPoints = thisLevelPoints + (u.HP * 45);
+                else if (u is Spider)
+                    thisLevelPoints = thisLevelPoints + (u.HP * 20);
+                else if (u is SpiderPlusA)
+                    thisLevelPoints = thisLevelPoints + (u.HP * 30);
+                else if (u is SpiderPlusB)
+                    thisLevelPoints = thisLevelPoints + (u.HP * 65);
+            }
+            else if (u.inStorage == true)
+            {
+                if (u is Flea)
+                    thisLevelPoints = thisLevelPoints + (u.HP * 6);
+                else if (u is FleaPlusA)
+                    thisLevelPoints = thisLevelPoints + (u.HP * 12);
+                else if (u is FleaPlusB)
+                    thisLevelPoints = thisLevelPoints + (u.HP * 48);
+                else if (u is Witch)
+                    thisLevelPoints = thisLevelPoints + (u.HP * 18);
+                else if (u is WitchPlusA)
+                    thisLevelPoints = thisLevelPoints + (u.HP * 30);
+                else if (u is WitchPlusB)
+                    thisLevelPoints = thisLevelPoints + (u.HP * 54);
+                else if (u is Spider)
+                    thisLevelPoints = thisLevelPoints + (u.HP * 24);
+                else if (u is SpiderPlusA)
+                    thisLevelPoints = thisLevelPoints + (u.HP * 36);
+                else if (u is SpiderPlusB)
+                    thisLevelPoints = thisLevelPoints + (u.HP * 78);
             }
             /*
             FleaPlusA playerFleaUpA;
