@@ -1628,53 +1628,53 @@ public class GameManager : MonoBehaviour
         else
             if (currentCampaignMap == 2)
         {
-           
-            GameObject YouWin;
-            YouWin = (GameObject)Instantiate(WinScreenPrefab, new Vector3(0, 7, 0), Quaternion.Euler(new Vector3(90, 0, 0)));
-           
-            //PrefabHolder.instance.WinScreen);
-            Destroy(YouWin, 2);
             loadMapFromXml("map2.xml");
+
+            GameObject YouWin;
+            YouWin = (GameObject)Instantiate(WinScreenPrefab, new Vector3(-2, 6, 0), Quaternion.Euler(new Vector3(90, 0, 0)));
+            // Display all of the player's carryover units on the winscreen and display the number of points they each earned the player this level
+            for (int i = 0; i < survivingUnits.Count; i++)
+            {
+                survivingUnits[i].transform.position = new Vector3((i * .11f) -.5f, 6.1f, .18f);
+                survivingUnits[i].transform.localScale = new Vector3(.12f, .000001f, .12f);
+            }
+            //PrefabHolder.instance.WinScreen);
         }
         else
             if (currentCampaignMap == 3)
         {
-            GameObject YouWin;
-            YouWin = (GameObject)Instantiate(WinScreenPrefab, new Vector3(0, 7, 0), Quaternion.Euler(new Vector3(90, 0, 0)));
-
-            //PrefabHolder.instance.WinScreen);
-            Destroy(YouWin, 2);
             loadMapFromXml("map3.xml");
+
+            GameObject YouWin;
+            YouWin = (GameObject)Instantiate(WinScreenPrefab, new Vector3(-2, 6, 0), Quaternion.Euler(new Vector3(90, 0, 0)));
+            for (int i = 0; i < survivingUnits.Count; i++)
+            {
+                survivingUnits[i].transform.position = new Vector3((i * .11f) - .5f, 6.1f, .18f);
+                survivingUnits[i].transform.localScale = new Vector3(.12f, .000001f, .12f);
+            }
+            //PrefabHolder.instance.WinScreen);
         }
         else
             if (currentCampaignMap == 4)
         {
+            loadMapFromXml("map4.xml");
+
             GameObject YouWin;
             YouWin = (GameObject)Instantiate(WinScreenPrefab, new Vector3(0, 7, 0), Quaternion.Euler(new Vector3(90, 0, 0)));
-
-            //PrefabHolder.instance.WinScreen);
-            Destroy(YouWin, 2);
-            loadMapFromXml("map4.xml");
         }
         else
             if (currentCampaignMap == 5)
         {
+            loadMapFromXml("map5.xml");
             GameObject YouWin;
             YouWin = (GameObject)Instantiate(WinScreenPrefab, new Vector3(0, 7, 0), Quaternion.Euler(new Vector3(90, 0, 0)));
-
-            //PrefabHolder.instance.WinScreen);
-            Destroy(YouWin, 2);
-            loadMapFromXml("map5.xml");
         }
         else
             if (currentCampaignMap == 6)
         {
+            loadMapFromXml("map6.xml");
             GameObject YouWin;
             YouWin = (GameObject)Instantiate(WinScreenPrefab, new Vector3(0, 7, 0), Quaternion.Euler(new Vector3(90, 0, 0)));
-
-            //PrefabHolder.instance.WinScreen);
-            Destroy(YouWin, 2);
-            loadMapFromXml("map6.xml");
         }
         /* map = new List<List<Tile>>();
          for (int i = 0; i < mapSize; i++)

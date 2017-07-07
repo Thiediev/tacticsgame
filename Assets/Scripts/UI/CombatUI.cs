@@ -216,16 +216,28 @@ public class CombatUI : MonoBehaviour
                 p.moving = false;
                 p.attacking = false;
 
-                // when turn ends, layermask goes back to normal so next player can click units
+                // When turn ends, layermask goes back to normal so next player can click units
                 p.gameObject.layer = LayerMask.NameToLayer("Default");
             }
-            // no selected unit
+            // No selected unit
             GameManager.myUnit = null;
         }
-        // make it so all units stop waiting
+        // Make it so all units stop waiting
         GameManager.instance.NextTurn();
     }
 
+    public void ExitWinScreen ()
+    {
+        //Hide these units away again
+        for (int i = 0; i < GameManager.instance.survivingUnits.Count; i++)
+        {
+            GameManager.instance.survivingUnits[i].transform.position = new Vector3(-20, 0, 0);
+            GameManager.instance.survivingUnits[i].transform.localScale = new Vector3(1, .01f, 1f);
+        }
+
+        // Get rid of winscreen
+        Destroy(transform.root.gameObject);
+    }
     void Start () {
 	
 	}
