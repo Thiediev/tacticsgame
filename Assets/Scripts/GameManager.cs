@@ -159,6 +159,8 @@ public class GameManager : MonoBehaviour
     public bool myUnitIsBeingUsed = false;
     public bool myUnitMustWaitOrAttack = false;
 
+    public bool WinScreenOn = false;
+
     public bool aiPlayerTurn = false;
 
     public int fundsArmyOne;
@@ -1622,49 +1624,59 @@ public class GameManager : MonoBehaviour
         //TODO: maybe add something that generates a map anyway, if no xml file.
         if (currentCampaignMap == 1)
         {
-           
             loadMapFromXml("map.xml");
         }
         else
             if (currentCampaignMap == 2)
         {
             loadMapFromXml("map2.xml");
-
+            WinScreenOn = true;
             GameObject YouWin;
             YouWin = (GameObject)Instantiate(WinScreenPrefab, new Vector3(-2, 6, 0), Quaternion.Euler(new Vector3(90, 0, 0)));
             // Display all of the player's carryover units on the winscreen and display the number of points they each earned the player this level
+            for (int a = 0; a < players.Count; a++)
+            {
+                //Units cannot be selected
+                players[a].waiting = true;
+            }
             for (int i = 0; i < survivingUnits.Count; i++)
             {
                 survivingUnits[i].transform.position = new Vector3((i * .11f) -.5f, 6.1f, .18f);
                 survivingUnits[i].transform.localScale = new Vector3(.12f, .000001f, .12f);
+               
             }
-            //PrefabHolder.instance.WinScreen);
         }
         else
             if (currentCampaignMap == 3)
         {
             loadMapFromXml("map3.xml");
-
+            WinScreenOn = true;
             GameObject YouWin;
             YouWin = (GameObject)Instantiate(WinScreenPrefab, new Vector3(-2, 6, 0), Quaternion.Euler(new Vector3(90, 0, 0)));
+            for (int a = 0; a < players.Count; a++)
+            {
+                //Units cannot be selected
+                players[a].waiting = true;
+            }
             for (int i = 0; i < survivingUnits.Count; i++)
             {
                 survivingUnits[i].transform.position = new Vector3((i * .11f) - .5f, 6.1f, .18f);
                 survivingUnits[i].transform.localScale = new Vector3(.12f, .000001f, .12f);
+
             }
-            //PrefabHolder.instance.WinScreen);
         }
         else
             if (currentCampaignMap == 4)
         {
             loadMapFromXml("map4.xml");
-
+            WinScreenOn = true;
             GameObject YouWin;
             YouWin = (GameObject)Instantiate(WinScreenPrefab, new Vector3(0, 7, 0), Quaternion.Euler(new Vector3(90, 0, 0)));
         }
         else
             if (currentCampaignMap == 5)
         {
+            WinScreenOn = true;
             loadMapFromXml("map5.xml");
             GameObject YouWin;
             YouWin = (GameObject)Instantiate(WinScreenPrefab, new Vector3(0, 7, 0), Quaternion.Euler(new Vector3(90, 0, 0)));
@@ -1672,6 +1684,7 @@ public class GameManager : MonoBehaviour
         else
             if (currentCampaignMap == 6)
         {
+            WinScreenOn = true;
             loadMapFromXml("map6.xml");
             GameObject YouWin;
             YouWin = (GameObject)Instantiate(WinScreenPrefab, new Vector3(0, 7, 0), Quaternion.Euler(new Vector3(90, 0, 0)));
@@ -2119,7 +2132,7 @@ public class GameManager : MonoBehaviour
 
    // UnitCarryover Class
     public List<Player> survivingUnits = new List<Player>();
-    
+    public int thisUnitPoints;
 
     // When you clear a level, your surviving units have their data stored and can be brought back in later levels
     public void StoreUnits()
@@ -2133,44 +2146,98 @@ public class GameManager : MonoBehaviour
                 u.transform.position = new Vector3(-20, 0, 0);
                 u.inStorage = true;
                 if (u is Flea)
-                    thisLevelPoints = thisLevelPoints + (u.HP * 5);
+                {
+                    u.UnitPoints = (u.HP * 5);
+                    thisLevelPoints = thisLevelPoints + u.UnitPoints;
+                }
                 else if (u is FleaPlusA)
-                    thisLevelPoints = thisLevelPoints + (u.HP * 10);
+                {
+                    u.UnitPoints = (u.HP * 10);
+                    thisLevelPoints = thisLevelPoints + u.UnitPoints;
+                }
                 else if (u is FleaPlusB)
-                    thisLevelPoints = thisLevelPoints + (u.HP * 40);
+                {
+                    u.UnitPoints = (u.HP * 40);
+                    thisLevelPoints = thisLevelPoints + u.UnitPoints;
+                }
                 else if (u is Witch)
-                    thisLevelPoints = thisLevelPoints + (u.HP * 15);
+                {
+                    u.UnitPoints = (u.HP * 15);
+                    thisLevelPoints = thisLevelPoints + u.UnitPoints;
+                }
                 else if (u is WitchPlusA)
-                    thisLevelPoints = thisLevelPoints + (u.HP * 25);
+                {
+                    u.UnitPoints = (u.HP * 25);
+                    thisLevelPoints = thisLevelPoints + u.UnitPoints;
+                }
                 else if (u is WitchPlusB)
-                    thisLevelPoints = thisLevelPoints + (u.HP * 45);
+                {
+                    u.UnitPoints = (u.HP * 45);
+                    thisLevelPoints = thisLevelPoints + u.UnitPoints;
+                }
                 else if (u is Spider)
-                    thisLevelPoints = thisLevelPoints + (u.HP * 20);
+                {
+                    u.UnitPoints = (u.HP * 20);
+                    thisLevelPoints = thisLevelPoints + u.UnitPoints;
+                }
                 else if (u is SpiderPlusA)
-                    thisLevelPoints = thisLevelPoints + (u.HP * 30);
+                {
+                    u.UnitPoints = (u.HP * 30);
+                    thisLevelPoints = thisLevelPoints + u.UnitPoints;
+                }
                 else if (u is SpiderPlusB)
-                    thisLevelPoints = thisLevelPoints + (u.HP * 65);
+                {
+                    u.UnitPoints = (u.HP * 65);
+                    thisLevelPoints = thisLevelPoints + u.UnitPoints;
+                }  
             }
             else if (u.inStorage == true)
             {
                 if (u is Flea)
-                    thisLevelPoints = thisLevelPoints + (u.HP * 6);
+                {
+                    u.UnitPoints = (u.HP * 6);
+                    thisLevelPoints = thisLevelPoints + u.UnitPoints;
+                }
                 else if (u is FleaPlusA)
-                    thisLevelPoints = thisLevelPoints + (u.HP * 12);
+                {
+                    u.UnitPoints = (u.HP * 12);
+                    thisLevelPoints = thisLevelPoints + u.UnitPoints;
+                }
                 else if (u is FleaPlusB)
-                    thisLevelPoints = thisLevelPoints + (u.HP * 48);
+                {
+                    u.UnitPoints = (u.HP * 48);
+                    thisLevelPoints = thisLevelPoints + u.UnitPoints;
+                }
                 else if (u is Witch)
-                    thisLevelPoints = thisLevelPoints + (u.HP * 18);
+                {
+                    u.UnitPoints = (u.HP * 18);
+                    thisLevelPoints = thisLevelPoints + u.UnitPoints;
+                }
                 else if (u is WitchPlusA)
-                    thisLevelPoints = thisLevelPoints + (u.HP * 30);
+                {
+                    u.UnitPoints = (u.HP * 30);
+                    thisLevelPoints = thisLevelPoints + u.UnitPoints;
+                }
                 else if (u is WitchPlusB)
-                    thisLevelPoints = thisLevelPoints + (u.HP * 54);
+                {
+                    u.UnitPoints = (u.HP * 54);
+                    thisLevelPoints = thisLevelPoints + u.UnitPoints;
+                }
                 else if (u is Spider)
-                    thisLevelPoints = thisLevelPoints + (u.HP * 24);
+                {
+                    u.UnitPoints = (u.HP * 24);
+                    thisLevelPoints = thisLevelPoints + u.UnitPoints;
+                }
                 else if (u is SpiderPlusA)
-                    thisLevelPoints = thisLevelPoints + (u.HP * 36);
+                {
+                    u.UnitPoints = (u.HP * 36);
+                    thisLevelPoints = thisLevelPoints + u.UnitPoints;
+                }
                 else if (u is SpiderPlusB)
-                    thisLevelPoints = thisLevelPoints + (u.HP * 78);
+                {
+                    u.UnitPoints = (u.HP * 78);
+                    thisLevelPoints = thisLevelPoints + u.UnitPoints;
+                }
             }
             /*
             FleaPlusA playerFleaUpA;

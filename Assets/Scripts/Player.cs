@@ -15,6 +15,8 @@ public class Player : MonoBehaviour {
     public int baseMovementPerActionPoint = 5;
     public int baseCost = 0;
 
+    public int UnitPoints;
+
     public bool moving = false;
     public bool attacking = false;
     public bool waiting = false;
@@ -56,11 +58,20 @@ public class Player : MonoBehaviour {
 	}
 	
 	public virtual void Update () {
-        if (waiting)
+        if (GameManager.instance.WinScreenOn == false)
         {
-            transform.GetComponent<Renderer>().material.color = Color.red;
+            if (waiting)
+            {
+                transform.GetComponent<Renderer>().material.color = Color.red;
+            }
+            else if (waiting == false && GameManager.myUnit == null)
+            {
+                transform.GetComponent<Renderer>().material.color = Color.white;
+            }
         }
-        else if (waiting == false && GameManager.myUnit == null)
+        else
+        //If the winscreen is on, units are default color no matter what
+            if (GameManager.instance.WinScreenOn == true)
         {
             transform.GetComponent<Renderer>().material.color = Color.white;
         }

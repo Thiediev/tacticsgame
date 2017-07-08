@@ -228,14 +228,21 @@ public class CombatUI : MonoBehaviour
 
     public void ExitWinScreen ()
     {
-        //Hide these units away again
+        //Reactivate units
+        for (int a = 0; a < GameManager.instance.players.Count; a++)
+        {
+            //Units cannot be selected
+            GameManager.instance.players[a].waiting = false;
+        }
+
+        //Hide pocket units away again
         for (int i = 0; i < GameManager.instance.survivingUnits.Count; i++)
         {
             GameManager.instance.survivingUnits[i].transform.position = new Vector3(-20, 0, 0);
             GameManager.instance.survivingUnits[i].transform.localScale = new Vector3(1, .01f, 1f);
         }
-
         // Get rid of winscreen
+        GameManager.instance.WinScreenOn = false;
         Destroy(transform.root.gameObject);
     }
     void Start () {
