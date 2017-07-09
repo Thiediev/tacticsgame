@@ -475,6 +475,7 @@ MonoBehaviour:
   fundsArmyOne: 0
   fundsArmyTwo: 0
   survivingUnits: []
+  thisUnitPoints: 0
   pocketScreenOn: 0
 --- !u!1 &382940791
 GameObject:
