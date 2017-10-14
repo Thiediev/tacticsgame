@@ -199,7 +199,9 @@ public class GameManager : MonoBehaviour
         //TODO: make this work for specific armies
         if (playerOneCount <= 0)
         {
-            //print("PLAYER TWO WINS MY DUDE");
+            /*
+            playerOneTurn = true;
+            playerTwoTurn = false;*/
                 generateMap();
         }
         if (playerTwoCount <= 0)
@@ -1625,6 +1627,12 @@ public class GameManager : MonoBehaviour
         if (currentCampaignMap == 1)
         {
             loadMapFromXml("map.xml");
+       /*     for (int a = 0; a < players.Count; a++)
+            {
+                //AI Units are reset
+                if (players[a] is AIPlayerFix)
+                players[a].waiting = true;
+            }*/
         }
         else
             if (currentCampaignMap == 2)
@@ -1718,6 +1726,26 @@ public class GameManager : MonoBehaviour
         // also store all surviving units
         StoreUnits();
 
+        //destroy all AI units in the event that they defeat the player, in order to restart the level
+        for (int i = 0; i < players.Count; i++)
+        {
+            if (players[i] is AIPlayerFix)
+            KillUnit(players[i]);
+
+        }
+        //not sure why but it takes multiple cycles to destroy all ai units after they win
+        for (int i = 0; i < players.Count; i++)
+        {
+            if (players[i] is AIPlayerFix)
+                KillUnit(players[i]);
+
+        }
+        for (int i = 0; i < players.Count; i++)
+        {
+            if (players[i] is AIPlayerFix)
+                KillUnit(players[i]);
+
+        }
         // Adding points to your total score here, including multipliers for turn efficiency and time bonus
         totalPoints = thisLevelPoints + totalPoints;
         thisLevelPoints = 0;
@@ -2140,103 +2168,106 @@ public class GameManager : MonoBehaviour
         // also handle point tallying here
         foreach (Player u in players)
         {
-            if (u.inStorage != true)
+            if (u.isOwnedByAI != true)
             {
-                survivingUnits.Add(u);
-                u.transform.position = new Vector3(-20, 0, 0);
-                u.inStorage = true;
-                if (u is Flea)
+                if (u.inStorage != true)
                 {
-                    u.UnitPoints = (u.HP * 5);
-                    thisLevelPoints = thisLevelPoints + u.UnitPoints;
+                    survivingUnits.Add(u);
+                    u.transform.position = new Vector3(-20, 0, 0);
+                    u.inStorage = true;
+                    if (u is Flea)
+                    {
+                        u.UnitPoints = (u.HP * 5);
+                        thisLevelPoints = thisLevelPoints + u.UnitPoints;
+                    }
+                    else if (u is FleaPlusA)
+                    {
+                        u.UnitPoints = (u.HP * 10);
+                        thisLevelPoints = thisLevelPoints + u.UnitPoints;
+                    }
+                    else if (u is FleaPlusB)
+                    {
+                        u.UnitPoints = (u.HP * 40);
+                        thisLevelPoints = thisLevelPoints + u.UnitPoints;
+                    }
+                    else if (u is Witch)
+                    {
+                        u.UnitPoints = (u.HP * 15);
+                        thisLevelPoints = thisLevelPoints + u.UnitPoints;
+                    }
+                    else if (u is WitchPlusA)
+                    {
+                        u.UnitPoints = (u.HP * 25);
+                        thisLevelPoints = thisLevelPoints + u.UnitPoints;
+                    }
+                    else if (u is WitchPlusB)
+                    {
+                        u.UnitPoints = (u.HP * 45);
+                        thisLevelPoints = thisLevelPoints + u.UnitPoints;
+                    }
+                    else if (u is Spider)
+                    {
+                        u.UnitPoints = (u.HP * 20);
+                        thisLevelPoints = thisLevelPoints + u.UnitPoints;
+                    }
+                    else if (u is SpiderPlusA)
+                    {
+                        u.UnitPoints = (u.HP * 30);
+                        thisLevelPoints = thisLevelPoints + u.UnitPoints;
+                    }
+                    else if (u is SpiderPlusB)
+                    {
+                        u.UnitPoints = (u.HP * 65);
+                        thisLevelPoints = thisLevelPoints + u.UnitPoints;
+                    }
                 }
-                else if (u is FleaPlusA)
+                else if (u.inStorage == true)
                 {
-                    u.UnitPoints = (u.HP * 10);
-                    thisLevelPoints = thisLevelPoints + u.UnitPoints;
-                }
-                else if (u is FleaPlusB)
-                {
-                    u.UnitPoints = (u.HP * 40);
-                    thisLevelPoints = thisLevelPoints + u.UnitPoints;
-                }
-                else if (u is Witch)
-                {
-                    u.UnitPoints = (u.HP * 15);
-                    thisLevelPoints = thisLevelPoints + u.UnitPoints;
-                }
-                else if (u is WitchPlusA)
-                {
-                    u.UnitPoints = (u.HP * 25);
-                    thisLevelPoints = thisLevelPoints + u.UnitPoints;
-                }
-                else if (u is WitchPlusB)
-                {
-                    u.UnitPoints = (u.HP * 45);
-                    thisLevelPoints = thisLevelPoints + u.UnitPoints;
-                }
-                else if (u is Spider)
-                {
-                    u.UnitPoints = (u.HP * 20);
-                    thisLevelPoints = thisLevelPoints + u.UnitPoints;
-                }
-                else if (u is SpiderPlusA)
-                {
-                    u.UnitPoints = (u.HP * 30);
-                    thisLevelPoints = thisLevelPoints + u.UnitPoints;
-                }
-                else if (u is SpiderPlusB)
-                {
-                    u.UnitPoints = (u.HP * 65);
-                    thisLevelPoints = thisLevelPoints + u.UnitPoints;
-                }  
-            }
-            else if (u.inStorage == true)
-            {
-                if (u is Flea)
-                {
-                    u.UnitPoints = (u.HP * 6);
-                    thisLevelPoints = thisLevelPoints + u.UnitPoints;
-                }
-                else if (u is FleaPlusA)
-                {
-                    u.UnitPoints = (u.HP * 12);
-                    thisLevelPoints = thisLevelPoints + u.UnitPoints;
-                }
-                else if (u is FleaPlusB)
-                {
-                    u.UnitPoints = (u.HP * 48);
-                    thisLevelPoints = thisLevelPoints + u.UnitPoints;
-                }
-                else if (u is Witch)
-                {
-                    u.UnitPoints = (u.HP * 18);
-                    thisLevelPoints = thisLevelPoints + u.UnitPoints;
-                }
-                else if (u is WitchPlusA)
-                {
-                    u.UnitPoints = (u.HP * 30);
-                    thisLevelPoints = thisLevelPoints + u.UnitPoints;
-                }
-                else if (u is WitchPlusB)
-                {
-                    u.UnitPoints = (u.HP * 54);
-                    thisLevelPoints = thisLevelPoints + u.UnitPoints;
-                }
-                else if (u is Spider)
-                {
-                    u.UnitPoints = (u.HP * 24);
-                    thisLevelPoints = thisLevelPoints + u.UnitPoints;
-                }
-                else if (u is SpiderPlusA)
-                {
-                    u.UnitPoints = (u.HP * 36);
-                    thisLevelPoints = thisLevelPoints + u.UnitPoints;
-                }
-                else if (u is SpiderPlusB)
-                {
-                    u.UnitPoints = (u.HP * 78);
-                    thisLevelPoints = thisLevelPoints + u.UnitPoints;
+                    if (u is Flea)
+                    {
+                        u.UnitPoints = (u.HP * 6);
+                        thisLevelPoints = thisLevelPoints + u.UnitPoints;
+                    }
+                    else if (u is FleaPlusA)
+                    {
+                        u.UnitPoints = (u.HP * 12);
+                        thisLevelPoints = thisLevelPoints + u.UnitPoints;
+                    }
+                    else if (u is FleaPlusB)
+                    {
+                        u.UnitPoints = (u.HP * 48);
+                        thisLevelPoints = thisLevelPoints + u.UnitPoints;
+                    }
+                    else if (u is Witch)
+                    {
+                        u.UnitPoints = (u.HP * 18);
+                        thisLevelPoints = thisLevelPoints + u.UnitPoints;
+                    }
+                    else if (u is WitchPlusA)
+                    {
+                        u.UnitPoints = (u.HP * 30);
+                        thisLevelPoints = thisLevelPoints + u.UnitPoints;
+                    }
+                    else if (u is WitchPlusB)
+                    {
+                        u.UnitPoints = (u.HP * 54);
+                        thisLevelPoints = thisLevelPoints + u.UnitPoints;
+                    }
+                    else if (u is Spider)
+                    {
+                        u.UnitPoints = (u.HP * 24);
+                        thisLevelPoints = thisLevelPoints + u.UnitPoints;
+                    }
+                    else if (u is SpiderPlusA)
+                    {
+                        u.UnitPoints = (u.HP * 36);
+                        thisLevelPoints = thisLevelPoints + u.UnitPoints;
+                    }
+                    else if (u is SpiderPlusB)
+                    {
+                        u.UnitPoints = (u.HP * 78);
+                        thisLevelPoints = thisLevelPoints + u.UnitPoints;
+                    }
                 }
             }
             /*
