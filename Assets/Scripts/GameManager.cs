@@ -174,9 +174,14 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+  
         generateMap();
         generatePlayers();
 
+        foreach(AIPlayerFix a in aiPlayers)
+        {
+            a.MovementHasBeenCompleted = false;
+        }
         // first player gets half the funds on the first day to counteract first turn advantage
         fundsArmyOne = (numberOfPropsArmyOne * 1000) / 2;
         fundsArmyTwo = 0;
@@ -199,10 +204,16 @@ public class GameManager : MonoBehaviour
         //TODO: make this work for specific armies
         if (playerOneCount <= 0)
         {
-            /*
-            playerOneTurn = true;
-            playerTwoTurn = false;*/
-                generateMap();
+            // reset everything
+            currentAIUnitIndex = 0;
+            numberOfActiveAIUnits = 0;
+
+            currentPlayerIndex = 0;
+            currentArmyIndex = 0;
+
+                       playerOneTurn = true;
+            playerTwoTurn = false;
+              generateMap();
         }
         if (playerTwoCount <= 0)
         {
