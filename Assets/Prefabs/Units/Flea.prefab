@@ -201,7 +201,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   thisUnit: {fileID: 11456316}
-  txtRef: {fileID: 11447266}
+  HPTxtRef: {fileID: 0}
 --- !u!114 &11447266
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -289,6 +289,7 @@ MonoBehaviour:
   baseAttackRange: 1
   baseMovementPerActionPoint: 5
   baseCost: 0
+  UnitPoints: 0
   moving: 0
   attacking: 0
   waiting: 0
@@ -506,6 +507,6 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.43001938, y: -391.38998}
-  m_SizeDelta: {x: 20, y: 20}
+  m_AnchoredPosition: {x: -0.728, y: -391.39}
+  m_SizeDelta: {x: 30, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}

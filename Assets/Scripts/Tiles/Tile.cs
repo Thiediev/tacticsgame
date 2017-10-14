@@ -37,7 +37,7 @@ public class Tile : MonoBehaviour {
     public List<Tile> neighbors = new List<Tile>();
 
     void Start() {
-        if (Application.loadedLevelName == "Campaign")
+        if (Application.loadedLevelName != "Map Creator" && Application.loadedLevelName != "NetworkVersus")
         {
             generateNeighbors();
             // will only happen gamescene but may want this in mapmaking and whatnot to change tile visuals based on neighbors (clustered forests etc)
@@ -155,7 +155,7 @@ public class Tile : MonoBehaviour {
     void OnMouseDown()
     {
         myTile = this;
-        if (Application.loadedLevelName == "Campaign")
+        if (Application.loadedLevelName != "Map Creator" && Application.loadedLevelName != "NetworkVersus")
         {
             if (GameManager.instance.pocketScreenOn == true)
             {
@@ -221,7 +221,7 @@ public class Tile : MonoBehaviour {
 
     public void OnGUI()
     {
-        if (Application.loadedLevelName == "Campaign" || Application.loadedLevelName == "NetworkVersus")
+        if (Application.loadedLevelName != "Map Creator")
         {
             if (buttonPressed && myTile != null)
             {

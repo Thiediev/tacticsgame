@@ -63,7 +63,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 155280}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -25.026, y: -2, z: 41}
+  m_LocalPosition: {x: -24.789894, y: -5.961053, z: 35.768963}
   m_LocalScale: {x: 1, y: 0.000001, z: 1}
   m_Children:
   - {fileID: 22480612}
@@ -201,7 +201,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   thisUnit: {fileID: 11466254}
-  txtRef: {fileID: 11489136}
+  HPTxtRef: {fileID: 0}
 --- !u!114 &11466254
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -219,6 +219,7 @@ MonoBehaviour:
   baseAttackRange: 1
   baseMovementPerActionPoint: 5
   baseCost: 0
+  UnitPoints: 0
   moving: 0
   attacking: 0
   waiting: 0
@@ -498,7 +499,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1771943726056342}
   m_LocalRotation: {x: -0.000000018626393, y: 0.00000001117587, z: 0.7071066, w: -0.707107}
-  m_LocalPosition: {x: 0, y: 0, z: -410.2579}
+  m_LocalPosition: {x: 0, y: 0, z: -395}
   m_LocalScale: {x: 0.030000051, y: 0.030000025, z: 0.03000002}
   m_Children: []
   m_Father: {fileID: 22480612}
@@ -506,6 +507,6 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -47.41005, y: -365.61996}
-  m_SizeDelta: {x: 20, y: 20}
+  m_AnchoredPosition: {x: -0.77, y: -336.11}
+  m_SizeDelta: {x: 40, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
