@@ -71,6 +71,7 @@ public class GameManager : MonoBehaviour
 
     public CombatUI ButtonCanvas;
     public CombatUI BuildUnitCanvas;
+    public CombatUI MainUICanvas;
 
 
     //specific unit prefabs
@@ -1649,10 +1650,16 @@ public class GameManager : MonoBehaviour
             if (currentCampaignMap == 2)
         {
             loadMapFromXml("map2.xml");
+            
+            //get rid of End Turn button while winscreen is displayed
+            MainUICanvas.transform.position = new Vector3(-20, 0, 0);
+
             WinScreenOn = true;
             GameObject YouWin;
             YouWin = (GameObject)Instantiate(WinScreenPrefab, new Vector3(-2, 6, 0), Quaternion.Euler(new Vector3(90, 0, 0)));
             // Display all of the player's carryover units on the winscreen and display the number of points they each earned the player this level
+
+
             for (int a = 0; a < players.Count; a++)
             {
                 //Units cannot be selected

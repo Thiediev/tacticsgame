@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class CombatUI : MonoBehaviour
 {
+
+    public static CombatUI instance;
     public void BuildFleaButton()
     {
         if (GameManager.instance.playerOneTurn && GameManager.instance.fundsArmyOne >= Flea.cost)
@@ -241,6 +243,10 @@ public class CombatUI : MonoBehaviour
             GameManager.instance.survivingUnits[i].transform.position = new Vector3(-20, 0, 0);
             GameManager.instance.survivingUnits[i].transform.localScale = new Vector3(1, .01f, 1f);
         }
+
+        // bring back End Turn button
+        GameManager.instance.MainUICanvas.transform.position = new Vector3(0, 0, 0);
+
         // Get rid of winscreen
         GameManager.instance.WinScreenOn = false;
         Destroy(transform.root.gameObject);
