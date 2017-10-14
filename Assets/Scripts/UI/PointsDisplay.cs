@@ -44,6 +44,6 @@ public class PointsDisplay : MonoBehaviour {
     public void UpdatePointsDisplay()
     {
         PointsForDisplay = thisUnit.UnitPoints;
-        pointTxtRef.text = PointsForDisplay.ToString();
+        pointTxtRef.text = "+" + PointsForDisplay.ToString();
     }
 }
