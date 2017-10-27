@@ -339,8 +339,12 @@ MonoBehaviour:
   highlightTiles: []
   totalPoints: 0
   thisLevelPoints: 0
+  combatMenuPosX: 0
+  combatMenuPosY: 0
+  combatMenuPosZ: 0
   ButtonCanvas: {fileID: 998586817}
   BuildUnitCanvas: {fileID: 0}
+  MainUICanvas: {fileID: 1614750076}
   HQPrefab: {fileID: 181960, guid: 9ba010ddd4363c84ab5209e40eea140e, type: 2}
   FleaPrefab: {fileID: 198076, guid: 23b5803abe0b208448b4f4d3861f1dae, type: 2}
   FleaUpAPrefab: {fileID: 137576, guid: f8385c515cbaafe47be6c3ddcc127cac, type: 2}
@@ -1111,6 +1115,34 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
+--- !u!1 &1609043080 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1997782474885572, guid: 17af142694c927841bc8888bd620c5da,
+    type: 2}
+  m_PrefabInternal: {fileID: 1493786269}
+--- !u!114 &1609043084
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1609043080}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9cd35f1709b65034485dc000f9151b34, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  offset: 2
+  hasARightBuddy: 0
+  hasALeftBuddy: 0
+  hasATopBuddy: 0
+  hasABottomBuddy: 0
+  reverseScale: 0
+--- !u!114 &1614750076 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 11477570, guid: 6657d9ef81f75fc4daad7811c437280e,
+    type: 2}
+  m_PrefabInternal: {fileID: 950524548}
+  m_Script: {fileID: 11500000, guid: 81ba9a203f8429d47b18ea12434b70b3, type: 3}
 --- !u!1 &1878336943
 GameObject:
   m_ObjectHideFlags: 0
