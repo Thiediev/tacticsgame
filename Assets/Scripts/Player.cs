@@ -22,6 +22,7 @@ public class Player : MonoBehaviour {
     public bool waiting = false;
     public bool inactive = false;
     public bool inStorage = false;
+    public bool isUnitKiller = false;
 
     //who owns the units
     public bool isOwnedByPlayerOne = false;

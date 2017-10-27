@@ -26,6 +26,10 @@ public class GameManager : MonoBehaviour
     public int totalPoints = 0;
     public int thisLevelPoints = 0;
 
+    public float combatMenuPosX;
+    public float combatMenuPosY;
+    public float combatMenuPosZ;
+
     public int numberOfPropsArmyOne
     {
         get
@@ -77,7 +81,7 @@ public class GameManager : MonoBehaviour
     //specific unit prefabs
     //player 1
     public GameObject HQPrefab;
-        
+
     public GameObject FleaPrefab;
     public GameObject FleaUpAPrefab;
     public GameObject FleaUpBPrefab;
@@ -175,11 +179,11 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-  
+
         generateMap();
         generatePlayers();
 
-        foreach(AIPlayerFix a in aiPlayers)
+        foreach (AIPlayerFix a in aiPlayers)
         {
             a.MovementHasBeenCompleted = false;
         }
@@ -194,16 +198,18 @@ public class GameManager : MonoBehaviour
     {
         if (myUnit == null)
         {
-           // print("no unit chosen yet");
+            // print("no unit chosen yet");
         }
         else
         if (myUnit.HP > 0)
         {
             myUnit.TurnUpdate();
         }
-          
+
         //TODO: make this work for specific armies
-        if (playerOneCount <= 0)
+
+        if (playerOneCount - survivingUnits.Count <= 0)
+        //subtract survivingUnits so if you have 12 units but 2 of them are drop units, and you lose your 10 map units, you lose
         {
             // reset everything
             currentAIUnitIndex = 0;
@@ -212,9 +218,9 @@ public class GameManager : MonoBehaviour
             currentPlayerIndex = 0;
             currentArmyIndex = 0;
 
-                       playerOneTurn = true;
+            playerOneTurn = true;
             playerTwoTurn = false;
-              generateMap();
+            generateMap();
         }
         if (playerTwoCount <= 0)
         {
@@ -237,7 +243,7 @@ public class GameManager : MonoBehaviour
         if (playerAICount <= 0)
         {
             print("next level please");
-                        
+
             currentCampaignMap++;
             if (currentCampaignMap <= 7)
             {
@@ -254,8 +260,8 @@ public class GameManager : MonoBehaviour
     // AI pauses briefly between moving each unit
     public void ResumeIn3Seconds()
     {
-            startedPausing = false;
-            StartCoroutine(ResumeAfterSeconds(0.5f));
+        startedPausing = false;
+        StartCoroutine(ResumeAfterSeconds(0.5f));
     }
 
     private IEnumerator ResumeAfterSeconds(float resumetime) // 3
@@ -310,7 +316,7 @@ public class GameManager : MonoBehaviour
         {
             foreach (Tile t in highlightedTiles)
             {
-                  t.visual.transform.GetComponent<Renderer>().materials[0].color = highlightColor;
+                t.visual.transform.GetComponent<Renderer>().materials[0].color = highlightColor;
                 highlights = (GameObject)Instantiate(PrefabHolder.instance.AI_HIGHLIGHT, new Vector3((int)t.gridPosition.x - Mathf.Floor(mapSize / 2), 0.55f, -(int)t.gridPosition.y + Mathf.Floor(mapSize / 2)), Quaternion.Euler(new Vector3(0, 0, 180)));
                 highlightTiles.Add(highlights);
             }
@@ -323,13 +329,13 @@ public class GameManager : MonoBehaviour
         {
             for (int j = 0; j < mapSize; j++)
             {
-                    map[i][j].visual.transform.GetComponent<Renderer>().materials[0].color = Color.white;
+                map[i][j].visual.transform.GetComponent<Renderer>().materials[0].color = Color.white;
             }
         }
-       foreach (GameObject h in highlightTiles)
-       {
+        foreach (GameObject h in highlightTiles)
+        {
             Destroy(h);
-       }
+        }
     }
 
     public void DeactivateAButton()
@@ -339,7 +345,7 @@ public class GameManager : MonoBehaviour
         {
             // temporary(?) measure to ensure storage units can still be clicked
             if (u.inStorage != true)
-            u.gameObject.layer = LayerMask.NameToLayer("Ignore Raycast");
+                u.gameObject.layer = LayerMask.NameToLayer("Ignore Raycast");
         }
         for (int i = 0; i < GameManager.instance.mapSize; i++)
         {
@@ -347,9 +353,9 @@ public class GameManager : MonoBehaviour
             {
                 GameManager.instance.map[i][j].gameObject.layer = LayerMask.NameToLayer("Ignore Raycast");
             }
-        } 
-}
-   
+        }
+    }
+
     public void ReactivateAButton()
     {
         //units and tiles are clickable again
@@ -363,11 +369,11 @@ public class GameManager : MonoBehaviour
             {
                 map[i][j].gameObject.layer = LayerMask.NameToLayer("Default");
             }
-        } 
-}
+        }
+    }
 
     void OnGUI()
-    {   
+    {
         if (players[currentPlayerIndex].HP > 0)
         {
             players[currentPlayerIndex].TurnOnGUI();
@@ -455,10 +461,23 @@ public class GameManager : MonoBehaviour
 
             pocketScreenOn = false;
             ReactivateAButton();
-         
+
             //turn off dropscreen
             // drop unit is no longer a drop unit
         }
+    }
+
+    // B button also cancels pocket menu
+    public void CancelDrop()
+    {
+        removeTileHighlights();
+        ButtonCanvas.transform.position = new Vector3(-20, 0, 0);
+        foreach (Player u in survivingUnits)
+        {
+            u.transform.position = new Vector3(0, 0, 0);
+        }
+        pocketScreenOn = false;
+        ReactivateAButton();
     }
 
     public void moveCurrentPlayer(Tile destTile)
@@ -469,7 +488,7 @@ public class GameManager : MonoBehaviour
             {
                 removeTileHighlights();
                 aiPlayers[currentAIUnitIndex].moving = false;
-                
+
                 // if units are from the same faction, ignore them in pathfinding (can move through them)
                 if (playerOneTurn)
                 {
@@ -491,33 +510,33 @@ public class GameManager : MonoBehaviour
         }
         else
             if (destTile.visual.transform.GetComponent<Renderer>().materials[0].color != Color.white && !destTile.impassable && myUnit.positionQueue.Count == 0)
-            {
-                removeTileHighlights();
-                myUnit.moving = false;
+        {
+            removeTileHighlights();
+            myUnit.moving = false;
 
-                // if units are from the same faction, ignore them in pathfinding (can move through them)
-                if (playerOneTurn)
-                {
-                    foreach (Tile t in TilePathFinder.FindPath(map[(int)myUnit.gridPosition.x][(int)myUnit.gridPosition.y], destTile, players.Where(x => x.gridPosition != myUnit.gridPosition && x.isOwnedByPlayerOne != true && x.isDestroyed != true).Select(x => x.gridPosition).ToArray()))
-                    {
-                        myUnit.positionQueue.Add(map[(int)t.gridPosition.x][(int)t.gridPosition.y].transform.position + 0.55f * Vector3.up);
-                    }
-                }
-                else if (playerTwoTurn)
-                {
-                    foreach (Tile t in TilePathFinder.FindPath(map[(int)myUnit.gridPosition.x][(int)myUnit.gridPosition.y], destTile, players.Where(x => x.gridPosition != myUnit.gridPosition && x.isOwnedByPlayerTwo != true && x.isDestroyed != true).Select(x => x.gridPosition).ToArray()))
-                    {
-                        myUnit.positionQueue.Add(map[(int)t.gridPosition.x][(int)t.gridPosition.y].transform.position + 0.55f * Vector3.up);
-                    }
-                }
-                myUnit.gridPosition = destTile.gridPosition;
-            }
-            else
+            // if units are from the same faction, ignore them in pathfinding (can move through them)
+            if (playerOneTurn)
             {
-                Debug.Log("destination invalid");
+                foreach (Tile t in TilePathFinder.FindPath(map[(int)myUnit.gridPosition.x][(int)myUnit.gridPosition.y], destTile, players.Where(x => x.gridPosition != myUnit.gridPosition && x.isOwnedByPlayerOne != true && x.isDestroyed != true).Select(x => x.gridPosition).ToArray()))
+                {
+                    myUnit.positionQueue.Add(map[(int)t.gridPosition.x][(int)t.gridPosition.y].transform.position + 0.55f * Vector3.up);
+                }
             }
+            else if (playerTwoTurn)
+            {
+                foreach (Tile t in TilePathFinder.FindPath(map[(int)myUnit.gridPosition.x][(int)myUnit.gridPosition.y], destTile, players.Where(x => x.gridPosition != myUnit.gridPosition && x.isOwnedByPlayerTwo != true && x.isDestroyed != true).Select(x => x.gridPosition).ToArray()))
+                {
+                    myUnit.positionQueue.Add(map[(int)t.gridPosition.x][(int)t.gridPosition.y].transform.position + 0.55f * Vector3.up);
+                }
+            }
+            myUnit.gridPosition = destTile.gridPosition;
         }
-    
+        else
+        {
+            Debug.Log("destination invalid");
+        }
+    }
+
     public void confirmTarget(Tile destTile)
     {
 
@@ -678,8 +697,8 @@ public class GameManager : MonoBehaviour
                 counterDamage = -1;
             }
             else
-                if(attacker is Spider || attacker is SpiderAI)
-            { 
+                if (attacker is Spider || attacker is SpiderAI)
+            {
                 if (target is Flea || target is FleaAI || target is FleaPlusA || target is FleaPlusAAI || target is FleaPlusB || target is FleaPlusBAI)
                 {
                     unitBaseDamage = 8;
@@ -815,7 +834,7 @@ public class GameManager : MonoBehaviour
 
             if (target != null)
             {
-               
+
                 // TODO: trying to get base damage stuff happening here
                 /* public int getBaseDamageAgainst(Player attacker, Player defender)
                 {
@@ -883,399 +902,410 @@ public class GameManager : MonoBehaviour
                         amountOfDamage = 0;
                     }
                 }
-                
+
                 target.HP -= amountOfDamage;
-                    if (target.HP <= 0)
+                if (target.HP <= 0)
+                {
+                    // if target is AIUnit and they have only one AIUnit left, then set a boolean to make sure the unit promotes as it should
+                    if (target is AIPlayerFix)
                     {
-                        KillUnit(target);
-                        Debug.Log(attacker.playerName + " hit " + target.playerName + " but it feels good. " + amountOfDamage + " damage.");
-
-                        //promote unit if it killed the enemy
-                        if ((playerAICount > 0 && playerOneCount > 0) || (playerOneCount > 0 && playerTwoCount > 0))
+                        if (playerAICount == 1)
                         {
-                            // if attacker has more than a certain amount of HP, promotes to A branch. if not, B branch
-                            //Flea
-                            if (attacker is Flea && attacker.HP > 5 && attacker.isOwnedByPlayerOne)
-                            {
-                                FleaPlusA playerFleaUpA;
-
-                                playerFleaUpA = ((GameObject)Instantiate(FleaUpAPrefab, new Vector3(attacker.transform.position.x, 0.55f, attacker.transform.position.z), Quaternion.Euler(new Vector3(0, 0, 180)))).GetComponent<FleaPlusA>();
-
-                                playerFleaUpA.gridPosition = new Vector2(attacker.transform.position.x + Mathf.Floor(mapSize / 2), -attacker.transform.position.z + Mathf.Floor(mapSize / 2));
-                                playerFleaUpA.playerName = "Juicenjam";
-
-                                playerFleaUpA.isOwnedByPlayerOne = true;
-
-                                players.Add(playerFleaUpA);
-                                playerOneCount++;
-
-                                FleaPlusA.Promotion(playerFleaUpA, attacker.HP);
-
-                                KillUnit(attacker);
-                                // destroy and respawn as the new unit
-                            }
-                            else if (attacker is Flea && attacker.HP <= 5 && attacker.isOwnedByPlayerOne)
-                            {
-                                FleaPlusB playerFleaUpB;
-
-                                playerFleaUpB = ((GameObject)Instantiate(FleaUpBPrefab, new Vector3(attacker.transform.position.x, 0.55f, attacker.transform.position.z), Quaternion.Euler(new Vector3(0, 0, 180)))).GetComponent<FleaPlusB>();
-
-                                playerFleaUpB.gridPosition = new Vector2(attacker.transform.position.x + Mathf.Floor(mapSize / 2), -attacker.transform.position.z + Mathf.Floor(mapSize / 2));
-                                playerFleaUpB.playerName = "Juicenjam";
-
-                                playerFleaUpB.isOwnedByPlayerOne = true;
-                                playerFleaUpB.isFleaUpB = true;
-
-                                players.Add(playerFleaUpB);
-                                playerOneCount++;
-                                playerFleaUpB.waiting = false;
-
-                                FleaPlusB.Promotion(playerFleaUpB, attacker.HP);
-
-                                KillUnit(attacker);
-                                // destroy and respawn as the new unit 
-                            }
-                            else
-                             if (attacker is Flea && attacker.HP > 5 && attacker.isOwnedByPlayerTwo)
-                            {
-                                FleaPlusA playerFleaUpA;
-
-                                playerFleaUpA = ((GameObject)Instantiate(P2FleaUpAPrefab, new Vector3(attacker.transform.position.x, 0.55f, attacker.transform.position.z), Quaternion.Euler(new Vector3(0, 0, 180)))).GetComponent<FleaPlusA>();
-
-                                playerFleaUpA.gridPosition = new Vector2(attacker.transform.position.x + Mathf.Floor(mapSize / 2), -attacker.transform.position.z + Mathf.Floor(mapSize / 2));
-                                playerFleaUpA.playerName = "Juicenjam";
-
-                                playerFleaUpA.isOwnedByPlayerTwo = true;
-
-                                players.Add(playerFleaUpA);
-                                playerTwoCount++;
-
-                                FleaPlusA.Promotion(playerFleaUpA, attacker.HP);
-
-                                KillUnit(attacker);
-                                // destroy and respawn as the new unit 
-                            }
-                            else if (attacker is Flea && attacker.HP <= 5 && attacker.isOwnedByPlayerTwo)
-                            {
-                                FleaPlusB playerFleaUpB;
-
-                                playerFleaUpB = ((GameObject)Instantiate(P2FleaUpBPrefab, new Vector3(attacker.transform.position.x, 0.55f, attacker.transform.position.z), Quaternion.Euler(new Vector3(0, 0, 180)))).GetComponent<FleaPlusB>();
-
-                                playerFleaUpB.gridPosition = new Vector2(attacker.transform.position.x + Mathf.Floor(mapSize / 2), -attacker.transform.position.z + Mathf.Floor(mapSize / 2));
-                                playerFleaUpB.playerName = "Juicenjam";
-
-                                playerFleaUpB.isOwnedByPlayerTwo = true;
-                                playerFleaUpB.isFleaUpB = true;
-
-                                players.Add(playerFleaUpB);
-                                playerTwoCount++;
-                                playerFleaUpB.waiting = false;
-
-                                FleaPlusB.Promotion(playerFleaUpB, attacker.HP);
-
-                                KillUnit(attacker);
-                                // destroy and respawn as the new unit 
-                            }
-                            // AI-controlled Flea
-                            if (attacker is FleaAI && attacker.HP > 5)
-                            {
-                                FleaPlusAAI AIFleaUpA;
-
-                                AIFleaUpA = ((GameObject)Instantiate(AIFleaUpAPrefab, new Vector3(attacker.transform.position.x, 0.55f, attacker.transform.position.z), Quaternion.Euler(new Vector3(0, 0, 180)))).GetComponent<FleaPlusAAI>();
-
-                                AIFleaUpA.gridPosition = new Vector2(attacker.transform.position.x + Mathf.Floor(mapSize / 2), -attacker.transform.position.z + Mathf.Floor(mapSize / 2));
-                                AIFleaUpA.playerName = "Juicenjam";
-
-                                AIFleaUpA.isOwnedByAI = true;
-                            
-                                players.Add(AIFleaUpA);
-                                aiPlayers.Add(AIFleaUpA);
-                                numberOfActiveAIUnits++;
-                                playerAICount++;
-                                playerTwoCount++;
-
-                                FleaPlusAAI.Promotion(AIFleaUpA, attacker.HP);
-
-                                KillUnit(attacker);
-                                // destroy and respawn as the new unit 
-                            }
-                            else if (attacker is FleaAI && attacker.HP <= 5)
-                            {
-                                FleaPlusBAI AIFleaUpB;
-
-                                AIFleaUpB = ((GameObject)Instantiate(AIFleaUpBPrefab, new Vector3(attacker.transform.position.x, 0.55f, attacker.transform.position.z), Quaternion.Euler(new Vector3(0, 0, 180)))).GetComponent<FleaPlusBAI>();
-
-                                AIFleaUpB.gridPosition = new Vector2(attacker.transform.position.x + Mathf.Floor(mapSize / 2), -attacker.transform.position.z + Mathf.Floor(mapSize / 2));
-                                AIFleaUpB.playerName = "Juicenjam";
-
-                                AIFleaUpB.waiting = false;
-                                AIFleaUpB.isOwnedByAI = true;
-                                AIFleaUpB.isFleaUpB = true;
-
-                                players.Add(AIFleaUpB);
-                                aiPlayers.Add(AIFleaUpB);
-                                playerAICount++;
-                                numberOfActiveAIUnits++;
-                                playerTwoCount++;
-
-                                FleaPlusBAI.Promotion(AIFleaUpB, attacker.HP);
-
-                                KillUnit(attacker);
-                                // destroy and respawn as the new unit 
-                            }
-
-                            //Spider
-                            if (attacker is Spider && attacker.HP > 5 && attacker.isOwnedByPlayerOne)
-                            {
-                                SpiderPlusA playerSpiderUpA;
-
-                                playerSpiderUpA = ((GameObject)Instantiate(SpiderUpAPrefab, new Vector3(attacker.transform.position.x, 0.55f, attacker.transform.position.z), Quaternion.Euler(new Vector3(0, 0, 180)))).GetComponent<SpiderPlusA>();
-
-                                playerSpiderUpA.gridPosition = new Vector2(attacker.transform.position.x + Mathf.Floor(mapSize / 2), -attacker.transform.position.z + Mathf.Floor(mapSize / 2));
-                                playerSpiderUpA.playerName = "Juicenjam";
-
-                                playerSpiderUpA.isOwnedByPlayerOne = true;
-                            
-                                players.Add(playerSpiderUpA);
-                                playerOneCount++;
-
-                                SpiderPlusA.Promotion(playerSpiderUpA, attacker.HP);
-
-                                KillUnit(attacker);
-                                // destroy and respawn as the new unit 
-                            }
-                            else if (attacker is Spider && attacker.HP <= 5 && attacker.isOwnedByPlayerOne)
-                            {
-                                SpiderPlusB playerSpiderUpB;
-
-                                playerSpiderUpB = ((GameObject)Instantiate(SpiderUpBPrefab, new Vector3(attacker.transform.position.x, 0.55f, attacker.transform.position.z), Quaternion.Euler(new Vector3(0, 0, 180)))).GetComponent<SpiderPlusB>();
-
-                                playerSpiderUpB.gridPosition = new Vector2(attacker.transform.position.x + Mathf.Floor(mapSize / 2), -attacker.transform.position.z + Mathf.Floor(mapSize / 2));
-                                playerSpiderUpB.playerName = "Juicenjam";
-
-                                playerSpiderUpB.isOwnedByPlayerOne = true;
-                            
-                                players.Add(playerSpiderUpB);
-                                playerOneCount++;
-
-                                SpiderPlusA.Promotion(playerSpiderUpB, attacker.HP);
-
-                                KillUnit(attacker);
-                                // destroy and respawn as the new unit 
-                            }
-                            else
-                             if (attacker is Spider && attacker.HP > 5 && attacker.isOwnedByPlayerTwo)
-                            {
-                                SpiderPlusA playerSpiderUpA;
-
-                                playerSpiderUpA = ((GameObject)Instantiate(P2SpiderUpAPrefab, new Vector3(attacker.transform.position.x, 0.55f, attacker.transform.position.z), Quaternion.Euler(new Vector3(0, 0, 180)))).GetComponent<SpiderPlusA>();
-
-                                playerSpiderUpA.gridPosition = new Vector2(attacker.transform.position.x + Mathf.Floor(mapSize / 2), -attacker.transform.position.z + Mathf.Floor(mapSize / 2));
-                                playerSpiderUpA.playerName = "Juicenjam";
-
-                                playerSpiderUpA.isOwnedByPlayerTwo = true;
-
-                                players.Add(playerSpiderUpA);
-                                playerTwoCount++;
-
-                                SpiderPlusA.Promotion(playerSpiderUpA, attacker.HP);
-
-                                KillUnit(attacker);
-                                // destroy and respawn as the new unit 
-                            }
-                            else if (attacker is Spider && attacker.HP <= 5 && attacker.isOwnedByPlayerTwo)
-                            {
-                                SpiderPlusB playerSpiderUpB;
-
-                                playerSpiderUpB = ((GameObject)Instantiate(P2SpiderUpBPrefab, new Vector3(attacker.transform.position.x, 0.55f, attacker.transform.position.z), Quaternion.Euler(new Vector3(0, 0, 180)))).GetComponent<SpiderPlusB>();
-
-                                playerSpiderUpB.gridPosition = new Vector2(attacker.transform.position.x + Mathf.Floor(mapSize / 2), -attacker.transform.position.z + Mathf.Floor(mapSize / 2));
-                                playerSpiderUpB.playerName = "Juicenjam";
-
-                                playerSpiderUpB.isOwnedByPlayerTwo = true;
-                            
-                                players.Add(playerSpiderUpB);
-                                playerTwoCount++;
-
-                                SpiderPlusA.Promotion(playerSpiderUpB, attacker.HP);
-
-                                KillUnit(attacker);
-                                // destroy and respawn as the new unit 
-                            }
-                            // AI controlled spider
-                            if (attacker is SpiderAI && attacker.HP > 5)
-                            {
-                                SpiderPlusAAI AISpiderUpA;
-
-                                AISpiderUpA = ((GameObject)Instantiate(AISpiderUpAPrefab, new Vector3(attacker.transform.position.x, 0.55f, attacker.transform.position.z), Quaternion.Euler(new Vector3(0, 0, 180)))).GetComponent<SpiderPlusAAI>();
-
-                                AISpiderUpA.gridPosition = new Vector2(attacker.transform.position.x + Mathf.Floor(mapSize / 2), -attacker.transform.position.z + Mathf.Floor(mapSize / 2));
-                                AISpiderUpA.playerName = "Juicenjam";
-
-                                AISpiderUpA.isOwnedByAI = true;
-                            
-                                players.Add(AISpiderUpA);
-                                aiPlayers.Add(AISpiderUpA);
-                                playerAICount++;
-                                numberOfActiveAIUnits++;
-                                playerTwoCount++;
-
-                                SpiderPlusAAI.Promotion(AISpiderUpA, attacker.HP);
-
-                                KillUnit(attacker);
-                                // destroy and respawn as the new unit 
-                            }
-                            else
-                            if (attacker is SpiderAI && attacker.HP <= 5)
-                            {
-                                SpiderPlusBAI AISpiderUpB;
-
-                                AISpiderUpB = ((GameObject)Instantiate(AISpiderUpAPrefab, new Vector3(attacker.transform.position.x, 0.55f, attacker.transform.position.z), Quaternion.Euler(new Vector3(0, 0, 180)))).GetComponent<SpiderPlusBAI>();
-
-                                AISpiderUpB.gridPosition = new Vector2(attacker.transform.position.x + Mathf.Floor(mapSize / 2), -attacker.transform.position.z + Mathf.Floor(mapSize / 2));
-                                AISpiderUpB.playerName = "Juicenjam";
-
-                                AISpiderUpB.isOwnedByAI = true;
-                            
-                                players.Add(AISpiderUpB);
-                                aiPlayers.Add(AISpiderUpB);
-                                playerAICount++;
-                                numberOfActiveAIUnits++;
-                                playerTwoCount++;
-
-                                SpiderPlusBAI.Promotion(AISpiderUpB, attacker.HP);
-
-                                KillUnit(attacker);
-                                // destroy and respawn as the new unit 
-                            }
-
-                            //Witch
-                            if (attacker is Witch && attacker.HP > 5 && attacker.isOwnedByPlayerOne)
-                            {
-                                WitchPlusA playerWitchUpA;
-
-                                playerWitchUpA = ((GameObject)Instantiate(WitchUpAPrefab, new Vector3(attacker.transform.position.x, 0.55f, attacker.transform.position.z), Quaternion.Euler(new Vector3(0, 0, 180)))).GetComponent<WitchPlusA>();
-
-                                playerWitchUpA.gridPosition = new Vector2(attacker.transform.position.x + Mathf.Floor(mapSize / 2), -attacker.transform.position.z + Mathf.Floor(mapSize / 2));
-                                playerWitchUpA.playerName = "Juicenjam";
-
-                                playerWitchUpA.isOwnedByPlayerOne = true;
-                            
-                                players.Add(playerWitchUpA);
-                                playerOneCount++;
-
-                                WitchPlusA.Promotion(playerWitchUpA, attacker.HP);
-
-                                KillUnit(attacker);
-                                // destroy and respawn as the new unit 
-                            }
-                            else if (attacker is Witch && attacker.HP <= 5 && attacker.isOwnedByPlayerOne)
-                            {
-                                WitchPlusB playerWitchUpB;
-
-                                playerWitchUpB = ((GameObject)Instantiate(WitchUpBPrefab, new Vector3(attacker.transform.position.x, 0.55f, attacker.transform.position.z), Quaternion.Euler(new Vector3(0, 0, 180)))).GetComponent<WitchPlusB>();
-
-                                playerWitchUpB.gridPosition = new Vector2(attacker.transform.position.x + Mathf.Floor(mapSize / 2), -attacker.transform.position.z + Mathf.Floor(mapSize / 2));
-                                playerWitchUpB.playerName = "Juicenjam";
-
-                                playerWitchUpB.isOwnedByPlayerOne = true;
-                            
-                                players.Add(playerWitchUpB);
-                                playerOneCount++;
-
-                                WitchPlusB.Promotion(playerWitchUpB, attacker.HP);
-
-                                KillUnit(attacker);
-                                // destroy and respawn as the new unit 
-                            }
-                            else
-                          // AI-controlled witch
-                          if (attacker is Witch && attacker.HP > 5 && attacker.isOwnedByPlayerTwo)
-                            {
-
-                                WitchPlusA playerWitchUpA;
-
-                                playerWitchUpA = ((GameObject)Instantiate(P2WitchUpAPrefab, new Vector3(attacker.transform.position.x, 0.55f, attacker.transform.position.z), Quaternion.Euler(new Vector3(0, 0, 180)))).GetComponent<WitchPlusA>();
-
-                                playerWitchUpA.gridPosition = new Vector2(attacker.transform.position.x + Mathf.Floor(mapSize / 2), -attacker.transform.position.z + Mathf.Floor(mapSize / 2));
-                                playerWitchUpA.playerName = "Juicenjam";
-
-                                playerWitchUpA.isOwnedByPlayerTwo = true;
-                            
-                                players.Add(playerWitchUpA);
-                                playerTwoCount++;
-
-                                WitchPlusA.Promotion(playerWitchUpA, attacker.HP);
-
-                                KillUnit(attacker);
-                                // destroy and respawn as the new unit
-                            }
-                            else if (attacker is Witch && attacker.HP <= 5 && attacker.isOwnedByPlayerTwo)
-                            {
-                                WitchPlusB playerWitchUpB;
-
-                                playerWitchUpB = ((GameObject)Instantiate(P2WitchUpBPrefab, new Vector3(attacker.transform.position.x, 0.55f, attacker.transform.position.z), Quaternion.Euler(new Vector3(0, 0, 180)))).GetComponent<WitchPlusB>();
-
-                                playerWitchUpB.gridPosition = new Vector2(attacker.transform.position.x + Mathf.Floor(mapSize / 2), -attacker.transform.position.z + Mathf.Floor(mapSize / 2));
-                                playerWitchUpB.playerName = "Juicenjam";
-
-                                playerWitchUpB.isOwnedByPlayerTwo = true;
-                            
-                                players.Add(playerWitchUpB);
-                                playerTwoCount++;
-
-                                WitchPlusB.Promotion(playerWitchUpB, attacker.HP);
-
-                                KillUnit(attacker);
-                                // destroy and respawn as the new unit 
-                            }
-                            if (attacker is WitchAI && attacker.HP > 5)
-                            {
-                                WitchPlusAAI AIWitchUpA;
-
-                                AIWitchUpA = ((GameObject)Instantiate(AIWitchUpAPrefab, new Vector3(attacker.transform.position.x, 0.55f, attacker.transform.position.z), Quaternion.Euler(new Vector3(0, 0, 180)))).GetComponent<WitchPlusAAI>();
-
-                                AIWitchUpA.gridPosition = new Vector2(attacker.transform.position.x + Mathf.Floor(mapSize / 2), -attacker.transform.position.z + Mathf.Floor(mapSize / 2));
-                                AIWitchUpA.playerName = "Juicenjam";
-
-                                AIWitchUpA.isOwnedByAI = true;
-                            
-                                players.Add(AIWitchUpA);
-                                aiPlayers.Add(AIWitchUpA);
-                                numberOfActiveAIUnits++;
-                                playerAICount++;
-
-                                WitchPlusAAI.Promotion(AIWitchUpA, attacker.HP);
-
-                                KillUnit(attacker);
-                                // destroy and respawn as the new unit 
-                            }
-                            else
-                            if (attacker is WitchAI && attacker.HP <= 5)
-                            {
-                                WitchPlusBAI AIWitchUpB;
-
-                                AIWitchUpB = ((GameObject)Instantiate(AIWitchUpBPrefab, new Vector3(attacker.transform.position.x, 0.55f, attacker.transform.position.z), Quaternion.Euler(new Vector3(0, 0, 180)))).GetComponent<WitchPlusBAI>();
-
-                                AIWitchUpB.gridPosition = new Vector2(attacker.transform.position.x + Mathf.Floor(mapSize / 2), -attacker.transform.position.z + Mathf.Floor(mapSize / 2));
-                                AIWitchUpB.playerName = "Juicenjam";
-
-                                AIWitchUpB.isOwnedByAI = true;
-                            
-                                players.Add(AIWitchUpB);
-                                aiPlayers.Add(AIWitchUpB);
-                                numberOfActiveAIUnits++;
-                                playerAICount++;
-                                playerTwoCount++;
-
-
-                                WitchPlusBAI.Promotion(AIWitchUpB, attacker.HP);
-
-                                KillUnit(attacker);
-                                // destroy and respawn as the new unit 
-                            }
+                            attacker.isUnitKiller = true;
                         }
                     }
+                    KillUnit(target);
+
+
+
+                    Debug.Log(attacker.playerName + " hit " + target.playerName + " but it feels good. " + amountOfDamage + " damage.");
+
+                    //promote unit if it killed the enemy
+                    if ((playerAICount > 0 && playerOneCount > 0) || (playerOneCount > 0 && playerTwoCount > 0))
+                    {
+                        // if attacker has more than a certain amount of HP, promotes to A branch. if not, B branch
+                        //Flea
+                        if (attacker is Flea && attacker.HP > 5 && attacker.isOwnedByPlayerOne)
+                        {
+                            FleaPlusA playerFleaUpA;
+
+                            playerFleaUpA = ((GameObject)Instantiate(FleaUpAPrefab, new Vector3(attacker.transform.position.x, 0.55f, attacker.transform.position.z), Quaternion.Euler(new Vector3(0, 0, 180)))).GetComponent<FleaPlusA>();
+
+                            playerFleaUpA.gridPosition = new Vector2(attacker.transform.position.x + Mathf.Floor(mapSize / 2), -attacker.transform.position.z + Mathf.Floor(mapSize / 2));
+                            playerFleaUpA.playerName = "Juicenjam";
+
+                            playerFleaUpA.isOwnedByPlayerOne = true;
+
+                            players.Add(playerFleaUpA);
+                            playerOneCount++;
+
+                            FleaPlusA.Promotion(playerFleaUpA, attacker.HP);
+
+                            KillUnit(attacker);
+                            // destroy and respawn as the new unit
+                        }
+                        else if (attacker is Flea && attacker.HP <= 5 && attacker.isOwnedByPlayerOne)
+                        {
+                            FleaPlusB playerFleaUpB;
+
+                            playerFleaUpB = ((GameObject)Instantiate(FleaUpBPrefab, new Vector3(attacker.transform.position.x, 0.55f, attacker.transform.position.z), Quaternion.Euler(new Vector3(0, 0, 180)))).GetComponent<FleaPlusB>();
+
+                            playerFleaUpB.gridPosition = new Vector2(attacker.transform.position.x + Mathf.Floor(mapSize / 2), -attacker.transform.position.z + Mathf.Floor(mapSize / 2));
+                            playerFleaUpB.playerName = "Juicenjam";
+
+                            playerFleaUpB.isOwnedByPlayerOne = true;
+                            playerFleaUpB.isFleaUpB = true;
+
+                            players.Add(playerFleaUpB);
+                            playerOneCount++;
+                            playerFleaUpB.waiting = false;
+
+                            FleaPlusB.Promotion(playerFleaUpB, attacker.HP);
+
+                            KillUnit(attacker);
+                            // destroy and respawn as the new unit 
+                        }
+                        else
+                         if (attacker is Flea && attacker.HP > 5 && attacker.isOwnedByPlayerTwo)
+                        {
+                            FleaPlusA playerFleaUpA;
+
+                            playerFleaUpA = ((GameObject)Instantiate(P2FleaUpAPrefab, new Vector3(attacker.transform.position.x, 0.55f, attacker.transform.position.z), Quaternion.Euler(new Vector3(0, 0, 180)))).GetComponent<FleaPlusA>();
+
+                            playerFleaUpA.gridPosition = new Vector2(attacker.transform.position.x + Mathf.Floor(mapSize / 2), -attacker.transform.position.z + Mathf.Floor(mapSize / 2));
+                            playerFleaUpA.playerName = "Juicenjam";
+
+                            playerFleaUpA.isOwnedByPlayerTwo = true;
+
+                            players.Add(playerFleaUpA);
+                            playerTwoCount++;
+
+                            FleaPlusA.Promotion(playerFleaUpA, attacker.HP);
+
+                            KillUnit(attacker);
+                            // destroy and respawn as the new unit 
+                        }
+                        else if (attacker is Flea && attacker.HP <= 5 && attacker.isOwnedByPlayerTwo)
+                        {
+                            FleaPlusB playerFleaUpB;
+
+                            playerFleaUpB = ((GameObject)Instantiate(P2FleaUpBPrefab, new Vector3(attacker.transform.position.x, 0.55f, attacker.transform.position.z), Quaternion.Euler(new Vector3(0, 0, 180)))).GetComponent<FleaPlusB>();
+
+                            playerFleaUpB.gridPosition = new Vector2(attacker.transform.position.x + Mathf.Floor(mapSize / 2), -attacker.transform.position.z + Mathf.Floor(mapSize / 2));
+                            playerFleaUpB.playerName = "Juicenjam";
+
+                            playerFleaUpB.isOwnedByPlayerTwo = true;
+                            playerFleaUpB.isFleaUpB = true;
+
+                            players.Add(playerFleaUpB);
+                            playerTwoCount++;
+                            playerFleaUpB.waiting = false;
+
+                            FleaPlusB.Promotion(playerFleaUpB, attacker.HP);
+
+                            KillUnit(attacker);
+                            // destroy and respawn as the new unit 
+                        }
+                        // AI-controlled Flea
+                        if (attacker is FleaAI && attacker.HP > 5)
+                        {
+                            FleaPlusAAI AIFleaUpA;
+
+                            AIFleaUpA = ((GameObject)Instantiate(AIFleaUpAPrefab, new Vector3(attacker.transform.position.x, 0.55f, attacker.transform.position.z), Quaternion.Euler(new Vector3(0, 0, 180)))).GetComponent<FleaPlusAAI>();
+
+                            AIFleaUpA.gridPosition = new Vector2(attacker.transform.position.x + Mathf.Floor(mapSize / 2), -attacker.transform.position.z + Mathf.Floor(mapSize / 2));
+                            AIFleaUpA.playerName = "Juicenjam";
+
+                            AIFleaUpA.isOwnedByAI = true;
+
+                            players.Add(AIFleaUpA);
+                            aiPlayers.Add(AIFleaUpA);
+                            numberOfActiveAIUnits++;
+                            playerAICount++;
+                            playerTwoCount++;
+
+                            FleaPlusAAI.Promotion(AIFleaUpA, attacker.HP);
+
+                            KillUnit(attacker);
+                            // destroy and respawn as the new unit 
+                        }
+                        else if (attacker is FleaAI && attacker.HP <= 5)
+                        {
+                            FleaPlusBAI AIFleaUpB;
+
+                            AIFleaUpB = ((GameObject)Instantiate(AIFleaUpBPrefab, new Vector3(attacker.transform.position.x, 0.55f, attacker.transform.position.z), Quaternion.Euler(new Vector3(0, 0, 180)))).GetComponent<FleaPlusBAI>();
+
+                            AIFleaUpB.gridPosition = new Vector2(attacker.transform.position.x + Mathf.Floor(mapSize / 2), -attacker.transform.position.z + Mathf.Floor(mapSize / 2));
+                            AIFleaUpB.playerName = "Juicenjam";
+
+                            AIFleaUpB.waiting = false;
+                            AIFleaUpB.isOwnedByAI = true;
+                            AIFleaUpB.isFleaUpB = true;
+
+                            players.Add(AIFleaUpB);
+                            aiPlayers.Add(AIFleaUpB);
+                            playerAICount++;
+                            numberOfActiveAIUnits++;
+                            playerTwoCount++;
+
+                            FleaPlusBAI.Promotion(AIFleaUpB, attacker.HP);
+
+                            KillUnit(attacker);
+                            // destroy and respawn as the new unit 
+                        }
+
+                        //Spider
+                        if (attacker is Spider && attacker.HP > 5 && attacker.isOwnedByPlayerOne)
+                        {
+                            SpiderPlusA playerSpiderUpA;
+
+                            playerSpiderUpA = ((GameObject)Instantiate(SpiderUpAPrefab, new Vector3(attacker.transform.position.x, 0.55f, attacker.transform.position.z), Quaternion.Euler(new Vector3(0, 0, 180)))).GetComponent<SpiderPlusA>();
+
+                            playerSpiderUpA.gridPosition = new Vector2(attacker.transform.position.x + Mathf.Floor(mapSize / 2), -attacker.transform.position.z + Mathf.Floor(mapSize / 2));
+                            playerSpiderUpA.playerName = "Juicenjam";
+
+                            playerSpiderUpA.isOwnedByPlayerOne = true;
+
+                            players.Add(playerSpiderUpA);
+                            playerOneCount++;
+
+                            SpiderPlusA.Promotion(playerSpiderUpA, attacker.HP);
+
+                            KillUnit(attacker);
+                            // destroy and respawn as the new unit 
+                        }
+                        else if (attacker is Spider && attacker.HP <= 5 && attacker.isOwnedByPlayerOne)
+                        {
+                            SpiderPlusB playerSpiderUpB;
+
+                            playerSpiderUpB = ((GameObject)Instantiate(SpiderUpBPrefab, new Vector3(attacker.transform.position.x, 0.55f, attacker.transform.position.z), Quaternion.Euler(new Vector3(0, 0, 180)))).GetComponent<SpiderPlusB>();
+
+                            playerSpiderUpB.gridPosition = new Vector2(attacker.transform.position.x + Mathf.Floor(mapSize / 2), -attacker.transform.position.z + Mathf.Floor(mapSize / 2));
+                            playerSpiderUpB.playerName = "Juicenjam";
+
+                            playerSpiderUpB.isOwnedByPlayerOne = true;
+
+                            players.Add(playerSpiderUpB);
+                            playerOneCount++;
+
+                            SpiderPlusA.Promotion(playerSpiderUpB, attacker.HP);
+
+                            KillUnit(attacker);
+                            // destroy and respawn as the new unit 
+                        }
+                        else
+                         if (attacker is Spider && attacker.HP > 5 && attacker.isOwnedByPlayerTwo)
+                        {
+                            SpiderPlusA playerSpiderUpA;
+
+                            playerSpiderUpA = ((GameObject)Instantiate(P2SpiderUpAPrefab, new Vector3(attacker.transform.position.x, 0.55f, attacker.transform.position.z), Quaternion.Euler(new Vector3(0, 0, 180)))).GetComponent<SpiderPlusA>();
+
+                            playerSpiderUpA.gridPosition = new Vector2(attacker.transform.position.x + Mathf.Floor(mapSize / 2), -attacker.transform.position.z + Mathf.Floor(mapSize / 2));
+                            playerSpiderUpA.playerName = "Juicenjam";
+
+                            playerSpiderUpA.isOwnedByPlayerTwo = true;
+
+                            players.Add(playerSpiderUpA);
+                            playerTwoCount++;
+
+                            SpiderPlusA.Promotion(playerSpiderUpA, attacker.HP);
+
+                            KillUnit(attacker);
+                            // destroy and respawn as the new unit 
+                        }
+                        else if (attacker is Spider && attacker.HP <= 5 && attacker.isOwnedByPlayerTwo)
+                        {
+                            SpiderPlusB playerSpiderUpB;
+
+                            playerSpiderUpB = ((GameObject)Instantiate(P2SpiderUpBPrefab, new Vector3(attacker.transform.position.x, 0.55f, attacker.transform.position.z), Quaternion.Euler(new Vector3(0, 0, 180)))).GetComponent<SpiderPlusB>();
+
+                            playerSpiderUpB.gridPosition = new Vector2(attacker.transform.position.x + Mathf.Floor(mapSize / 2), -attacker.transform.position.z + Mathf.Floor(mapSize / 2));
+                            playerSpiderUpB.playerName = "Juicenjam";
+
+                            playerSpiderUpB.isOwnedByPlayerTwo = true;
+
+                            players.Add(playerSpiderUpB);
+                            playerTwoCount++;
+
+                            SpiderPlusA.Promotion(playerSpiderUpB, attacker.HP);
+
+                            KillUnit(attacker);
+                            // destroy and respawn as the new unit 
+                        }
+                        // AI controlled spider
+                        if (attacker is SpiderAI && attacker.HP > 5)
+                        {
+                            SpiderPlusAAI AISpiderUpA;
+
+                            AISpiderUpA = ((GameObject)Instantiate(AISpiderUpAPrefab, new Vector3(attacker.transform.position.x, 0.55f, attacker.transform.position.z), Quaternion.Euler(new Vector3(0, 0, 180)))).GetComponent<SpiderPlusAAI>();
+
+                            AISpiderUpA.gridPosition = new Vector2(attacker.transform.position.x + Mathf.Floor(mapSize / 2), -attacker.transform.position.z + Mathf.Floor(mapSize / 2));
+                            AISpiderUpA.playerName = "Juicenjam";
+
+                            AISpiderUpA.isOwnedByAI = true;
+
+                            players.Add(AISpiderUpA);
+                            aiPlayers.Add(AISpiderUpA);
+                            playerAICount++;
+                            numberOfActiveAIUnits++;
+                            playerTwoCount++;
+
+                            SpiderPlusAAI.Promotion(AISpiderUpA, attacker.HP);
+
+                            KillUnit(attacker);
+                            // destroy and respawn as the new unit 
+                        }
+                        else
+                        if (attacker is SpiderAI && attacker.HP <= 5)
+                        {
+                            SpiderPlusBAI AISpiderUpB;
+
+                            AISpiderUpB = ((GameObject)Instantiate(AISpiderUpAPrefab, new Vector3(attacker.transform.position.x, 0.55f, attacker.transform.position.z), Quaternion.Euler(new Vector3(0, 0, 180)))).GetComponent<SpiderPlusBAI>();
+
+                            AISpiderUpB.gridPosition = new Vector2(attacker.transform.position.x + Mathf.Floor(mapSize / 2), -attacker.transform.position.z + Mathf.Floor(mapSize / 2));
+                            AISpiderUpB.playerName = "Juicenjam";
+
+                            AISpiderUpB.isOwnedByAI = true;
+
+                            players.Add(AISpiderUpB);
+                            aiPlayers.Add(AISpiderUpB);
+                            playerAICount++;
+                            numberOfActiveAIUnits++;
+                            playerTwoCount++;
+
+                            SpiderPlusBAI.Promotion(AISpiderUpB, attacker.HP);
+
+                            KillUnit(attacker);
+                            // destroy and respawn as the new unit 
+                        }
+
+                        //Witch
+                        if (attacker is Witch && attacker.HP > 5 && attacker.isOwnedByPlayerOne)
+                        {
+                            WitchPlusA playerWitchUpA;
+
+                            playerWitchUpA = ((GameObject)Instantiate(WitchUpAPrefab, new Vector3(attacker.transform.position.x, 0.55f, attacker.transform.position.z), Quaternion.Euler(new Vector3(0, 0, 180)))).GetComponent<WitchPlusA>();
+
+                            playerWitchUpA.gridPosition = new Vector2(attacker.transform.position.x + Mathf.Floor(mapSize / 2), -attacker.transform.position.z + Mathf.Floor(mapSize / 2));
+                            playerWitchUpA.playerName = "Juicenjam";
+
+                            playerWitchUpA.isOwnedByPlayerOne = true;
+
+                            players.Add(playerWitchUpA);
+                            playerOneCount++;
+
+                            WitchPlusA.Promotion(playerWitchUpA, attacker.HP);
+
+                            KillUnit(attacker);
+                            // destroy and respawn as the new unit 
+                        }
+                        else if (attacker is Witch && attacker.HP <= 5 && attacker.isOwnedByPlayerOne)
+                        {
+                            WitchPlusB playerWitchUpB;
+
+                            playerWitchUpB = ((GameObject)Instantiate(WitchUpBPrefab, new Vector3(attacker.transform.position.x, 0.55f, attacker.transform.position.z), Quaternion.Euler(new Vector3(0, 0, 180)))).GetComponent<WitchPlusB>();
+
+                            playerWitchUpB.gridPosition = new Vector2(attacker.transform.position.x + Mathf.Floor(mapSize / 2), -attacker.transform.position.z + Mathf.Floor(mapSize / 2));
+                            playerWitchUpB.playerName = "Juicenjam";
+
+                            playerWitchUpB.isOwnedByPlayerOne = true;
+
+                            players.Add(playerWitchUpB);
+                            playerOneCount++;
+
+                            WitchPlusB.Promotion(playerWitchUpB, attacker.HP);
+
+                            KillUnit(attacker);
+                            // destroy and respawn as the new unit 
+                        }
+                        else
+                      // AI-controlled witch
+                      if (attacker is Witch && attacker.HP > 5 && attacker.isOwnedByPlayerTwo)
+                        {
+
+                            WitchPlusA playerWitchUpA;
+
+                            playerWitchUpA = ((GameObject)Instantiate(P2WitchUpAPrefab, new Vector3(attacker.transform.position.x, 0.55f, attacker.transform.position.z), Quaternion.Euler(new Vector3(0, 0, 180)))).GetComponent<WitchPlusA>();
+
+                            playerWitchUpA.gridPosition = new Vector2(attacker.transform.position.x + Mathf.Floor(mapSize / 2), -attacker.transform.position.z + Mathf.Floor(mapSize / 2));
+                            playerWitchUpA.playerName = "Juicenjam";
+
+                            playerWitchUpA.isOwnedByPlayerTwo = true;
+
+                            players.Add(playerWitchUpA);
+                            playerTwoCount++;
+
+                            WitchPlusA.Promotion(playerWitchUpA, attacker.HP);
+
+                            KillUnit(attacker);
+                            // destroy and respawn as the new unit
+                        }
+                        else if (attacker is Witch && attacker.HP <= 5 && attacker.isOwnedByPlayerTwo)
+                        {
+                            WitchPlusB playerWitchUpB;
+
+                            playerWitchUpB = ((GameObject)Instantiate(P2WitchUpBPrefab, new Vector3(attacker.transform.position.x, 0.55f, attacker.transform.position.z), Quaternion.Euler(new Vector3(0, 0, 180)))).GetComponent<WitchPlusB>();
+
+                            playerWitchUpB.gridPosition = new Vector2(attacker.transform.position.x + Mathf.Floor(mapSize / 2), -attacker.transform.position.z + Mathf.Floor(mapSize / 2));
+                            playerWitchUpB.playerName = "Juicenjam";
+
+                            playerWitchUpB.isOwnedByPlayerTwo = true;
+
+                            players.Add(playerWitchUpB);
+                            playerTwoCount++;
+
+                            WitchPlusB.Promotion(playerWitchUpB, attacker.HP);
+
+                            KillUnit(attacker);
+                            // destroy and respawn as the new unit 
+                        }
+                        if (attacker is WitchAI && attacker.HP > 5)
+                        {
+                            WitchPlusAAI AIWitchUpA;
+
+                            AIWitchUpA = ((GameObject)Instantiate(AIWitchUpAPrefab, new Vector3(attacker.transform.position.x, 0.55f, attacker.transform.position.z), Quaternion.Euler(new Vector3(0, 0, 180)))).GetComponent<WitchPlusAAI>();
+
+                            AIWitchUpA.gridPosition = new Vector2(attacker.transform.position.x + Mathf.Floor(mapSize / 2), -attacker.transform.position.z + Mathf.Floor(mapSize / 2));
+                            AIWitchUpA.playerName = "Juicenjam";
+
+                            AIWitchUpA.isOwnedByAI = true;
+
+                            players.Add(AIWitchUpA);
+                            aiPlayers.Add(AIWitchUpA);
+                            numberOfActiveAIUnits++;
+                            playerAICount++;
+
+                            WitchPlusAAI.Promotion(AIWitchUpA, attacker.HP);
+
+                            KillUnit(attacker);
+                            // destroy and respawn as the new unit 
+                        }
+                        else
+                        if (attacker is WitchAI && attacker.HP <= 5)
+                        {
+                            WitchPlusBAI AIWitchUpB;
+
+                            AIWitchUpB = ((GameObject)Instantiate(AIWitchUpBPrefab, new Vector3(attacker.transform.position.x, 0.55f, attacker.transform.position.z), Quaternion.Euler(new Vector3(0, 0, 180)))).GetComponent<WitchPlusBAI>();
+
+                            AIWitchUpB.gridPosition = new Vector2(attacker.transform.position.x + Mathf.Floor(mapSize / 2), -attacker.transform.position.z + Mathf.Floor(mapSize / 2));
+                            AIWitchUpB.playerName = "Juicenjam";
+
+                            AIWitchUpB.isOwnedByAI = true;
+
+                            players.Add(AIWitchUpB);
+                            aiPlayers.Add(AIWitchUpB);
+                            numberOfActiveAIUnits++;
+                            playerAICount++;
+                            playerTwoCount++;
+
+
+                            WitchPlusBAI.Promotion(AIWitchUpB, attacker.HP);
+
+                            KillUnit(attacker);
+                            // destroy and respawn as the new unit 
+                        }
+                    }
+                }
 
                 //counterattack
                 if (target.HP > 0)
@@ -1302,273 +1332,273 @@ public class GameManager : MonoBehaviour
                     }
                     attacker.HP -= counterDamage;
 
-                        Debug.Log(target.playerName + " countered for " + counterDamage);
-                      
-                        if (attacker.HP <= 0)
+                    Debug.Log(target.playerName + " countered for " + counterDamage);
+
+                    if (attacker.HP <= 0)
+                    {
+                        KillUnit(attacker);
                         {
-                            KillUnit(attacker);
+                            // if attacker has a certain amount of HP, promotes to A branch. if not, B branch
+                            //Flea
+                            if (target is Flea && target.HP > 5)
                             {
-                                // if attacker has a certain amount of HP, promotes to A branch. if not, B branch
-                                //Flea
-                                if (target is Flea && target.HP > 5)
-                                {
-                                    FleaPlusA playerFleaUpA;
+                                FleaPlusA playerFleaUpA;
 
-                                    playerFleaUpA = ((GameObject)Instantiate(FleaUpAPrefab, new Vector3(target.transform.position.x, 0.55f, target.transform.position.z), Quaternion.Euler(new Vector3(0, 0, 180)))).GetComponent<FleaPlusA>();
+                                playerFleaUpA = ((GameObject)Instantiate(FleaUpAPrefab, new Vector3(target.transform.position.x, 0.55f, target.transform.position.z), Quaternion.Euler(new Vector3(0, 0, 180)))).GetComponent<FleaPlusA>();
 
-                                    playerFleaUpA.gridPosition = new Vector2(target.transform.position.x + Mathf.Floor(mapSize / 2), -target.transform.position.z + Mathf.Floor(mapSize / 2));
-                                    playerFleaUpA.playerName = "Juicenjam";
+                                playerFleaUpA.gridPosition = new Vector2(target.transform.position.x + Mathf.Floor(mapSize / 2), -target.transform.position.z + Mathf.Floor(mapSize / 2));
+                                playerFleaUpA.playerName = "Juicenjam";
 
-                                    playerFleaUpA.isOwnedByPlayerOne = true;
+                                playerFleaUpA.isOwnedByPlayerOne = true;
 
-                                    players.Add(playerFleaUpA);
-                                    playerOneCount++;
+                                players.Add(playerFleaUpA);
+                                playerOneCount++;
 
-                                    FleaPlusA.Promotion(playerFleaUpA, target.HP);
+                                FleaPlusA.Promotion(playerFleaUpA, target.HP);
 
-                                    KillUnit(target);
-                                    // destroy and respawn as the new unit 
-                                }
-                                else if (target is Flea && target.HP <= 5)
-                                {
-                                    FleaPlusB playerFleaUpB;
-
-                                    playerFleaUpB = ((GameObject)Instantiate(FleaUpBPrefab, new Vector3(target.transform.position.x, 0.55f, target.transform.position.z), Quaternion.Euler(new Vector3(0, 0, 180)))).GetComponent<FleaPlusB>();
-
-                                    playerFleaUpB.gridPosition = new Vector2(target.transform.position.x + Mathf.Floor(mapSize / 2), -target.transform.position.z + Mathf.Floor(mapSize / 2));
-                                    playerFleaUpB.playerName = "Juicenjam";
-
-                                    playerFleaUpB.isOwnedByPlayerOne = true;
-
-                                    players.Add(playerFleaUpB);
-                                    playerOneCount++;
-
-                                    FleaPlusB.Promotion(playerFleaUpB, target.HP);
-
-                                    KillUnit(target);
-                                    // destroy and respawn as the new unit
-                                }
-                                else
-                        // AI-controlled Flea
-                        if (target is FleaAI && target.HP > 5)
-                                {
-                                    FleaPlusAAI AIFleaUpA;
-
-                                    AIFleaUpA = ((GameObject)Instantiate(AIFleaUpAPrefab, new Vector3(target.transform.position.x, 0.55f, target.transform.position.z), Quaternion.Euler(new Vector3(0, 0, 180)))).GetComponent<FleaPlusAAI>();
-
-                                    AIFleaUpA.gridPosition = new Vector2(target.transform.position.x + Mathf.Floor(mapSize / 2), -target.transform.position.z + Mathf.Floor(mapSize / 2));
-                                    AIFleaUpA.playerName = "Juicenjam";
-
-                                    AIFleaUpA.isOwnedByAI = true;
-
-                                    players.Add(AIFleaUpA);
-                                    aiPlayers.Add(AIFleaUpA);
-                                    numberOfActiveAIUnits++;
-                                    playerTwoCount++;
-                                    playerAICount++;
-
-                                    FleaPlusAAI.Promotion(AIFleaUpA, target.HP);
-
-                                    KillUnit(target);
-                                    // destroy and respawn as the new unit 
-                                }
-                                else if (target is FleaAI && target.HP <= 5)
-                                {
-                                    FleaPlusBAI AIFleaUpB;
-
-                                    AIFleaUpB = ((GameObject)Instantiate(AIFleaUpBPrefab, new Vector3(target.transform.position.x, 0.55f, target.transform.position.z), Quaternion.Euler(new Vector3(0, 0, 180)))).GetComponent<FleaPlusBAI>();
-
-                                    AIFleaUpB.gridPosition = new Vector2(target.transform.position.x + Mathf.Floor(mapSize / 2), -target.transform.position.z + Mathf.Floor(mapSize / 2));
-                                    AIFleaUpB.playerName = "Juicenjam";
-
-                                    AIFleaUpB.isOwnedByAI = true;
-
-                                    players.Add(AIFleaUpB);
-                                    aiPlayers.Add(AIFleaUpB);
-                                    numberOfActiveAIUnits++;
-                                    playerTwoCount++;
-                                    playerAICount++;
-
-                                    FleaPlusBAI.Promotion(AIFleaUpB, target.HP);
-
-                                    KillUnit(target);
-                                    // destroy and respawn as the new unit 
-                                }
-
-                                //Spider
-                                if (target is Spider && target.HP > 5)
-                                {
-                                    SpiderPlusA playerSpiderUpA;
-
-                                    playerSpiderUpA = ((GameObject)Instantiate(SpiderUpAPrefab, new Vector3(target.transform.position.x, 0.55f, target.transform.position.z), Quaternion.Euler(new Vector3(0, 0, 180)))).GetComponent<SpiderPlusA>();
-
-                                    playerSpiderUpA.gridPosition = new Vector2(target.transform.position.x + Mathf.Floor(mapSize / 2), -target.transform.position.z + Mathf.Floor(mapSize / 2));
-                                    playerSpiderUpA.playerName = "Juicenjam";
-
-                                    playerSpiderUpA.isOwnedByPlayerOne = true;
-                                
-                                    players.Add(playerSpiderUpA);
-                                    playerOneCount++;
-
-                                    SpiderPlusA.Promotion(playerSpiderUpA, target.HP);
-
-                                    KillUnit(target);
-                                    // destroy and respawn as the new unit
-                                }
-                                else if (target is Spider && target.HP <= 5)
-                                {
-                                    SpiderPlusB playerSpiderUpB;
-
-                                    playerSpiderUpB = ((GameObject)Instantiate(SpiderUpBPrefab, new Vector3(target.transform.position.x, 0.55f, target.transform.position.z), Quaternion.Euler(new Vector3(0, 0, 180)))).GetComponent<SpiderPlusB>();
-
-                                    playerSpiderUpB.gridPosition = new Vector2(target.transform.position.x + Mathf.Floor(mapSize / 2), -target.transform.position.z + Mathf.Floor(mapSize / 2));
-                                    playerSpiderUpB.playerName = "Juicenjam";
-
-                                    playerSpiderUpB.isOwnedByPlayerOne = true;
-                                
-                                    players.Add(playerSpiderUpB);
-                                    playerOneCount++;
-
-                                    SpiderPlusA.Promotion(playerSpiderUpB, target.HP);
-
-                                    KillUnit(target);
-                                    // destroy and respawn as the new unit
-                                }
-                                else
-                        // AI controlled spider
-                        if (target is SpiderAI && target.HP > 5)
-                                {
-                                    SpiderPlusAAI AISpiderUpA;
-
-                                    AISpiderUpA = ((GameObject)Instantiate(AISpiderUpAPrefab, new Vector3(target.transform.position.x, 0.55f, target.transform.position.z), Quaternion.Euler(new Vector3(0, 0, 180)))).GetComponent<SpiderPlusAAI>();
-
-                                    AISpiderUpA.gridPosition = new Vector2(target.transform.position.x + Mathf.Floor(mapSize / 2), -target.transform.position.z + Mathf.Floor(mapSize / 2));
-                                    AISpiderUpA.playerName = "Juicenjam";
-
-                                    AISpiderUpA.isOwnedByAI = true;
-                                
-                                    players.Add(AISpiderUpA);
-                                    aiPlayers.Add(AISpiderUpA);
-                                    numberOfActiveAIUnits++;
-                                    playerTwoCount++;
-                                    playerAICount++;
-
-                                    SpiderPlusAAI.Promotion(AISpiderUpA, target.HP);
-
-                                    KillUnit(target);
-                                    // destroy and respawn as the new unit
-                                }
-                                else
-                        if (target is SpiderAI && target.HP <= 5)
-                                {
-                                    SpiderPlusBAI AISpiderUpB;
-
-                                    AISpiderUpB = ((GameObject)Instantiate(AISpiderUpAPrefab, new Vector3(target.transform.position.x, 0.55f, target.transform.position.z), Quaternion.Euler(new Vector3(0, 0, 180)))).GetComponent<SpiderPlusBAI>();
-
-                                    AISpiderUpB.gridPosition = new Vector2(target.transform.position.x + Mathf.Floor(mapSize / 2), -target.transform.position.z + Mathf.Floor(mapSize / 2));
-                                    AISpiderUpB.playerName = "Juicenjam";
-
-                                    AISpiderUpB.isOwnedByAI = true;
-                                
-                                    players.Add(AISpiderUpB);
-                                    aiPlayers.Add(AISpiderUpB);
-                                    numberOfActiveAIUnits++;
-                                    playerTwoCount++;
-                                    playerAICount++;
-
-                                    SpiderPlusBAI.Promotion(AISpiderUpB, target.HP);
-
-                                    KillUnit(target);
-                                    // destroy and respawn as the new unit 
-                                }
-
-                                //Witch
-                                if (target is Witch && target.HP > 5)
-                                {
-                                    WitchPlusA playerWitchUpA;
-
-                                    playerWitchUpA = ((GameObject)Instantiate(WitchUpAPrefab, new Vector3(target.transform.position.x, 0.55f, target.transform.position.z), Quaternion.Euler(new Vector3(0, 0, 180)))).GetComponent<WitchPlusA>();
-
-                                    playerWitchUpA.gridPosition = new Vector2(target.transform.position.x + Mathf.Floor(mapSize / 2), -target.transform.position.z + Mathf.Floor(mapSize / 2));
-                                    playerWitchUpA.playerName = "Juicenjam";
-
-                                    playerWitchUpA.isOwnedByPlayerOne = true;
-                                
-                                    players.Add(playerWitchUpA);
-                                    playerOneCount++;
-
-                                    WitchPlusA.Promotion(playerWitchUpA, target.HP);
-
-                                    KillUnit(target);
-                                    // destroy and respawn as the new unit  
-                                }
-                                else if (target is Witch && target.HP <= 5)
-                                {
-                                    WitchPlusB playerWitchUpB;
-
-                                    playerWitchUpB = ((GameObject)Instantiate(WitchUpBPrefab, new Vector3(target.transform.position.x, 0.55f, target.transform.position.z), Quaternion.Euler(new Vector3(0, 0, 180)))).GetComponent<WitchPlusB>();
-
-                                    playerWitchUpB.gridPosition = new Vector2(target.transform.position.x + Mathf.Floor(mapSize / 2), -target.transform.position.z + Mathf.Floor(mapSize / 2));
-                                    playerWitchUpB.playerName = "Juicenjam";
-
-                                    playerWitchUpB.isOwnedByPlayerOne = true;
-                                
-                                    players.Add(playerWitchUpB);
-                                    playerOneCount++;
-
-                                    WitchPlusB.Promotion(playerWitchUpB, target.HP);
-
-                                    KillUnit(target);
-                                    // destroy and respawn as the new unit 
-                                }
-                                // AI-controlled witch
-                                else
-                                if (target is WitchAI && target.HP > 5)
-                                {
-                                    WitchPlusAAI AIWitchUpA;
-
-                                    AIWitchUpA = ((GameObject)Instantiate(AIWitchUpAPrefab, new Vector3(target.transform.position.x, 0.55f, target.transform.position.z), Quaternion.Euler(new Vector3(0, 0, 180)))).GetComponent<WitchPlusAAI>();
-
-                                    AIWitchUpA.gridPosition = new Vector2(target.transform.position.x + Mathf.Floor(mapSize / 2), -target.transform.position.z + Mathf.Floor(mapSize / 2));
-                                    AIWitchUpA.playerName = "Juicenjam";
-
-                                    AIWitchUpA.isOwnedByAI = true;
-                                
-                                    players.Add(AIWitchUpA);
-                                    aiPlayers.Add(AIWitchUpA);
-                                    numberOfActiveAIUnits++;
-                                    playerTwoCount++;
-                                    playerAICount++;
-
-                                    WitchPlusAAI.Promotion(AIWitchUpA, target.HP);
-
-                                    KillUnit(target);
-                                    // destroy and respawn as the new unit  
-                                }
-                                else
-                                   if (target is WitchAI && target.HP <= 5)
-                                {
-                                    WitchPlusBAI AIWitchUpB;
-
-                                    AIWitchUpB = ((GameObject)Instantiate(AIWitchUpBPrefab, new Vector3(target.transform.position.x, 0.55f, target.transform.position.z), Quaternion.Euler(new Vector3(0, 0, 180)))).GetComponent<WitchPlusBAI>();
-
-                                    AIWitchUpB.gridPosition = new Vector2(target.transform.position.x + Mathf.Floor(mapSize / 2), -target.transform.position.z + Mathf.Floor(mapSize / 2));
-                                    AIWitchUpB.playerName = "Juicenjam";
-
-                                    AIWitchUpB.isOwnedByAI = true;
-                                
-                                    players.Add(AIWitchUpB);
-                                    aiPlayers.Add(AIWitchUpB);
-                                    numberOfActiveAIUnits++;
-                                    playerTwoCount++;
-                                    playerAICount++;
-
-                                    WitchPlusBAI.Promotion(AIWitchUpB, target.HP);
-
-                                    KillUnit(target);
-                                    // destroy and respawn as the new unit  
-                                }
+                                KillUnit(target);
+                                // destroy and respawn as the new unit 
                             }
+                            else if (target is Flea && target.HP <= 5)
+                            {
+                                FleaPlusB playerFleaUpB;
+
+                                playerFleaUpB = ((GameObject)Instantiate(FleaUpBPrefab, new Vector3(target.transform.position.x, 0.55f, target.transform.position.z), Quaternion.Euler(new Vector3(0, 0, 180)))).GetComponent<FleaPlusB>();
+
+                                playerFleaUpB.gridPosition = new Vector2(target.transform.position.x + Mathf.Floor(mapSize / 2), -target.transform.position.z + Mathf.Floor(mapSize / 2));
+                                playerFleaUpB.playerName = "Juicenjam";
+
+                                playerFleaUpB.isOwnedByPlayerOne = true;
+
+                                players.Add(playerFleaUpB);
+                                playerOneCount++;
+
+                                FleaPlusB.Promotion(playerFleaUpB, target.HP);
+
+                                KillUnit(target);
+                                // destroy and respawn as the new unit
+                            }
+                            else
+                    // AI-controlled Flea
+                    if (target is FleaAI && target.HP > 5)
+                            {
+                                FleaPlusAAI AIFleaUpA;
+
+                                AIFleaUpA = ((GameObject)Instantiate(AIFleaUpAPrefab, new Vector3(target.transform.position.x, 0.55f, target.transform.position.z), Quaternion.Euler(new Vector3(0, 0, 180)))).GetComponent<FleaPlusAAI>();
+
+                                AIFleaUpA.gridPosition = new Vector2(target.transform.position.x + Mathf.Floor(mapSize / 2), -target.transform.position.z + Mathf.Floor(mapSize / 2));
+                                AIFleaUpA.playerName = "Juicenjam";
+
+                                AIFleaUpA.isOwnedByAI = true;
+
+                                players.Add(AIFleaUpA);
+                                aiPlayers.Add(AIFleaUpA);
+                                numberOfActiveAIUnits++;
+                                playerTwoCount++;
+                                playerAICount++;
+
+                                FleaPlusAAI.Promotion(AIFleaUpA, target.HP);
+
+                                KillUnit(target);
+                                // destroy and respawn as the new unit 
+                            }
+                            else if (target is FleaAI && target.HP <= 5)
+                            {
+                                FleaPlusBAI AIFleaUpB;
+
+                                AIFleaUpB = ((GameObject)Instantiate(AIFleaUpBPrefab, new Vector3(target.transform.position.x, 0.55f, target.transform.position.z), Quaternion.Euler(new Vector3(0, 0, 180)))).GetComponent<FleaPlusBAI>();
+
+                                AIFleaUpB.gridPosition = new Vector2(target.transform.position.x + Mathf.Floor(mapSize / 2), -target.transform.position.z + Mathf.Floor(mapSize / 2));
+                                AIFleaUpB.playerName = "Juicenjam";
+
+                                AIFleaUpB.isOwnedByAI = true;
+
+                                players.Add(AIFleaUpB);
+                                aiPlayers.Add(AIFleaUpB);
+                                numberOfActiveAIUnits++;
+                                playerTwoCount++;
+                                playerAICount++;
+
+                                FleaPlusBAI.Promotion(AIFleaUpB, target.HP);
+
+                                KillUnit(target);
+                                // destroy and respawn as the new unit 
+                            }
+
+                            //Spider
+                            if (target is Spider && target.HP > 5)
+                            {
+                                SpiderPlusA playerSpiderUpA;
+
+                                playerSpiderUpA = ((GameObject)Instantiate(SpiderUpAPrefab, new Vector3(target.transform.position.x, 0.55f, target.transform.position.z), Quaternion.Euler(new Vector3(0, 0, 180)))).GetComponent<SpiderPlusA>();
+
+                                playerSpiderUpA.gridPosition = new Vector2(target.transform.position.x + Mathf.Floor(mapSize / 2), -target.transform.position.z + Mathf.Floor(mapSize / 2));
+                                playerSpiderUpA.playerName = "Juicenjam";
+
+                                playerSpiderUpA.isOwnedByPlayerOne = true;
+
+                                players.Add(playerSpiderUpA);
+                                playerOneCount++;
+
+                                SpiderPlusA.Promotion(playerSpiderUpA, target.HP);
+
+                                KillUnit(target);
+                                // destroy and respawn as the new unit
+                            }
+                            else if (target is Spider && target.HP <= 5)
+                            {
+                                SpiderPlusB playerSpiderUpB;
+
+                                playerSpiderUpB = ((GameObject)Instantiate(SpiderUpBPrefab, new Vector3(target.transform.position.x, 0.55f, target.transform.position.z), Quaternion.Euler(new Vector3(0, 0, 180)))).GetComponent<SpiderPlusB>();
+
+                                playerSpiderUpB.gridPosition = new Vector2(target.transform.position.x + Mathf.Floor(mapSize / 2), -target.transform.position.z + Mathf.Floor(mapSize / 2));
+                                playerSpiderUpB.playerName = "Juicenjam";
+
+                                playerSpiderUpB.isOwnedByPlayerOne = true;
+
+                                players.Add(playerSpiderUpB);
+                                playerOneCount++;
+
+                                SpiderPlusA.Promotion(playerSpiderUpB, target.HP);
+
+                                KillUnit(target);
+                                // destroy and respawn as the new unit
+                            }
+                            else
+                    // AI controlled spider
+                    if (target is SpiderAI && target.HP > 5)
+                            {
+                                SpiderPlusAAI AISpiderUpA;
+
+                                AISpiderUpA = ((GameObject)Instantiate(AISpiderUpAPrefab, new Vector3(target.transform.position.x, 0.55f, target.transform.position.z), Quaternion.Euler(new Vector3(0, 0, 180)))).GetComponent<SpiderPlusAAI>();
+
+                                AISpiderUpA.gridPosition = new Vector2(target.transform.position.x + Mathf.Floor(mapSize / 2), -target.transform.position.z + Mathf.Floor(mapSize / 2));
+                                AISpiderUpA.playerName = "Juicenjam";
+
+                                AISpiderUpA.isOwnedByAI = true;
+
+                                players.Add(AISpiderUpA);
+                                aiPlayers.Add(AISpiderUpA);
+                                numberOfActiveAIUnits++;
+                                playerTwoCount++;
+                                playerAICount++;
+
+                                SpiderPlusAAI.Promotion(AISpiderUpA, target.HP);
+
+                                KillUnit(target);
+                                // destroy and respawn as the new unit
+                            }
+                            else
+                    if (target is SpiderAI && target.HP <= 5)
+                            {
+                                SpiderPlusBAI AISpiderUpB;
+
+                                AISpiderUpB = ((GameObject)Instantiate(AISpiderUpAPrefab, new Vector3(target.transform.position.x, 0.55f, target.transform.position.z), Quaternion.Euler(new Vector3(0, 0, 180)))).GetComponent<SpiderPlusBAI>();
+
+                                AISpiderUpB.gridPosition = new Vector2(target.transform.position.x + Mathf.Floor(mapSize / 2), -target.transform.position.z + Mathf.Floor(mapSize / 2));
+                                AISpiderUpB.playerName = "Juicenjam";
+
+                                AISpiderUpB.isOwnedByAI = true;
+
+                                players.Add(AISpiderUpB);
+                                aiPlayers.Add(AISpiderUpB);
+                                numberOfActiveAIUnits++;
+                                playerTwoCount++;
+                                playerAICount++;
+
+                                SpiderPlusBAI.Promotion(AISpiderUpB, target.HP);
+
+                                KillUnit(target);
+                                // destroy and respawn as the new unit 
+                            }
+
+                            //Witch
+                            if (target is Witch && target.HP > 5)
+                            {
+                                WitchPlusA playerWitchUpA;
+
+                                playerWitchUpA = ((GameObject)Instantiate(WitchUpAPrefab, new Vector3(target.transform.position.x, 0.55f, target.transform.position.z), Quaternion.Euler(new Vector3(0, 0, 180)))).GetComponent<WitchPlusA>();
+
+                                playerWitchUpA.gridPosition = new Vector2(target.transform.position.x + Mathf.Floor(mapSize / 2), -target.transform.position.z + Mathf.Floor(mapSize / 2));
+                                playerWitchUpA.playerName = "Juicenjam";
+
+                                playerWitchUpA.isOwnedByPlayerOne = true;
+
+                                players.Add(playerWitchUpA);
+                                playerOneCount++;
+
+                                WitchPlusA.Promotion(playerWitchUpA, target.HP);
+
+                                KillUnit(target);
+                                // destroy and respawn as the new unit  
+                            }
+                            else if (target is Witch && target.HP <= 5)
+                            {
+                                WitchPlusB playerWitchUpB;
+
+                                playerWitchUpB = ((GameObject)Instantiate(WitchUpBPrefab, new Vector3(target.transform.position.x, 0.55f, target.transform.position.z), Quaternion.Euler(new Vector3(0, 0, 180)))).GetComponent<WitchPlusB>();
+
+                                playerWitchUpB.gridPosition = new Vector2(target.transform.position.x + Mathf.Floor(mapSize / 2), -target.transform.position.z + Mathf.Floor(mapSize / 2));
+                                playerWitchUpB.playerName = "Juicenjam";
+
+                                playerWitchUpB.isOwnedByPlayerOne = true;
+
+                                players.Add(playerWitchUpB);
+                                playerOneCount++;
+
+                                WitchPlusB.Promotion(playerWitchUpB, target.HP);
+
+                                KillUnit(target);
+                                // destroy and respawn as the new unit 
+                            }
+                            // AI-controlled witch
+                            else
+                            if (target is WitchAI && target.HP > 5)
+                            {
+                                WitchPlusAAI AIWitchUpA;
+
+                                AIWitchUpA = ((GameObject)Instantiate(AIWitchUpAPrefab, new Vector3(target.transform.position.x, 0.55f, target.transform.position.z), Quaternion.Euler(new Vector3(0, 0, 180)))).GetComponent<WitchPlusAAI>();
+
+                                AIWitchUpA.gridPosition = new Vector2(target.transform.position.x + Mathf.Floor(mapSize / 2), -target.transform.position.z + Mathf.Floor(mapSize / 2));
+                                AIWitchUpA.playerName = "Juicenjam";
+
+                                AIWitchUpA.isOwnedByAI = true;
+
+                                players.Add(AIWitchUpA);
+                                aiPlayers.Add(AIWitchUpA);
+                                numberOfActiveAIUnits++;
+                                playerTwoCount++;
+                                playerAICount++;
+
+                                WitchPlusAAI.Promotion(AIWitchUpA, target.HP);
+
+                                KillUnit(target);
+                                // destroy and respawn as the new unit  
+                            }
+                            else
+                               if (target is WitchAI && target.HP <= 5)
+                            {
+                                WitchPlusBAI AIWitchUpB;
+
+                                AIWitchUpB = ((GameObject)Instantiate(AIWitchUpBPrefab, new Vector3(target.transform.position.x, 0.55f, target.transform.position.z), Quaternion.Euler(new Vector3(0, 0, 180)))).GetComponent<WitchPlusBAI>();
+
+                                AIWitchUpB.gridPosition = new Vector2(target.transform.position.x + Mathf.Floor(mapSize / 2), -target.transform.position.z + Mathf.Floor(mapSize / 2));
+                                AIWitchUpB.playerName = "Juicenjam";
+
+                                AIWitchUpB.isOwnedByAI = true;
+
+                                players.Add(AIWitchUpB);
+                                aiPlayers.Add(AIWitchUpB);
+                                numberOfActiveAIUnits++;
+                                playerTwoCount++;
+                                playerAICount++;
+
+                                WitchPlusBAI.Promotion(AIWitchUpB, target.HP);
+
+                                KillUnit(target);
+                                // destroy and respawn as the new unit  
+                            }
+                        }
                     }
                 }
             }
@@ -1589,7 +1619,23 @@ public class GameManager : MonoBehaviour
     public static void KillUnit(Player player)
     {
         player.isDestroyed = true;
-            Destroy(player.gameObject);
+        Destroy(player.gameObject);
+
+        //this may be misplaced
+        if (player.isOwnedByAI == true)
+        {
+            playerAICount--;
+            // instance.numberOfActiveAIUnits--;
+            playerTwoCount--;
+        }
+        if (player.isOwnedByPlayerOne == true)
+        {
+            playerOneCount--;
+        }
+        else if (player.isOwnedByPlayerTwo == true)
+        {
+            playerTwoCount--;
+        }
 
         // revise the list of units
         for (int i = 0; i < instance.players.Count; i++)
@@ -1615,23 +1661,28 @@ public class GameManager : MonoBehaviour
                 }
             }
         }
+    }
+    // revise various 'unit counts' which may become redundant soon anyway but whatever
 
-        // revise various 'unit counts' which may become redundant soon anyway but whatever
-        if (player.isOwnedByAI == true)
+
+    public static void UpdateUnitCount(Player deadUnit)
+    {
+        if (deadUnit.isOwnedByAI == true)
         {
             playerAICount--;
-           // instance.numberOfActiveAIUnits--;
+            // instance.numberOfActiveAIUnits--;
             playerTwoCount--;
         }
-        if (player.isOwnedByPlayerOne == true)
+        if (deadUnit.isOwnedByPlayerOne == true)
         {
             playerOneCount--;
         }
-        else if (player.isOwnedByPlayerTwo == true)
+        else if (deadUnit.isOwnedByPlayerTwo == true)
         {
             playerTwoCount--;
         }
     }
+
 
     void generateMap()
     {
@@ -1639,21 +1690,26 @@ public class GameManager : MonoBehaviour
         if (currentCampaignMap == 1)
         {
             loadMapFromXml("map.xml");
-       /*     for (int a = 0; a < players.Count; a++)
-            {
-                //AI Units are reset
-                if (players[a] is AIPlayerFix)
-                players[a].waiting = true;
-            }*/
+            //make sure human player has control
+            GameManager.instance.ReactivateAButton();
+
+            MainUICanvas.transform.position = new Vector3(0, 0, 0);
+
+            /*     for (int a = 0; a < players.Count; a++)
+                 {
+                     //AI Units are reset
+                     if (players[a] is AIPlayerFix)
+                     players[a].waiting = true;
+                 }*/
         }
         else
             if (currentCampaignMap == 2)
         {
             loadMapFromXml("map2.xml");
-            
+            //make sure human player has control
+            GameManager.instance.ReactivateAButton();
             //get rid of End Turn button while winscreen is displayed
             MainUICanvas.transform.position = new Vector3(-20, 0, 0);
-
             WinScreenOn = true;
             GameObject YouWin;
             YouWin = (GameObject)Instantiate(WinScreenPrefab, new Vector3(-2, 6, 0), Quaternion.Euler(new Vector3(90, 0, 0)));
@@ -1667,15 +1723,19 @@ public class GameManager : MonoBehaviour
             }
             for (int i = 0; i < survivingUnits.Count; i++)
             {
-                survivingUnits[i].transform.position = new Vector3((i * .11f) -.5f, 6.1f, .18f);
+                survivingUnits[i].transform.position = new Vector3((i * .11f) - .5f, 6.1f, .18f);
                 survivingUnits[i].transform.localScale = new Vector3(.12f, .000001f, .12f);
-               
+
             }
         }
         else
             if (currentCampaignMap == 3)
         {
             loadMapFromXml("map3.xml");
+            //make sure human player has control
+            GameManager.instance.ReactivateAButton();
+            //get rid of End Turn button while winscreen is displayed
+            MainUICanvas.transform.position = new Vector3(-20, 0, 0);
             WinScreenOn = true;
             GameObject YouWin;
             YouWin = (GameObject)Instantiate(WinScreenPrefab, new Vector3(-2, 6, 0), Quaternion.Euler(new Vector3(90, 0, 0)));
@@ -1695,25 +1755,71 @@ public class GameManager : MonoBehaviour
             if (currentCampaignMap == 4)
         {
             loadMapFromXml("map4.xml");
+            //make sure human player has control
+            GameManager.instance.ReactivateAButton();
+            //get rid of End Turn button while winscreen is displayed
+            MainUICanvas.transform.position = new Vector3(-20, 0, 0);
             WinScreenOn = true;
             GameObject YouWin;
-            YouWin = (GameObject)Instantiate(WinScreenPrefab, new Vector3(0, 7, 0), Quaternion.Euler(new Vector3(90, 0, 0)));
+            YouWin = (GameObject)Instantiate(WinScreenPrefab, new Vector3(-2, 6, 0), Quaternion.Euler(new Vector3(90, 0, 0)));
+            for (int a = 0; a < players.Count; a++)
+            {
+                //Units cannot be selected
+                players[a].waiting = true;
+            }
+            for (int i = 0; i < survivingUnits.Count; i++)
+            {
+                survivingUnits[i].transform.position = new Vector3((i * .11f) - .5f, 6.1f, .18f);
+                survivingUnits[i].transform.localScale = new Vector3(.12f, .000001f, .12f);
+
+            }
+
         }
         else
             if (currentCampaignMap == 5)
         {
             WinScreenOn = true;
             loadMapFromXml("map5.xml");
+            //make sure human player has control
+            GameManager.instance.ReactivateAButton();
+            //get rid of End Turn button while winscreen is displayed
+            MainUICanvas.transform.position = new Vector3(-20, 0, 0);
             GameObject YouWin;
-            YouWin = (GameObject)Instantiate(WinScreenPrefab, new Vector3(0, 7, 0), Quaternion.Euler(new Vector3(90, 0, 0)));
+            YouWin = (GameObject)Instantiate(WinScreenPrefab, new Vector3(-2, 6, 0), Quaternion.Euler(new Vector3(90, 0, 0)));
+            for (int a = 0; a < players.Count; a++)
+            {
+                //Units cannot be selected
+                players[a].waiting = true;
+            }
+            for (int i = 0; i < survivingUnits.Count; i++)
+            {
+                survivingUnits[i].transform.position = new Vector3((i * .11f) - .5f, 6.1f, .18f);
+                survivingUnits[i].transform.localScale = new Vector3(.12f, .000001f, .12f);
+
+            }
         }
         else
             if (currentCampaignMap == 6)
         {
             WinScreenOn = true;
             loadMapFromXml("map6.xml");
+            //make sure human player has control
+            GameManager.instance.ReactivateAButton();
+            //get rid of End Turn button while winscreen is displayed
+            MainUICanvas.transform.position = new Vector3(-20, 0, 0);
             GameObject YouWin;
-            YouWin = (GameObject)Instantiate(WinScreenPrefab, new Vector3(0, 7, 0), Quaternion.Euler(new Vector3(90, 0, 0)));
+            YouWin = (GameObject)Instantiate(WinScreenPrefab, new Vector3(-2, 6, 0), Quaternion.Euler(new Vector3(90, 0, 0)));
+            for (int a = 0; a < players.Count; a++)
+            {
+                //Units cannot be selected
+                players[a].waiting = true;
+            }
+            for (int i = 0; i < survivingUnits.Count; i++)
+            {
+                survivingUnits[i].transform.position = new Vector3((i * .11f) - .5f, 6.1f, .18f);
+                survivingUnits[i].transform.localScale = new Vector3(.12f, .000001f, .12f);
+
+            }
         }
         /* map = new List<List<Tile>>();
          for (int i = 0; i < mapSize; i++)
@@ -1748,7 +1854,7 @@ public class GameManager : MonoBehaviour
         for (int i = 0; i < players.Count; i++)
         {
             if (players[i] is AIPlayerFix)
-            KillUnit(players[i]);
+                KillUnit(players[i]);
 
         }
         //not sure why but it takes multiple cycles to destroy all ai units after they win
@@ -1813,7 +1919,7 @@ public class GameManager : MonoBehaviour
                 if (tile.type == TileType.HQP1)
                 {
                     HQ playerHQ;
-                    playerHQ = ((GameObject)Instantiate(HQPrefab, new Vector3(tile.transform.position.x, 0.55f, tile.transform.position.z), Quaternion.Euler(new Vector3(0,0,180)))).GetComponent<HQ>();
+                    playerHQ = ((GameObject)Instantiate(HQPrefab, new Vector3(tile.transform.position.x, 0.55f, tile.transform.position.z), Quaternion.Euler(new Vector3(0, 0, 180)))).GetComponent<HQ>();
                     playerHQ.gridPosition = new Vector2(tile.transform.position.x + Mathf.Floor(mapSize / 2), -tile.transform.position.z + Mathf.Floor(mapSize / 2));
                     playerHQ.playerName = "Juicenjam";
 
@@ -1822,10 +1928,10 @@ public class GameManager : MonoBehaviour
                     players.Add(playerHQ);
                     playerOneCount++;
                 }
-                else if(tile.type == TileType.HQP2)
+                else if (tile.type == TileType.HQP2)
                 {
                     HQ playerTwoHQ;
-                    playerTwoHQ = ((GameObject)Instantiate(P2HQPrefab, new Vector3(tile.transform.position.x, 0.55f, tile.transform.position.z), Quaternion.Euler(new Vector3(0,0,180)))).GetComponent<HQ>();
+                    playerTwoHQ = ((GameObject)Instantiate(P2HQPrefab, new Vector3(tile.transform.position.x, 0.55f, tile.transform.position.z), Quaternion.Euler(new Vector3(0, 0, 180)))).GetComponent<HQ>();
                     playerTwoHQ.gridPosition = new Vector2(tile.transform.position.x + Mathf.Floor(mapSize / 2), -tile.transform.position.z + Mathf.Floor(mapSize / 2));
                     playerTwoHQ.playerName = "Juicenjam";
 
@@ -1837,7 +1943,7 @@ public class GameManager : MonoBehaviour
                 else if (tile.type == TileType.FleaP1)
                 {
                     Flea playerFlea;
-                    playerFlea = ((GameObject)Instantiate(FleaPrefab, new Vector3(tile.transform.position.x, 0.55f, tile.transform.position.z), Quaternion.Euler(new Vector3(0,0,180)))).GetComponent<Flea>();
+                    playerFlea = ((GameObject)Instantiate(FleaPrefab, new Vector3(tile.transform.position.x, 0.55f, tile.transform.position.z), Quaternion.Euler(new Vector3(0, 0, 180)))).GetComponent<Flea>();
                     playerFlea.gridPosition = new Vector2(tile.transform.position.x + Mathf.Floor(mapSize / 2), -tile.transform.position.z + Mathf.Floor(mapSize / 2));
                     playerFlea.playerName = "Juicenjam";
 
@@ -1861,7 +1967,7 @@ public class GameManager : MonoBehaviour
                 else if (tile.type == TileType.FleaAI)
                 {
                     FleaAI AIFlea;
-                    AIFlea = ((GameObject)Instantiate(AIFleaPrefab, new Vector3(tile.transform.position.x, 0.55f, tile.transform.position.z), Quaternion.Euler(new Vector3(0,0,180)))).GetComponent<FleaAI>();
+                    AIFlea = ((GameObject)Instantiate(AIFleaPrefab, new Vector3(tile.transform.position.x, 0.55f, tile.transform.position.z), Quaternion.Euler(new Vector3(0, 0, 180)))).GetComponent<FleaAI>();
                     AIFlea.gridPosition = new Vector2(tile.transform.position.x + Mathf.Floor(mapSize / 2), -tile.transform.position.z + Mathf.Floor(mapSize / 2));
                     AIFlea.playerName = "Juicenjam";
 
@@ -1876,7 +1982,7 @@ public class GameManager : MonoBehaviour
                 else if (tile.type == TileType.SpiderP1)
                 {
                     Spider playerSpider;
-                    playerSpider = ((GameObject)Instantiate(SpiderPrefab, new Vector3(tile.transform.position.x, 0.55f, tile.transform.position.z), Quaternion.Euler(new Vector3(0,0,180)))).GetComponent<Spider>();
+                    playerSpider = ((GameObject)Instantiate(SpiderPrefab, new Vector3(tile.transform.position.x, 0.55f, tile.transform.position.z), Quaternion.Euler(new Vector3(0, 0, 180)))).GetComponent<Spider>();
                     playerSpider.gridPosition = new Vector2(tile.transform.position.x + Mathf.Floor(mapSize / 2), -tile.transform.position.z + Mathf.Floor(mapSize / 2));
                     playerSpider.playerName = "Juicenjam";
 
@@ -1900,7 +2006,7 @@ public class GameManager : MonoBehaviour
                 else if (tile.type == TileType.SpiderAI)
                 {
                     SpiderAI AISpider;
-                    AISpider = ((GameObject)Instantiate(AISpiderPrefab, new Vector3(tile.transform.position.x, 0.55f, tile.transform.position.z), Quaternion.Euler(new Vector3(0,0,180)))).GetComponent<SpiderAI>();
+                    AISpider = ((GameObject)Instantiate(AISpiderPrefab, new Vector3(tile.transform.position.x, 0.55f, tile.transform.position.z), Quaternion.Euler(new Vector3(0, 0, 180)))).GetComponent<SpiderAI>();
                     AISpider.gridPosition = new Vector2(tile.transform.position.x + Mathf.Floor(mapSize / 2), -tile.transform.position.z + Mathf.Floor(mapSize / 2));
                     AISpider.playerName = "Juicenjam";
 
@@ -1915,7 +2021,7 @@ public class GameManager : MonoBehaviour
                 else if (tile.type == TileType.WitchP1)
                 {
                     Witch playerWitch;
-                    playerWitch = ((GameObject)Instantiate(WitchPrefab, new Vector3(tile.transform.position.x, 0.55f, tile.transform.position.z), Quaternion.Euler(new Vector3(0,0,180)))).GetComponent<Witch>();
+                    playerWitch = ((GameObject)Instantiate(WitchPrefab, new Vector3(tile.transform.position.x, 0.55f, tile.transform.position.z), Quaternion.Euler(new Vector3(0, 0, 180)))).GetComponent<Witch>();
                     playerWitch.gridPosition = new Vector2(tile.transform.position.x + Mathf.Floor(mapSize / 2), -tile.transform.position.z + Mathf.Floor(mapSize / 2));
                     playerWitch.playerName = "Juicenjam";
 
@@ -1939,7 +2045,7 @@ public class GameManager : MonoBehaviour
                 else if (tile.type == TileType.WitchAI)
                 {
                     WitchAI AIWitch;
-                    AIWitch = ((GameObject)Instantiate(AIWitchPrefab, new Vector3(tile.transform.position.x, 0.55f, tile.transform.position.z), Quaternion.Euler(new Vector3(0,0,180)))).GetComponent<WitchAI>();
+                    AIWitch = ((GameObject)Instantiate(AIWitchPrefab, new Vector3(tile.transform.position.x, 0.55f, tile.transform.position.z), Quaternion.Euler(new Vector3(0, 0, 180)))).GetComponent<WitchAI>();
                     AIWitch.gridPosition = new Vector2(tile.transform.position.x + Mathf.Floor(mapSize / 2), -tile.transform.position.z + Mathf.Floor(mapSize / 2));
                     AIWitch.playerName = "Juicenjam";
 
@@ -1959,46 +2065,46 @@ public class GameManager : MonoBehaviour
     // use this to autogenerate stuff on particular single player maps
     void generatePlayers()
     {
-       /*Flea playerFlea;
-        playerFlea = ((GameObject)Instantiate(FleaPrefab, new Vector3(0 - Mathf.Floor(mapSize / 2), 0.55f, -0 + Mathf.Floor(mapSize / 2)), Quaternion.Euler(new Vector3()))).GetComponent<Flea>();
-        playerFlea.gridPosition = new Vector2(0, 0);
-        playerFlea.playerName = "Juicenjam";
+        /*Flea playerFlea;
+         playerFlea = ((GameObject)Instantiate(FleaPrefab, new Vector3(0 - Mathf.Floor(mapSize / 2), 0.55f, -0 + Mathf.Floor(mapSize / 2)), Quaternion.Euler(new Vector3()))).GetComponent<Flea>();
+         playerFlea.gridPosition = new Vector2(0, 0);
+         playerFlea.playerName = "Juicenjam";
 
-        playerFlea.isOwnedByPlayerOne = true;
+         playerFlea.isOwnedByPlayerOne = true;
 
-        players.Add(playerFlea);
-        playerOneCount++;
-        
-        Witch playerWitch;
-        playerWitch = ((GameObject)Instantiate(WitchPrefab, new Vector3((mapSize - 1) - Mathf.Floor(mapSize / 2), 0.55f, -(mapSize - 2) + Mathf.Floor(mapSize / 2)), Quaternion.Euler(new Vector3()))).GetComponent<Witch>();
-        playerWitch.gridPosition = new Vector2(mapSize - 1, mapSize - 2);
-        playerWitch.playerName = "CalforniaRazin";
+         players.Add(playerFlea);
+         playerOneCount++;
 
-        playerWitch.isOwnedByPlayerOne = true;
+         Witch playerWitch;
+         playerWitch = ((GameObject)Instantiate(WitchPrefab, new Vector3((mapSize - 1) - Mathf.Floor(mapSize / 2), 0.55f, -(mapSize - 2) + Mathf.Floor(mapSize / 2)), Quaternion.Euler(new Vector3()))).GetComponent<Witch>();
+         playerWitch.gridPosition = new Vector2(mapSize - 1, mapSize - 2);
+         playerWitch.playerName = "CalforniaRazin";
 
-        players.Add(playerWitch);
-        playerOneCount++;
+         playerWitch.isOwnedByPlayerOne = true;
 
-
-        Flea playerTwoFlea = ((GameObject)Instantiate(PlayerTwoFleaPrefab, new Vector3((mapSize - 4) - Mathf.Floor(mapSize / 2), 0.55f, -(mapSize - 4) + Mathf.Floor(mapSize / 2)), Quaternion.Euler(new Vector3()))).GetComponent<Flea>();
-        playerTwoFlea.gridPosition = new Vector2(mapSize - 4, mapSize - 4);
-        playerTwoFlea.playerName = "death";
-
-        playerTwoFlea.isOwnedByPlayerTwo = true;
-
-        players.Add(playerTwoFlea);
-        playerTwoCount++;
+         players.Add(playerWitch);
+         playerOneCount++;
 
 
-        Witch playerTwoWitch = ((GameObject)Instantiate(PlayerTwoWitchPrefab, new Vector3((mapSize - 2) - Mathf.Floor(mapSize / 2), 0.55f, -(mapSize - 2) + Mathf.Floor(mapSize / 2)), Quaternion.Euler(new Vector3()))).GetComponent<Witch>();
-        playerTwoWitch.gridPosition = new Vector2(mapSize - 2, mapSize - 2);
-        playerTwoWitch.playerName = "filth";
+         Flea playerTwoFlea = ((GameObject)Instantiate(PlayerTwoFleaPrefab, new Vector3((mapSize - 4) - Mathf.Floor(mapSize / 2), 0.55f, -(mapSize - 4) + Mathf.Floor(mapSize / 2)), Quaternion.Euler(new Vector3()))).GetComponent<Flea>();
+         playerTwoFlea.gridPosition = new Vector2(mapSize - 4, mapSize - 4);
+         playerTwoFlea.playerName = "death";
 
-        playerTwoWitch.isOwnedByPlayerTwo = true;
+         playerTwoFlea.isOwnedByPlayerTwo = true;
 
-        players.Add(playerTwoWitch);
-        playerTwoCount++;
-        */
+         players.Add(playerTwoFlea);
+         playerTwoCount++;
+
+
+         Witch playerTwoWitch = ((GameObject)Instantiate(PlayerTwoWitchPrefab, new Vector3((mapSize - 2) - Mathf.Floor(mapSize / 2), 0.55f, -(mapSize - 2) + Mathf.Floor(mapSize / 2)), Quaternion.Euler(new Vector3()))).GetComponent<Witch>();
+         playerTwoWitch.gridPosition = new Vector2(mapSize - 2, mapSize - 2);
+         playerTwoWitch.playerName = "filth";
+
+         playerTwoWitch.isOwnedByPlayerTwo = true;
+
+         players.Add(playerTwoWitch);
+         playerTwoCount++;
+         */
 
 
         // YOU WANT THIS DONT YOU
@@ -2055,7 +2161,7 @@ public class GameManager : MonoBehaviour
          player.handWeapons.Add(Weapon.FromKey(WeaponKey.LongBow));
 
          players.Add(aiplayer);*/
-     
+
     }
 
     public void BuildUnitsGUI()
@@ -2067,7 +2173,7 @@ public class GameManager : MonoBehaviour
             if (playerOneTurn && fundsArmyOne >= Flea.cost)
             {
                 Flea newFlea;
-            
+
                 newFlea = ((GameObject)Instantiate(FleaPrefab, new Vector3(Tile.myTile.transform.position.x, 0.55f, Tile.myTile.transform.position.z), Quaternion.Euler(new Vector3(0, 180, 0)))).GetComponent<Flea>();
                 newFlea.gridPosition = new Vector2(Tile.myTile.transform.position.x + Mathf.Floor(mapSize / 2), -Tile.myTile.transform.position.z + Mathf.Floor(mapSize / 2));
                 newFlea.playerName = "Juicenjam";
@@ -2083,7 +2189,7 @@ public class GameManager : MonoBehaviour
             else if (playerTwoTurn && fundsArmyTwo >= Flea.cost)
             {
                 Flea newFlea;
-    
+
                 newFlea = ((GameObject)Instantiate(P2FleaPrefab, new Vector3(Tile.myTile.transform.position.x, 0.55f, Tile.myTile.transform.position.z), Quaternion.Euler(new Vector3(0, 180, 0)))).GetComponent<Flea>();
                 newFlea.gridPosition = new Vector2(Tile.myTile.transform.position.x + Mathf.Floor(mapSize / 2), -Tile.myTile.transform.position.z + Mathf.Floor(mapSize / 2));
                 newFlea.playerName = "Juicenjam";
@@ -2098,14 +2204,14 @@ public class GameManager : MonoBehaviour
         }
 
         //spider
-        rect = new Rect(10, Screen.height -110, 100, 20);
+        rect = new Rect(10, Screen.height - 110, 100, 20);
         if (GUI.Button(rect, "Spider"))
         {
             // if it's player one's turn, and they can afford it, spawn a player one infantry.
             if (playerOneTurn && fundsArmyOne >= Spider.cost)
             {
                 Spider newSpider;
-               
+
                 newSpider = ((GameObject)Instantiate(SpiderPrefab, new Vector3(Tile.myTile.transform.position.x, 0.55f, Tile.myTile.transform.position.z), Quaternion.Euler(new Vector3(0, 180, 0)))).GetComponent<Spider>();
                 newSpider.gridPosition = new Vector2(Tile.myTile.transform.position.x + Mathf.Floor(mapSize / 2), -Tile.myTile.transform.position.z + Mathf.Floor(mapSize / 2));
                 newSpider.playerName = "Juicenjam";
@@ -2121,7 +2227,7 @@ public class GameManager : MonoBehaviour
             else if (playerTwoTurn && fundsArmyTwo >= Spider.cost)
             {
                 Spider newSpider;
-           
+
                 newSpider = ((GameObject)Instantiate(P2SpiderPrefab, new Vector3(Tile.myTile.transform.position.x, 0.55f, Tile.myTile.transform.position.z), Quaternion.Euler(new Vector3(0, 180, 0)))).GetComponent<Spider>();
                 newSpider.gridPosition = new Vector2(Tile.myTile.transform.position.x + Mathf.Floor(mapSize / 2), -Tile.myTile.transform.position.z + Mathf.Floor(mapSize / 2));
                 newSpider.playerName = "Juicenjam";
@@ -2143,7 +2249,7 @@ public class GameManager : MonoBehaviour
             if (playerOneTurn && fundsArmyOne >= Witch.cost)
             {
                 Witch newWitch;
-           
+
                 newWitch = ((GameObject)Instantiate(WitchPrefab, new Vector3(Tile.myTile.transform.position.x, 0.55f, Tile.myTile.transform.position.z), Quaternion.Euler(new Vector3(0, 180, 0)))).GetComponent<Witch>();
                 newWitch.gridPosition = new Vector2(Tile.myTile.transform.position.x + Mathf.Floor(mapSize / 2), -Tile.myTile.transform.position.z + Mathf.Floor(mapSize / 2));
                 newWitch.playerName = "Juicenjam";
@@ -2159,7 +2265,7 @@ public class GameManager : MonoBehaviour
             else if (playerTwoTurn && fundsArmyTwo >= Witch.cost)
             {
                 Witch newWitch;
-          
+
                 newWitch = ((GameObject)Instantiate(P2WitchPrefab, new Vector3(Tile.myTile.transform.position.x, 0.55f, Tile.myTile.transform.position.z), Quaternion.Euler(new Vector3(0, 180, 0)))).GetComponent<Witch>();
                 newWitch.gridPosition = new Vector2(Tile.myTile.transform.position.x + Mathf.Floor(mapSize / 2), -Tile.myTile.transform.position.z + Mathf.Floor(mapSize / 2));
                 newWitch.playerName = "Juicenjam";
@@ -2176,13 +2282,20 @@ public class GameManager : MonoBehaviour
 
 
 
-   // UnitCarryover Class
+    // UnitCarryover Class
     public List<Player> survivingUnits = new List<Player>();
     public int thisUnitPoints;
 
     // When you clear a level, your surviving units have their data stored and can be brought back in later levels
     public void StoreUnits()
     {
+        foreach (Player u in players)
+        {
+            if (u.isUnitKiller)
+            {
+                PromoteUnit(u);
+            }
+        }
         // also handle point tallying here
         foreach (Player u in players)
         {
@@ -2308,10 +2421,155 @@ public class GameManager : MonoBehaviour
     public bool pocketScreenOn = false;
     public void DisplayPocket()
     {
-        pocketScreenOn = true;
-        for (int i = 0; i < survivingUnits.Count; i++)
+
+        if (survivingUnits.Count > 0)
         {
-            survivingUnits[i].transform.position = new Vector3(i, 2, 0);
+            if (pocketScreenOn == false)
+            {
+                pocketScreenOn = true;
+                for (int i = 0; i < survivingUnits.Count; i++)
+                {
+                    survivingUnits[i].transform.position = new Vector3(i, 2, 0);
+                }
+            }
+            else if (pocketScreenOn == true)
+            {
+                pocketScreenOn = false;
+                foreach (Player u in survivingUnits)
+                {
+                    u.transform.position = new Vector3(0, 0, 0);
+                }
+                ReactivateAButton();
+                removeTileHighlights();
+                ButtonCanvas.transform.position = new Vector3(-20, 0, 0);
+            }
+
+            //else, play a sound
+        }
+    }
+
+    public void PromoteUnit(Player baseUnit)
+    {
+        // if base unit has a certain amount of HP, promotes to A branch. if not, B branch
+        //Flea
+        if (baseUnit is Flea && baseUnit.HP > 5)
+        {
+            FleaPlusA playerFleaUpA;
+
+            playerFleaUpA = ((GameObject)Instantiate(FleaUpAPrefab, new Vector3(baseUnit.transform.position.x, 0.55f, baseUnit.transform.position.z), Quaternion.Euler(new Vector3(0, 0, 180)))).GetComponent<FleaPlusA>();
+
+            playerFleaUpA.gridPosition = new Vector2(baseUnit.transform.position.x + Mathf.Floor(mapSize / 2), -baseUnit.transform.position.z + Mathf.Floor(mapSize / 2));
+            playerFleaUpA.playerName = "Juicenjam";
+
+            playerFleaUpA.isOwnedByPlayerOne = true;
+
+            players.Add(playerFleaUpA);
+            playerOneCount++;
+
+            FleaPlusA.Promotion(playerFleaUpA, baseUnit.HP);
+
+            KillUnit(baseUnit);
+            // destroy and respawn as the new unit 
+        }
+        else if (baseUnit is Flea && baseUnit.HP <= 5)
+        {
+            FleaPlusB playerFleaUpB;
+
+            playerFleaUpB = ((GameObject)Instantiate(FleaUpBPrefab, new Vector3(baseUnit.transform.position.x, 0.55f, baseUnit.transform.position.z), Quaternion.Euler(new Vector3(0, 0, 180)))).GetComponent<FleaPlusB>();
+
+            playerFleaUpB.gridPosition = new Vector2(baseUnit.transform.position.x + Mathf.Floor(mapSize / 2), -baseUnit.transform.position.z + Mathf.Floor(mapSize / 2));
+            playerFleaUpB.playerName = "Juicenjam";
+
+            playerFleaUpB.isOwnedByPlayerOne = true;
+
+            players.Add(playerFleaUpB);
+            playerOneCount++;
+
+            FleaPlusB.Promotion(playerFleaUpB, baseUnit.HP);
+
+            KillUnit(baseUnit);
+            // destroy and respawn as the new unit
+        }
+        else
+
+        //Spider
+        if (baseUnit is Spider && baseUnit.HP > 5)
+        {
+            SpiderPlusA playerSpiderUpA;
+
+            playerSpiderUpA = ((GameObject)Instantiate(SpiderUpAPrefab, new Vector3(baseUnit.transform.position.x, 0.55f, baseUnit.transform.position.z), Quaternion.Euler(new Vector3(0, 0, 180)))).GetComponent<SpiderPlusA>();
+
+            playerSpiderUpA.gridPosition = new Vector2(baseUnit.transform.position.x + Mathf.Floor(mapSize / 2), -baseUnit.transform.position.z + Mathf.Floor(mapSize / 2));
+            playerSpiderUpA.playerName = "Juicenjam";
+
+            playerSpiderUpA.isOwnedByPlayerOne = true;
+
+            players.Add(playerSpiderUpA);
+            playerOneCount++;
+
+            SpiderPlusA.Promotion(playerSpiderUpA, baseUnit.HP);
+
+            KillUnit(baseUnit);
+            // destroy and respawn as the new unit
+        }
+        else if (baseUnit is Spider && baseUnit.HP <= 5)
+        {
+            SpiderPlusB playerSpiderUpB;
+
+            playerSpiderUpB = ((GameObject)Instantiate(SpiderUpBPrefab, new Vector3(baseUnit.transform.position.x, 0.55f, baseUnit.transform.position.z), Quaternion.Euler(new Vector3(0, 0, 180)))).GetComponent<SpiderPlusB>();
+
+            playerSpiderUpB.gridPosition = new Vector2(baseUnit.transform.position.x + Mathf.Floor(mapSize / 2), -baseUnit.transform.position.z + Mathf.Floor(mapSize / 2));
+            playerSpiderUpB.playerName = "Juicenjam";
+
+            playerSpiderUpB.isOwnedByPlayerOne = true;
+
+            players.Add(playerSpiderUpB);
+            playerOneCount++;
+
+            SpiderPlusA.Promotion(playerSpiderUpB, baseUnit.HP);
+
+            KillUnit(baseUnit);
+            // destroy and respawn as the new unit
+        }
+
+        //Witch
+        if (baseUnit is Witch && baseUnit.HP > 5)
+        {
+            WitchPlusA playerWitchUpA;
+
+            playerWitchUpA = ((GameObject)Instantiate(WitchUpAPrefab, new Vector3(baseUnit.transform.position.x, 0.55f, baseUnit.transform.position.z), Quaternion.Euler(new Vector3(0, 0, 180)))).GetComponent<WitchPlusA>();
+
+            playerWitchUpA.gridPosition = new Vector2(baseUnit.transform.position.x + Mathf.Floor(mapSize / 2), -baseUnit.transform.position.z + Mathf.Floor(mapSize / 2));
+            playerWitchUpA.playerName = "Juicenjam";
+
+            playerWitchUpA.isOwnedByPlayerOne = true;
+
+            players.Add(playerWitchUpA);
+            playerOneCount++;
+
+            WitchPlusA.Promotion(playerWitchUpA, baseUnit.HP);
+
+            KillUnit(baseUnit);
+            // destroy and respawn as the new unit  
+        }
+        else if (baseUnit is Witch && baseUnit.HP <= 5)
+        {
+            WitchPlusB playerWitchUpB;
+
+            playerWitchUpB = ((GameObject)Instantiate(WitchUpBPrefab, new Vector3(baseUnit.transform.position.x, 0.55f, baseUnit.transform.position.z), Quaternion.Euler(new Vector3(0, 0, 180)))).GetComponent<WitchPlusB>();
+
+            playerWitchUpB.gridPosition = new Vector2(baseUnit.transform.position.x + Mathf.Floor(mapSize / 2), -baseUnit.transform.position.z + Mathf.Floor(mapSize / 2));
+            playerWitchUpB.playerName = "Juicenjam";
+
+            playerWitchUpB.isOwnedByPlayerOne = true;
+
+            players.Add(playerWitchUpB);
+            playerOneCount++;
+
+            WitchPlusB.Promotion(playerWitchUpB, baseUnit.HP);
+
+            KillUnit(baseUnit);
+            // destroy and respawn as the new unit 
         }
     }
 }
