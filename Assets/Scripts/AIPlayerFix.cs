@@ -25,6 +25,11 @@ public class AIPlayerFix : Player
         // for now we're assuming if it's player two's turn and there are AI units on the map, then it's the AI's turn
         if (GameManager.instance.playerTwoTurn)
         {
+            //human player cannot act while AI player acts
+            GameManager.instance.DeactivateAButton();
+            GameManager.instance.MainUICanvas.transform.position = new Vector3(-20, 0, 0);
+
+
             //pause between moving each unit
             if (GameManager.instance.resumeIn3Seconds == true)
             {
@@ -96,6 +101,10 @@ public class AIPlayerFix : Player
             // if not
             if (GameManager.instance.numberOfActiveAIUnits == 0)
             {
+                //human player regains control
+                GameManager.instance.ReactivateAButton();
+                GameManager.instance.MainUICanvas.transform.position = new Vector3(0, 0, 0);
+
                 EndTurn();
             }
         }
