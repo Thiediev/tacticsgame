@@ -31,6 +31,6 @@ public class Points : MonoBehaviour
     public void UpdatePoints()
     {
         //fundoRundo = GameManager.instance.fundsArmyOne;
-        pointsText.text = GameManager.instance.totalPoints.ToString();
+        pointsText.text = "Total Points: " + GameManager.instance.totalPoints.ToString();
     }
 }

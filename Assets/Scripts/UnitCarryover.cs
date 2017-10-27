@@ -41,10 +41,20 @@ public class UnitCarryover : MonoBehaviour {
 
     public void DisplayPocket ()
     {
-
-        foreach (Player u in survivingUnits)
+        if (GameManager.instance.pocketScreenOn == false)
         {
-            u.transform.position = new Vector3(0, 0, 0);
+            GameManager.instance.pocketScreenOn = true;
+            foreach (Player u in survivingUnits)
+            {
+                u.transform.position = new Vector3(0, 0, 0);
+            }
+        }
+        else
+        {
+            GameManager.instance.pocketScreenOn = false;
+            GameManager.instance.removeTileHighlights();
+            GameManager.instance.ButtonCanvas.transform.position = new Vector3(-20, 0, 0);
+            GameManager.instance.ReactivateAButton();
         }
     }
 }
