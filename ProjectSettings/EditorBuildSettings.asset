@@ -18,7 +18,7 @@ EditorBuildSettings:
     path: Assets/NetworkVersus.unity
     guid: 8bf5850c2fd124949aa525264627588a
   - enabled: 1
-    path: Assets/Map Creator.unity
+    path: Assets/Scenes/Map Creator.unity
     guid: 520d04e6b456f204498001c29ba94a43
   - enabled: 0
     path: Assets/Versus.unity
@@ -32,3 +32,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/HowToPlay.unity
     guid: 75d71c496bd855543ad3a9a43c39757d
+  - enabled: 1
+    path: Assets/Scenes/Campaign Maps/Level 2.unity
+    guid: 2b60b9b333077ec41825bd8004def0fe
