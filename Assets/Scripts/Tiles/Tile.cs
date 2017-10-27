@@ -136,6 +136,13 @@ public class Tile : MonoBehaviour {
                 GameManager.myUnit.attacking = false;
                 GameManager.instance.removeTileHighlights();
             }
+            if (GameManager.instance.pocketScreenOn == true)
+            {
+                foreach (Player u in GameManager.instance.survivingUnits)
+                {
+                    GameManager.instance.CancelDrop();
+                }
+            }
             GameManager.instance.ButtonCanvas.transform.position = new Vector3(-20, 0, 0);
             GameManager.instance.BuildUnitCanvas.transform.position = new Vector3(-20, 0, 0);
         }
@@ -145,7 +152,14 @@ public class Tile : MonoBehaviour {
     {
         if (GameManager.instance.myUnitIsBeingUsed == true)
         {
-            GameManager.instance.ButtonCanvas.transform.position = new Vector3(transform.position.x + 6, transform.position.y + 4, transform.position.z + 7);
+
+
+            GameManager.instance.combatMenuPosX = Mathf.Clamp(transform.position.x + 6, 6.0f, 10.0f);
+            GameManager.instance.combatMenuPosY = transform.position.y + 4;
+            GameManager.instance.combatMenuPosZ = Mathf.Clamp(transform.position.z + 7, 5.0f, 9.0f);
+
+            GameManager.instance.ButtonCanvas.transform.position = new Vector3(GameManager.instance.combatMenuPosX, GameManager.instance.combatMenuPosY, GameManager.instance.combatMenuPosZ);
+
             GameManager.instance.myUnitIsBeingUsed = false;
             GameManager.instance.myUnitMustWaitOrAttack = true;
             GameManager.instance.DeactivateAButton();

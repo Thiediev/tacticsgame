@@ -6,6 +6,9 @@ public class UserPlayer : Player
     public AudioClip RightClickCancel;
     public AudioClip SelectUnit;
 
+    public Vector3 combatMenuPos;
+   
+
     public void Start()
     {
 
@@ -74,7 +77,7 @@ public class UserPlayer : Player
         }
     }
     // choose a unit. or not
-    void OnMouseDown()
+    void OnMouseUp()
     {
         // If the unit is already selected, clicking the unit again will open up the attack/wait menu without moving the unit
 
@@ -99,7 +102,13 @@ public class UserPlayer : Player
             GameManager.instance.myUnitIsBeingUsed = false;
             GameManager.instance.removeTileHighlights();
             GameManager.myUnit.moving = false;
-            GameManager.instance.ButtonCanvas.transform.position = new Vector3(transform.position.x + 6, transform.position.y + 4, transform.position.z + 7);
+
+            GameManager.instance.combatMenuPosX = Mathf.Clamp(transform.position.x + 6, 6.0f, 10.0f);
+            GameManager.instance.combatMenuPosY = transform.position.y + 4;
+            GameManager.instance.combatMenuPosZ = Mathf.Clamp(transform.position.z + 7, 5.0f, 9.0f);
+
+            GameManager.instance.ButtonCanvas.transform.position = new Vector3(GameManager.instance.combatMenuPosX, GameManager.instance.combatMenuPosY, GameManager.instance.combatMenuPosZ);
+
             GameManager.instance.DeactivateAButton();
         }
         else
