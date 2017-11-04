@@ -193,6 +193,18 @@ public class CombatUI : MonoBehaviour
             GameManager.myUnit.waiting = true;
             GameManager.instance.ButtonCanvas.transform.position = new Vector3(-20, 0, 0);
             GameManager.instance.ReactivateAButton();
+            if (GameManager.myUnit.isFleaUpB)
+            {
+                GameManager.myUnit.fleaActionPoints--;
+                if (GameManager.myUnit.fleaActionPoints <= 1 && GameManager.myUnit.fleaMovementPoints == 2)
+                {
+                    GameManager.myUnit.fleaMovementPoints--;
+                }
+                if (GameManager.myUnit.fleaActionPoints > 0)
+                {
+                    GameManager.myUnit.waiting = false;
+                }
+            }
         }
     }
 

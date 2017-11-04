@@ -163,7 +163,9 @@ public class GameManager : MonoBehaviour
     public bool unitIsDead = false;
     public bool myUnitIsBeingUsed = false;
     public bool myUnitMustWaitOrAttack = false;
+    public bool mustPromoteUnit = false;
 
+    public bool playerWin;
     public bool WinScreenOn = false;
 
     public bool aiPlayerTurn = false;
@@ -208,9 +210,12 @@ public class GameManager : MonoBehaviour
 
         //TODO: make this work for specific armies
 
-        if (playerOneCount - survivingUnits.Count <= 0)
+       if (playerOneCount - survivingUnits.Count <= 0)
         //subtract survivingUnits so if you have 12 units but 2 of them are drop units, and you lose your 10 map units, you lose
         {
+            // you lost so it'll end up loading the lose screen
+            playerWin = false;
+
             // reset everything
             currentAIUnitIndex = 0;
             numberOfActiveAIUnits = 0;
@@ -220,6 +225,7 @@ public class GameManager : MonoBehaviour
 
             playerOneTurn = true;
             playerTwoTurn = false;
+            aiPlayerTurn = false;
             generateMap();
         }
         if (playerTwoCount <= 0)
@@ -240,10 +246,23 @@ public class GameManager : MonoBehaviour
             // print("PLAYER ONNNE WINS YEAH");
             */
         }
-        if (playerAICount <= 0)
+        if (playerAICount <= 0 && mustPromoteUnit == true)
+        {
+            //handle promotion of final unit here if necessary
+            foreach (Player u in players)
+            {
+                if (u.isUnitKiller)
+                {
+                    PromoteUnit(u);
+                }
+            }
+            mustPromoteUnit = false;
+        }else if (playerAICount <= 0 && mustPromoteUnit == false)
         {
             print("next level please");
+            playerWin = true;
 
+            
             currentCampaignMap++;
             if (currentCampaignMap <= 7)
             {
@@ -254,6 +273,7 @@ public class GameManager : MonoBehaviour
                 currentCampaignMap = 7;
                 //SceneManager.LoadScene("Main Menu");
             }
+            
         }
     }
 
@@ -444,7 +464,7 @@ public class GameManager : MonoBehaviour
         MapUI.instance.UpdateTurnCounter();
     }
 
-    public void dropCurrentUnit(Tile destTile)
+    public void DropCurrentUnit(Tile destTile)
     {
         if (destTile.visual.transform.GetComponent<Renderer>().materials[0].color == Color.yellow)
         {
@@ -455,6 +475,12 @@ public class GameManager : MonoBehaviour
             //remove dropped unit from list of pocket units
             dropUnit.waiting = true;
             myUnit.waiting = true;
+            if (dropUnit.isFleaUpB == true)
+            {
+                dropUnit.fleaActionPoints = 1;
+                dropUnit.fleaMovementPoints = 1;
+                dropUnit.waiting = false;
+            }
             dropUnit.inStorage = false;
             survivingUnits.Remove(dropUnit);
             GameManager.instance.ButtonCanvas.transform.position = new Vector3(-20, 0, 0);
@@ -845,7 +871,7 @@ public class GameManager : MonoBehaviour
                     return baseDamageAgainst;
                 }
                 //*/
-
+                //asdfl;asdf
                 attacker.waiting = true;
                 if (attacker.isFleaUpB)
                 {
@@ -858,6 +884,7 @@ public class GameManager : MonoBehaviour
                     {
                         attacker.waiting = false;
                     }
+                    myUnitIsBeingUsed = false;
                 }
                 removeTileHighlights();
                 attacker.attacking = false;
@@ -912,6 +939,7 @@ public class GameManager : MonoBehaviour
                         if (playerAICount == 1)
                         {
                             attacker.isUnitKiller = true;
+                            instance.mustPromoteUnit = true;
                         }
                     }
                     KillUnit(target);
@@ -1711,21 +1739,29 @@ public class GameManager : MonoBehaviour
             //get rid of End Turn button while winscreen is displayed
             MainUICanvas.transform.position = new Vector3(-20, 0, 0);
             WinScreenOn = true;
-            GameObject YouWin;
-            YouWin = (GameObject)Instantiate(WinScreenPrefab, new Vector3(-2, 6, 0), Quaternion.Euler(new Vector3(90, 0, 0)));
-            // Display all of the player's carryover units on the winscreen and display the number of points they each earned the player this level
-
-
-            for (int a = 0; a < players.Count; a++)
+            if (playerWin == true)
             {
-                //Units cannot be selected
-                players[a].waiting = true;
+                GameObject YouWin;
+                YouWin = (GameObject)Instantiate(WinScreenPrefab, new Vector3(-2, 6, 0), Quaternion.Euler(new Vector3(90, 0, 0)));
+                // Display all of the player's carryover units on the winscreen and display the number of points they each earned the player this level
+
+                for (int a = 0; a < players.Count; a++)
+                {
+                    //Units cannot be selected
+                    players[a].waiting = true;
+                }
+                for (int i = 0; i < survivingUnits.Count; i++)
+                {
+                    survivingUnits[i].transform.position = new Vector3((i * .11f) - .5f, 6.1f, .18f);
+                    survivingUnits[i].transform.localScale = new Vector3(.12f, .000001f, .12f);
+
+                }
             }
-            for (int i = 0; i < survivingUnits.Count; i++)
+            else if (playerWin == false)
             {
-                survivingUnits[i].transform.position = new Vector3((i * .11f) - .5f, 6.1f, .18f);
-                survivingUnits[i].transform.localScale = new Vector3(.12f, .000001f, .12f);
-
+                GameObject YouLose;
+                YouLose = (GameObject)Instantiate(LoseScreenPrefab, new Vector3(-2, 6, 0), Quaternion.Euler(new Vector3(90, 0, 0)));
+                playerWin = true;
             }
         }
         else
@@ -1737,18 +1773,30 @@ public class GameManager : MonoBehaviour
             //get rid of End Turn button while winscreen is displayed
             MainUICanvas.transform.position = new Vector3(-20, 0, 0);
             WinScreenOn = true;
-            GameObject YouWin;
-            YouWin = (GameObject)Instantiate(WinScreenPrefab, new Vector3(-2, 6, 0), Quaternion.Euler(new Vector3(90, 0, 0)));
-            for (int a = 0; a < players.Count; a++)
+            if (playerWin == true)
             {
-                //Units cannot be selected
-                players[a].waiting = true;
-            }
-            for (int i = 0; i < survivingUnits.Count; i++)
-            {
-                survivingUnits[i].transform.position = new Vector3((i * .11f) - .5f, 6.1f, .18f);
-                survivingUnits[i].transform.localScale = new Vector3(.12f, .000001f, .12f);
+                GameObject YouWin;
+                YouWin = (GameObject)Instantiate(WinScreenPrefab, new Vector3(-2, 6, 0), Quaternion.Euler(new Vector3(90, 0, 0)));
+                // Display all of the player's carryover units on the winscreen and display the number of points they each earned the player this level
 
+
+                for (int a = 0; a < players.Count; a++)
+                {
+                    //Units cannot be selected
+                    players[a].waiting = true;
+                }
+                for (int i = 0; i < survivingUnits.Count; i++)
+                {
+                    survivingUnits[i].transform.position = new Vector3((i * .11f) - .5f, 6.1f, .18f);
+                    survivingUnits[i].transform.localScale = new Vector3(.12f, .000001f, .12f);
+
+                }
+            }
+            else if (playerWin == false)
+            {
+                GameObject YouLose;
+                YouLose = (GameObject)Instantiate(LoseScreenPrefab, new Vector3(-2, 6, 0), Quaternion.Euler(new Vector3(90, 0, 0)));
+                playerWin = true;
             }
         }
         else
@@ -1760,20 +1808,31 @@ public class GameManager : MonoBehaviour
             //get rid of End Turn button while winscreen is displayed
             MainUICanvas.transform.position = new Vector3(-20, 0, 0);
             WinScreenOn = true;
-            GameObject YouWin;
-            YouWin = (GameObject)Instantiate(WinScreenPrefab, new Vector3(-2, 6, 0), Quaternion.Euler(new Vector3(90, 0, 0)));
-            for (int a = 0; a < players.Count; a++)
+            if (playerWin == true)
             {
-                //Units cannot be selected
-                players[a].waiting = true;
+                GameObject YouWin;
+                YouWin = (GameObject)Instantiate(WinScreenPrefab, new Vector3(-2, 6, 0), Quaternion.Euler(new Vector3(90, 0, 0)));
+                // Display all of the player's carryover units on the winscreen and display the number of points they each earned the player this level
+
+
+                for (int a = 0; a < players.Count; a++)
+                {
+                    //Units cannot be selected
+                    players[a].waiting = true;
+                }
+                for (int i = 0; i < survivingUnits.Count; i++)
+                {
+                    survivingUnits[i].transform.position = new Vector3((i * .11f) - .5f, 6.1f, .18f);
+                    survivingUnits[i].transform.localScale = new Vector3(.12f, .000001f, .12f);
+
+                }
             }
-            for (int i = 0; i < survivingUnits.Count; i++)
+            else if (playerWin == false)
             {
-                survivingUnits[i].transform.position = new Vector3((i * .11f) - .5f, 6.1f, .18f);
-                survivingUnits[i].transform.localScale = new Vector3(.12f, .000001f, .12f);
-
+                GameObject YouLose;
+                YouLose = (GameObject)Instantiate(LoseScreenPrefab, new Vector3(-2, 6, 0), Quaternion.Euler(new Vector3(90, 0, 0)));
+                playerWin = true;
             }
-
         }
         else
             if (currentCampaignMap == 5)
@@ -1782,20 +1841,30 @@ public class GameManager : MonoBehaviour
             loadMapFromXml("map5.xml");
             //make sure human player has control
             GameManager.instance.ReactivateAButton();
-            //get rid of End Turn button while winscreen is displayed
-            MainUICanvas.transform.position = new Vector3(-20, 0, 0);
-            GameObject YouWin;
-            YouWin = (GameObject)Instantiate(WinScreenPrefab, new Vector3(-2, 6, 0), Quaternion.Euler(new Vector3(90, 0, 0)));
-            for (int a = 0; a < players.Count; a++)
+            if (playerWin == true)
             {
-                //Units cannot be selected
-                players[a].waiting = true;
-            }
-            for (int i = 0; i < survivingUnits.Count; i++)
-            {
-                survivingUnits[i].transform.position = new Vector3((i * .11f) - .5f, 6.1f, .18f);
-                survivingUnits[i].transform.localScale = new Vector3(.12f, .000001f, .12f);
+                GameObject YouWin;
+                YouWin = (GameObject)Instantiate(WinScreenPrefab, new Vector3(-2, 6, 0), Quaternion.Euler(new Vector3(90, 0, 0)));
+                // Display all of the player's carryover units on the winscreen and display the number of points they each earned the player this level
 
+
+                for (int a = 0; a < players.Count; a++)
+                {
+                    //Units cannot be selected
+                    players[a].waiting = true;
+                }
+                for (int i = 0; i < survivingUnits.Count; i++)
+                {
+                    survivingUnits[i].transform.position = new Vector3((i * .11f) - .5f, 6.1f, .18f);
+                    survivingUnits[i].transform.localScale = new Vector3(.12f, .000001f, .12f);
+
+                }
+            }
+            else if (playerWin == false)
+            {
+                GameObject YouLose;
+                YouLose = (GameObject)Instantiate(LoseScreenPrefab, new Vector3(-2, 6, 0), Quaternion.Euler(new Vector3(90, 0, 0)));
+                playerWin = true;
             }
         }
         else
@@ -1806,38 +1875,51 @@ public class GameManager : MonoBehaviour
             //make sure human player has control
             GameManager.instance.ReactivateAButton();
             //get rid of End Turn button while winscreen is displayed
-            MainUICanvas.transform.position = new Vector3(-20, 0, 0);
-            GameObject YouWin;
-            YouWin = (GameObject)Instantiate(WinScreenPrefab, new Vector3(-2, 6, 0), Quaternion.Euler(new Vector3(90, 0, 0)));
-            for (int a = 0; a < players.Count; a++)
+            if (playerWin == true)
             {
-                //Units cannot be selected
-                players[a].waiting = true;
-            }
-            for (int i = 0; i < survivingUnits.Count; i++)
-            {
-                survivingUnits[i].transform.position = new Vector3((i * .11f) - .5f, 6.1f, .18f);
-                survivingUnits[i].transform.localScale = new Vector3(.12f, .000001f, .12f);
+                GameObject YouWin;
+                YouWin = (GameObject)Instantiate(WinScreenPrefab, new Vector3(-2, 6, 0), Quaternion.Euler(new Vector3(90, 0, 0)));
+                // Display all of the player's carryover units on the winscreen and display the number of points they each earned the player this level
 
+
+                for (int a = 0; a < players.Count; a++)
+                {
+                    //Units cannot be selected
+                    players[a].waiting = true;
+                }
+                for (int i = 0; i < survivingUnits.Count; i++)
+                {
+                    survivingUnits[i].transform.position = new Vector3((i * .11f) - .5f, 6.1f, .18f);
+                    survivingUnits[i].transform.localScale = new Vector3(.12f, .000001f, .12f);
+
+                }
+            }
+            else if (playerWin == false)
+            {
+                GameObject YouLose;
+                YouLose = (GameObject)Instantiate(LoseScreenPrefab, new Vector3(-2, 6, 0), Quaternion.Euler(new Vector3(90, 0, 0)));
+                playerWin = true;
             }
         }
-        /* map = new List<List<Tile>>();
-         for (int i = 0; i < mapSize; i++)
-         {
-             List<Tile> row = new List<Tile>();
-             for (int j = 0; j < mapSize; j++)
+            /* map = new List<List<Tile>>();
+             for (int i = 0; i < mapSize; i++)
              {
-                 Tile tile = ((GameObject)Instantiate(TilePrefab, new Vector3(i - Mathf.Floor(mapSize / 2),0,-j + Mathf.Floor(mapSize / 2)), Quaternion.Euler(new Vector3()))).GetComponent<Tile>();
-                 tile.gridPosition = new Vector2(i, j);
-                 row.Add(tile);
+                 List<Tile> row = new List<Tile>();
+                 for (int j = 0; j < mapSize; j++)
+                 {
+                     Tile tile = ((GameObject)Instantiate(TilePrefab, new Vector3(i - Mathf.Floor(mapSize / 2),0,-j + Mathf.Floor(mapSize / 2)), Quaternion.Euler(new Vector3()))).GetComponent<Tile>();
+                     tile.gridPosition = new Vector2(i, j);
+                     row.Add(tile);
+                 }
+                 map.Add(row);
              }
-             map.Add(row);
-         }
-         */
-    }
+             */
+        }
 
     void loadMapFromXml(string s)
     {
+        // also store all surviving units
+        StoreUnits();
         MapXmlContainer container = MapSaveLoad.Load(s);
         mapSize = container.size;
 
@@ -1847,8 +1929,7 @@ public class GameManager : MonoBehaviour
             Destroy(mapTransform.GetChild(i).gameObject);
         }
 
-        // also store all surviving units
-        StoreUnits();
+        
 
         //destroy all AI units in the event that they defeat the player, in order to restart the level
         for (int i = 0; i < players.Count; i++)
@@ -2289,13 +2370,6 @@ public class GameManager : MonoBehaviour
     // When you clear a level, your surviving units have their data stored and can be brought back in later levels
     public void StoreUnits()
     {
-        foreach (Player u in players)
-        {
-            if (u.isUnitKiller)
-            {
-                PromoteUnit(u);
-            }
-        }
         // also handle point tallying here
         foreach (Player u in players)
         {

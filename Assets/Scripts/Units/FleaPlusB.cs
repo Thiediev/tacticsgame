@@ -17,6 +17,7 @@ public class FleaPlusB : Unit {
         u.HP = h;
         u.fleaActionPoints = 1;
         u.fleaMovementPoints = 1;
+        u.isFleaUpB = true;
     }
 
 }

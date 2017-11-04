@@ -97,7 +97,7 @@ public class UserPlayer : Player
 
         }
         else
-        if (this == GameManager.myUnit && !(GameManager.myUnit is HQ))
+        if (this == GameManager.myUnit && GameManager.instance.myUnitIsBeingUsed == true && !(GameManager.myUnit is HQ))
         {
             GameManager.instance.myUnitIsBeingUsed = false;
             GameManager.instance.removeTileHighlights();
