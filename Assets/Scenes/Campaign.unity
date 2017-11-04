@@ -376,7 +376,8 @@ MonoBehaviour:
   AIWitchUpBPrefab: {fileID: 104728, guid: f22109a69cfab9843a55469fc17bf078, type: 2}
   WinScreenPrefab: {fileID: 1913264426184160, guid: 3b51696d3f6be854ba6ebf649c58545d,
     type: 2}
-  LoseScreenPrefab: {fileID: 0}
+  LoseScreenPrefab: {fileID: 1219503764192652, guid: 939a6ea5da6587042b6695711d1c6cd4,
+    type: 2}
   mapSize: 19
   resumeIn3Seconds: 0
   startedPausing: 0
@@ -393,6 +394,8 @@ MonoBehaviour:
   unitIsDead: 0
   myUnitIsBeingUsed: 0
   myUnitMustWaitOrAttack: 0
+  mustPromoteUnit: 0
+  playerWin: 0
   WinScreenOn: 0
   aiPlayerTurn: 0
   fundsArmyOne: 0
