@@ -173,7 +173,7 @@ public class Tile : MonoBehaviour {
         {
             if (GameManager.instance.pocketScreenOn == true)
             {
-                GameManager.instance.dropCurrentUnit(this);
+                GameManager.instance.DropCurrentUnit(this);
                 for (int i = 0; i < GameManager.instance.survivingUnits.Count; i++)
                 {
                     GameManager.instance.survivingUnits[i].transform.position = new Vector3(100, 2, 0);
